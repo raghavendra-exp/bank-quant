@@ -2,8 +2,8 @@
 
 const NAV_ITEMS = [
   ["home", "Home"], ["learn", "Learn"], ["practice", "Practice"],
-  ["speedlab", "Speed Lab"], ["shortcuts", "Shortcuts"], ["mistakebook", "Mistake Book"],
-  ["progress", "Progress"], ["sources", "Sources"]
+  ["speedlab", "Speed Lab"], ["shortcuts", "Shortcuts"], ["pyq", "PYQ Trends"],
+  ["mistakebook", "Mistake Book"], ["progress", "Progress"], ["sources", "Sources"]
 ];
 
 function el(html) { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstElementChild; }
@@ -23,11 +23,12 @@ function route() {
   const content = document.getElementById("app-content");
   content.innerHTML = "";
   const renderers = {
-    home: renderHome, learn: () => renderLearn(rest[0]), practice: () => renderPractice(rest[0]),
-    speedlab: renderSpeedLab, shortcuts: renderShortcuts, mistakebook: renderMistakeBook,
-    progress: renderProgress, sources: renderSources
+    home: renderHome, speedlab: renderSpeedLab, shortcuts: renderShortcuts, pyq: renderPYQ,
+    mistakebook: renderMistakeBook, progress: renderProgress, sources: renderSources
   };
-  (renderers[page] || renderHome)(content);
+  if (page === "practice") renderPractice(rest[0], rest[1]);
+  else if (page === "learn") renderLearn(rest[0]);
+  else (renderers[page] || renderHome)(content);
   window.scrollTo(0, 0);
 }
 window.addEventListener("hashchange", route);
@@ -157,7 +158,7 @@ function renderLearn(topicId) {
 // ============================================================ PRACTICE
 let practiceSession = null;
 
-function renderPractice(topicId) {
+function renderPractice(topicId, diSetId) {
   const content = document.getElementById("app-content");
   if (!topicId) {
     content.append(el(`<div class="ledger-card"><div class="eyebrow">Practice</div><h1 class="mt0">Choose a topic</h1></div>`));
@@ -170,7 +171,7 @@ function renderPractice(topicId) {
     return;
   }
 
-  if (topicId === "data-interpretation") { renderDIPractice(content); return; }
+  if (topicId === "data-interpretation") { renderDIPractice(content, diSetId); return; }
 
   if (!GENERATORS[topicId]) {
     content.append(el(`<div class="ledger-card"><p>No question generator is wired up for this topic yet — add one in <span class="num">js/data/generators.js</span>.</p></div>`));
@@ -266,8 +267,18 @@ function drawPracticeSummary(t) {
   `));
 }
 
-function renderDIPractice(content) {
-  const set = DI_SETS[0];
+function renderDIPractice(content, setId) {
+  if (!setId) {
+    content.append(el(`<div class="ledger-card"><div class="eyebrow">Data Interpretation</div><h1 class="mt0">Choose a set</h1><p class="muted">Each set is hand-verified for internal consistency (no generated DI yet — see README on why).</p></div>`));
+    const grid = el(`<div class="grid cols-3"></div>`);
+    DI_SETS.forEach(s => {
+      const card = el(`<div class="ledger-card"><h3 style="text-transform:none;border:none;font-size:1rem">${s.title}</h3><p class="muted" style="font-size:.82rem">${s.type.replace("_", " ")} · ${s.questions.length} questions</p><a class="btn small gold" href="#/practice/data-interpretation/${s.id}">Open →</a></div>`);
+      grid.append(card);
+    });
+    content.append(grid);
+    return;
+  }
+  const set = DI_SETS.find(s => s.id === setId) || DI_SETS[0];
   content.append(el(`
     <div class="ledger-card">
       <div class="eyebrow">Data Interpretation — ${set.sourceType === "OFFICIAL" ? "Official" : "Practice"} set</div>
@@ -425,6 +436,52 @@ function renderProgress(content) {
   content.querySelector("#btn-reset").onclick = () => {
     if (confirm("This clears all local progress permanently. Continue?")) { resetData(); location.reload(); }
   };
+}
+
+// ============================================================ PYQ TRENDS
+function renderPYQ(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Previous Year Questions — Trend Analysis</div>
+      <h1 class="mt0">There is no official SBI/IBPS question bank</h1>
+      <p class="muted">SBI and IBPS do not publish official past papers. Every "PYQ" resource online — including this page — is a memory-based reconstruction from candidates and coaching analysts, never verbatim official text. This page summarizes publicly reported topic trends, paraphrased from coaching-site analyses, with sources linked. Treat every number here as an analyst estimate, not a guaranteed count.</p>
+    </div>
+    <div class="ledger-card">
+      <h3>IBPS RRB Office Assistant — Prelims Numerical Ability (memory-based analysis)</h3>
+      <table class="ledger">
+        <thead><tr><th>Topic</th><th class="num">Typical Qs</th><th>Reported difficulty</th></tr></thead>
+        <tbody>
+          <tr><td>Simplification</td><td class="num">≈10</td><td>Easy</td></tr>
+          <tr><td>Data Interpretation</td><td class="num">≈10</td><td>Easy</td></tr>
+          <tr><td>Arithmetic word problems</td><td class="num">≈10</td><td>Easy–Moderate</td></tr>
+          <tr><td>Quadratic Equations</td><td class="num">≈5</td><td>Easy</td></tr>
+          <tr><td>Wrong Number Series</td><td class="num">≈5</td><td>Easy–Moderate</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:10px">Source: <a href="https://competition.careers360.com/articles/ibps-rrb-clerk-exam-analysis" target="_blank" rel="noopener">Careers360 IBPS RRB Clerk exam analysis</a> — candidate-feedback based, paraphrased here, not an official IBPS document.</p>
+    </div>
+    <div class="ledger-card">
+      <h3>SBI Clerk Prelims — reported difficulty pattern</h3>
+      <p>Coaching-site analyses consistently describe Numerical Ability as easy-to-moderate across recent cycles, with BODMAS/simplification-style questions and puzzle-heavy reasoning called out as the highest-weightage areas overall.</p>
+      <p class="muted" style="margin-top:10px">Source: <a href="https://testbook.com/sbi-clerk/previous-year-papers" target="_blank" rel="noopener">Testbook SBI Clerk previous year papers page</a>.</p>
+    </div>
+    <div class="ledger-card">
+      <h3>IBPS Clerk Prelims — recent shift-wise difficulty (2022 cycle, illustrative)</h3>
+      <table class="ledger">
+        <thead><tr><th>Shift</th><th class="num">Numerical Ability Qs</th><th class="num">Reported good attempts</th><th>Difficulty</th></tr></thead>
+        <tbody>
+          <tr><td>Shift 1</td><td class="num">35</td><td class="num">25–26</td><td>Easy–Moderate</td></tr>
+          <tr><td>Shift 3</td><td class="num">35</td><td class="num">27–28</td><td>Moderate</td></tr>
+          <tr><td>Shift 4</td><td class="num">35</td><td class="num">26–28</td><td>Moderate</td></tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin-top:10px">Source: <a href="https://news.careers360.com/ibps-clerk-2022-prelims-exam-concludes-check-paper-analysis-for-september-4" target="_blank" rel="noopener">Careers360 IBPS Clerk 2022 shift analysis</a>. Included as a historical illustration of shift-to-shift variance, not a prediction for future cycles.</p>
+    </div>
+    <div class="ledger-card">
+      <h3>What this means for your practice mix</h3>
+      <p>Across these analyses, three things show up repeatedly: Simplification/BODMAS carries real, consistent weight; Quadratic Equations shows up as a fast, learnable block; and DI + Arithmetic word problems together dominate the section. That roughly matches the topic weighting already reflected in this app's Practice and Speed Lab modules.</p>
+    </div>
+  `));
 }
 
 // ============================================================ SOURCES

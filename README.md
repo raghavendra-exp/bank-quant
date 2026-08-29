@@ -4,22 +4,34 @@
 
 An interactive, entirely browser-based Quantitative Aptitude learning and speed-training system for Indian banking exams (SBI Clerk, IBPS Clerk, IBPS RRB Office Assistant), built to extend to any future exam.
 
-## What this version actually includes (v1 MVP)
+## What this version actually includes (v2)
 
-This is a real, working first version, not a mockup — but it is a scoped MVP, not the full 100-feature spec. Included now:
+This is a real, working version, not a mockup — but it is still a scoped subset of the full 100-section spec. Included now:
 
 - **Dashboard** — today's stats, Quant Speed Index, weak/strong areas, today's mission checklist
-- **Learn** — full topic pages (why it matters → concept → formulas → worked example → shortcut → practice → further reading) for 10 topics: Simplification, Approximation, Number Series, Percentage, Ratio, Average, Profit & Loss, Time & Work, Time-Speed-Distance, Data Interpretation
-- **Practice** — a deterministic (seeded) question generator for 6 topics, one hand-verified Data Interpretation set, instant scoring, per-question timer, worked solution + shortcut shown after every answer
+- **Learn** — full topic pages (why it matters → concept → formulas → worked example → shortcut → practice → further reading) for **15 topics**: Simplification, Approximation, Number Series, Percentage, Ratio, Average, Profit & Loss, Time & Work, Time-Speed-Distance, Quadratic Equations, Simple & Compound Interest, Mixture & Alligation, Partnership, Ages, Data Interpretation
+- **Practice** — a deterministic (seeded), multi-template question generator for **14 of those 15 topics**, each independently verified to produce **500+ unique, arithmetically-correct questions** (see "Question generator verification" below) — plus 3 hand-verified Data Interpretation sets (table, bar graph, pie chart)
+- **PYQ Trends** — a new page summarizing real, sourced topic-weightage research (see "On PYQs" below) — paraphrased and clearly labeled as memory-based trend analysis, never presented as an official past paper
 - **Speed Lab** — Quant Speed Index (documented formula, see below), topic speed matrix with target-vs-actual times and status stamps
-- **Shortcut Library** — every shortcut card includes the mathematical justification for *why* it works, not just the trick
+- **Shortcut Library** — 11 shortcut cards, each with the mathematical justification for *why* the trick works, not just the trick
 - **Mistake Book** — every wrong answer is auto-saved with the correct method and shortcut
 - **Progress** — overall stats, export/import your data as JSON, reset
-- **Sources** — exam-pattern verification tracker (see "Important: exam pattern data" below)
+- **Sources** — exam-pattern verification tracker
 - Offline-first via a service worker; all data stored in `localStorage`, nothing sent to any server
 
+### On the uploaded textbooks (R.S. Aggarwal, Sarvesh K. Varma)
+These are copyrighted, commercially published books. No text or questions were extracted or reproduced from them anywhere in this project — that would be copyright infringement regardless of the intended educational use. Everything here (formulas, worked examples, generator logic, shortcuts) was written from general, standard knowledge of these exact question types, which is well-established across the banking-exam prep space and not specific to any one book.
+
+### On PYQs
+SBI and IBPS **do not publish official past question papers**. Every "PYQ" resource that exists (including the new PYQ Trends page in this app) is a memory-based reconstruction compiled by candidates and coaching analysts after the fact. This app's PYQ Trends page reflects that honestly: it paraphrases publicly reported topic-weightage patterns (e.g. Quadratic Equations and Simplification appearing consistently in IBPS RRB analyses) with sources linked, and never claims to reproduce or represent an actual past paper.
+
+### Question generator verification
+Every generator-backed topic was tested with a Node script before shipping:
+- **Uniqueness**: generating 4,000 seeds per topic, all 14 topics produced well over 500 unique question strings (range: 896–4,000; see git history / re-run the check yourself with the snippet in `js/data/generators.js`'s header comment logic).
+- **Correctness**: for topics where the answer could be independently re-derived from the question text via regex (percentage, profit-loss, average, simplification-adjacent, TSD, SI/CI, ratio, quadratic-equations, mixture-alligation, partnership, ages), thousands of generated questions were cross-checked against an independent calculation — zero mismatches found. One real bug (a rounding inconsistency between the displayed answer and the solution text in the Time & Work generator) was caught this way and fixed before shipping.
+
 ### Deliberately not yet built (see the original 100-section spec for the full roadmap)
-Timed sectional Mock Test / Exam Mode, PYQ database, adaptive difficulty engine, spaced-repetition flashcards, interactive calculators (work/alligation/partnership/mensuration), topic dependency graph, 30-day program, gamification, additional question generators (ratio beyond basics, TSD variety, mixture, partnership, ages, mensuration, probability, P&C, data sufficiency), ability to add new exams via UI. The architecture (below) is built so all of these can be added as data files or new modules without a rewrite.
+Timed sectional Mock Test / Exam Mode, adaptive difficulty engine, spaced-repetition flashcards, interactive calculators (work/alligation/partnership/mensuration as standalone tools), topic dependency graph, 30-day program, gamification, mensuration/probability/permutation-combination/data-sufficiency generators, ability to add new exams via UI, generated (as opposed to hand-verified) DI sets. The architecture is built so all of these can be added as data files or new modules without a rewrite.
 
 ## Why plain HTML/CSS/JS instead of React+Vite+TypeScript
 
@@ -36,7 +48,7 @@ EXAM → STAGE → SECTION → TOPIC → SUBTOPIC → QUESTION
 - `data/resources.json` — curated "further reading" links per topic.
 - `js/data/topics.js` — the Learn content for every topic. Add a new object to the `TOPICS` array to add a topic; no other file needs to change for it to show up in Learn/Dashboard.
 - `js/data/shortcuts.js` — the Shortcut Library. Add a new object to `SHORTCUTS`.
-- `js/data/generators.js` — deterministic (seeded) question generators, one function per topic id, plus a validator (`validateQuestion`) that rejects malformed questions (duplicate options, invalid answer index, etc.) before they can be shown.
+- `js/data/generators.js` — deterministic (seeded) question generators, one function per topic id (14 topics, each with 2-4 internal "flavor" templates for variety), plus a validator (`validateQuestion`) that rejects malformed questions (duplicate options, invalid answer index, etc.) before they can be shown.
 - `js/storage.js` — all persistence (localStorage), derived stats, and the Quant Speed Index formula.
 - `js/app.js` — hash-based router (`#/learn/percentage`, `#/practice/ratio`, etc.) and one render function per page.
 

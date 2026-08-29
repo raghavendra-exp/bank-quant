@@ -103,5 +103,44 @@ const SHORTCUTS = [
     timeSaved: "Can save 30-45 seconds across a full set of 4-5 questions.",
     commonMistake: "Skipping units or footnotes (e.g. 'figures in thousands'), causing an off-by-1000 error on every question in the set.",
     whenNotToUse: "N/A — this is a discipline, not a calculation shortcut, and should always be applied."
+  },
+  {
+    id: "sc-quad-compare",
+    category: "ALGEBRA",
+    title: "Root-pair comparison for quadratic equations",
+    whenToUse: "Two quadratic (or one quadratic + one linear) equations given, asking for the relationship between x and y.",
+    normalMethod: "Solve both equations fully, then manually compare every pair of roots.",
+    shortMethod: "Factor both equations quickly using the sum/product shortcut (two numbers multiplying to c, adding to b). Once you have the root sets, compare only the closest pair from each set first — if the smallest root of one set already exceeds the largest of the other, the full relation is immediate.",
+    why: "Comparing only the boundary roots (min of one set vs max of the other, and vice versa) is sufficient to establish an order relation without checking every combination — if the sets don't overlap, boundary comparison alone decides it.",
+    example: { q: "x: 2,3 | y: 4,5", steps: ["max(x)=3 < min(y)=4", "So every y > every x"], answer: "x < y" },
+    timeSaved: "≈15-20 seconds by skipping redundant pairwise checks.",
+    commonMistake: "Forgetting a quadratic can have two roots and only comparing one of them.",
+    whenNotToUse: "When the root sets overlap (e.g. x={2,5}, y={3,6}) — then no single fixed relation exists and the honest answer is 'cannot be determined'."
+  },
+  {
+    id: "sc-ci-diff",
+    category: "SI/CI",
+    title: "CI − SI difference shortcut (2 years)",
+    whenToUse: "Any question asking for the difference between compound and simple interest over exactly 2 years.",
+    normalMethod: "Calculate CI fully via the compounding formula, calculate SI separately, then subtract.",
+    shortMethod: "Difference (2 years) = P × (R/100)². For 3 years, difference = P×(R/100)²×(3 + R/100).",
+    why: "Expanding P(1+R/100)² − P − (P×R×2/100) algebraically leaves exactly P×(R/100)² — the shortcut is the fully simplified form of the same expression, not an approximation.",
+    example: { q: "P=8000, R=5%, find CI−SI for 2 years", steps: ["Difference = 8000×(5/100)² = 8000×0.0025 = 20"], answer: "₹20" },
+    timeSaved: "≈30-40 seconds versus computing CI and SI separately.",
+    commonMistake: "Using this formula for 3+ years without the extra correction term.",
+    whenNotToUse: "Never for periods other than exactly 2 years unless you use the extended 3-year version."
+  },
+  {
+    id: "sc-alligation",
+    category: "MIXTURE",
+    title: "Alligation cross rule",
+    whenToUse: "Mixing two quantities of different cost/concentration to hit a target mean value.",
+    normalMethod: "Set up simultaneous equations for quantity and total value, then solve algebraically.",
+    shortMethod: "Draw cheaper and dearer values on either side of the mean; the ratio of quantities is (Dearer−Mean):(Mean−Cheaper), read straight off the differences.",
+    why: "The algebraic solution of the weighted-average equation reduces exactly to this cross-difference ratio — it's the closed-form solution, not a rule of thumb.",
+    example: { q: "Cheaper=20, Dearer=32, Mean=26", steps: ["Ratio = (32−26):(26−20) = 6:6 = 1:1"], answer: "1:1" },
+    timeSaved: "≈20-30 seconds versus setting up and solving equations.",
+    commonMistake: "Flipping which difference belongs to which quantity — the cheaper quantity pairs with (Dearer−Mean), not (Mean−Cheaper).",
+    whenNotToUse: "When more than two ingredients are mixed at once — alligation cross only handles two at a time."
   }
 ];

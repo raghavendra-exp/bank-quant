@@ -161,6 +161,90 @@ const TOPICS = [
     difficultyDefault: "MEDIUM"
   },
   {
+    id: "quadratic-equations",
+    name: "Quadratic Equations",
+    category: "ALGEBRA",
+    why: "A fixed 5-question block in most Prelims papers (IBPS RRB analysis shows Quadratic Equations appearing consistently). These are pure speed marks once the comparison method is automatic.",
+    concept: "Two equations in x and y are given. Solve each for its roots, then compare every root of x against every root of y to decide the relationship (x>y, x<y, x=y, x≥y, x≤y, or no fixed relation).",
+    formulas: [
+      "For ax²+bx+c=0: roots multiply to c/a and add to −b/a",
+      "Factor by finding two numbers that multiply to c and add to b (for a=1)"
+    ],
+    examples: [
+      { q: "I. x² − 7x + 12 = 0  II. y² − 9y + 20 = 0. Find relation.", steps: ["x: (x−3)(x−4)=0 → x=3,4", "y: (y−4)(y−5)=0 → y=4,5", "Every y ≥ every x in the worst case → x ≤ y"], answer: "x ≤ y" }
+    ],
+    shortcutId: "sc-quad-compare",
+    targetTimeSec: 40,
+    difficultyDefault: "MEDIUM"
+  },
+  {
+    id: "si-ci",
+    name: "Simple & Compound Interest",
+    category: "ARITHMETIC",
+    why: "SI/CI questions are a direct extension of percentage, and the CI-vs-SI difference formula is a favorite Prelims trap that rewards a memorized shortcut.",
+    concept: "Simple Interest is calculated on the original principal every year. Compound Interest is calculated on the accumulating amount (principal + previous interest).",
+    formulas: [
+      "SI = (P × R × T) / 100",
+      "CI (n years) = P × (1 + R/100)ⁿ − P",
+      "Difference between CI and SI for 2 years = P × (R/100)²"
+    ],
+    examples: [
+      { q: "Find SI on ₹5000 at 8% for 3 years.", steps: ["SI = 5000×8×3/100", "= 1200"], answer: "₹1200" }
+    ],
+    shortcutId: "sc-ci-diff",
+    targetTimeSec: 45,
+    difficultyDefault: "MEDIUM"
+  },
+  {
+    id: "mixture-alligation",
+    name: "Mixture & Alligation",
+    category: "ARITHMETIC",
+    why: "The alligation rule collapses a two-variable mixture problem into a single ratio read directly off the cheaper/dearer/mean prices — one of the fastest tricks in the whole syllabus once trusted.",
+    concept: "When two ingredients of different prices are mixed to get a mean price, the ratio in which they're mixed equals (Dearer − Mean) : (Mean − Cheaper).",
+    formulas: [
+      "Cheaper : Dearer = (Dearer − Mean) : (Mean − Cheaper)"
+    ],
+    examples: [
+      { q: "Mix tea at ₹20/kg and ₹32/kg to get a mean price of ₹26/kg. Find the ratio.", steps: ["Ratio = (32−26):(26−20) = 6:6 = 1:1"], answer: "1:1" }
+    ],
+    shortcutId: "sc-alligation",
+    targetTimeSec: 40,
+    difficultyDefault: "MEDIUM"
+  },
+  {
+    id: "partnership",
+    name: "Partnership",
+    category: "ARITHMETIC",
+    why: "Partnership is ratio-thinking applied to capital and time together, and reuses the direct-share ratio shortcut once the capital×time products are found.",
+    concept: "When partners invest different amounts for different durations, profit is shared in the ratio of (Capital × Time) for each partner.",
+    formulas: [
+      "Profit share ratio = C₁T₁ : C₂T₂ : ..."
+    ],
+    examples: [
+      { q: "A invests ₹50,000 for 12 months, B invests ₹80,000 for 6 months. Find the profit ratio.", steps: ["A: 50000×12 = 600000", "B: 80000×6 = 480000", "Ratio = 600000:480000 = 5:4"], answer: "5:4" }
+    ],
+    shortcutId: "sc-ratio-share",
+    targetTimeSec: 45,
+    difficultyDefault: "MEDIUM"
+  },
+  {
+    id: "ages",
+    name: "Ages",
+    category: "ARITHMETIC",
+    why: "Age problems are ratio and linear-equation thinking in a familiar wrapper — fast once you set up 'present age = x' and read the future/past condition directly into an equation.",
+    concept: "Represent unknown present ages using a common variable (often tied to a given ratio), then convert the word condition (X years ago/hence) into a linear equation.",
+    formulas: [
+      "If present ages are in ratio m:n, take them as mk and nk",
+      "'x years hence' → add x to every age; 'x years ago' → subtract x"
+    ],
+    examples: [
+      { q: "Present ages of A and B are in ratio 3:4. After 6 years, ratio becomes 4:5. Find A's present age.", steps: ["Ages = 3k, 4k", "(3k+6)/(4k+6) = 4/5 → 15k+30 = 16k+24 → k=6", "A's age = 3×6 = 18"], answer: "18 years" }
+    ],
+    shortcutId: "sc-ratio-share",
+    targetTimeSec: 45,
+    difficultyDefault: "MEDIUM"
+  },
+  {
     id: "data-interpretation",
     name: "Data Interpretation",
     category: "DI",
@@ -223,6 +307,70 @@ const DI_SETS = [
         answerIndex: 3,
         solution: "S grew 18/72 = 25%, the highest among all companies (P≈20%, Q=10%, R≈7.9%, T=−10%).",
         shortcut: "Scan for the largest absolute increase relative to the smallest base first — S stands out on both counts."
+      }
+    ]
+  },
+  {
+    id: "di-set-2",
+    type: "BAR_GRAPH",
+    sourceType: "PRACTICE",
+    title: "Runs scored by a batsman in 5 matches",
+    caption: "Bar graph shows runs scored by a batsman across 5 ODI matches.",
+    columns: ["Match", "Runs"],
+    rows: [["M1", 45], ["M2", 78], ["M3", 32], ["M4", 91], ["M5", 64]],
+    questions: [
+      {
+        q: "What is the batsman's average runs across all 5 matches?",
+        options: ["62", "60", "64", "58", "66"],
+        answerIndex: 0,
+        solution: "Total = 45+78+32+91+64 = 310. Average = 310/5 = 62.",
+        shortcut: "Assume mean 60: deviations −15,+18,−28,+31,+4 = +10 → average = 60+10/5 = 62."
+      },
+      {
+        q: "By what percentage were the runs in M4 more than the runs in M3?",
+        options: ["184.4%", "175%", "190%", "168%", "200%"],
+        answerIndex: 0,
+        solution: "Difference = 91−32 = 59. % more = 59/32 × 100 ≈ 184.4%.",
+        shortcut: "59 is nearly double 32 (which would be 200%) — check the exact value only when options are close together, as here."
+      },
+      {
+        q: "What fraction of the total runs were scored in M2 and M5 combined?",
+        options: ["71/155", "71/310", "142/310", "1/2", "71/300"],
+        answerIndex: 2,
+        solution: "M2+M5 = 78+64 = 142. Fraction of total 310 = 142/310.",
+        shortcut: "Leave as an unreduced fraction when the options are also unreduced — reducing wastes time the question doesn't reward."
+      }
+    ]
+  },
+  {
+    id: "di-set-3",
+    type: "PIE_CHART",
+    sourceType: "PRACTICE",
+    title: "Distribution of monthly household expenditure (₹36,000 total)",
+    caption: "Pie chart shows percentage of a ₹36,000 monthly budget spent across 5 categories.",
+    columns: ["Category", "% of budget"],
+    rows: [["Rent", 30], ["Food", 25], ["Transport", 15], ["Savings", 20], ["Other", 10]],
+    questions: [
+      {
+        q: "How much is spent on Food?",
+        options: ["₹9,000", "₹8,000", "₹9,500", "₹7,500", "₹10,000"],
+        answerIndex: 0,
+        solution: "25% of 36000 = 9000.",
+        shortcut: "25% = 1/4, so 36000/4 = 9000 directly."
+      },
+      {
+        q: "What is the ratio of amount spent on Rent to amount spent on Savings?",
+        options: ["3:2", "2:3", "5:4", "3:1", "4:3"],
+        answerIndex: 0,
+        solution: "Rent% : Savings% = 30:20 = 3:2 — the ratio of amounts equals the ratio of percentages since both are of the same total.",
+        shortcut: "When two slices share the same total, their ratio is just the ratio of their percentages — no need to compute actual rupee amounts."
+      },
+      {
+        q: "How much more is spent on Rent than on Transport?",
+        options: ["₹5,400", "₹5,000", "₹6,000", "₹4,800", "₹5,800"],
+        answerIndex: 0,
+        solution: "Difference in % = 30−15 = 15%. 15% of 36000 = 5400.",
+        shortcut: "Subtract percentages first, then apply to the total once — avoids computing both rupee amounts separately."
       }
     ]
   }
