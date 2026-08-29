@@ -6,7 +6,15 @@ const NAV_ITEMS = [
   ["mistakebook", "Mistake Book"], ["progress", "Progress"], ["sources", "Sources"]
 ];
 
-function el(html) { const d = document.createElement("div"); d.innerHTML = html.trim(); return d.firstElementChild; }
+function el(html) {
+  const d = document.createElement("div");
+  d.innerHTML = html.trim();
+  // Most render functions build several stacked cards in one template string.
+  // Returning only firstElementChild silently drops every sibling after it —
+  // wrap in the container div itself when there's more than one root element.
+  if (d.children.length === 1) return d.firstElementChild;
+  return d;
+}
 function fmtSec(n) { return (n === null || n === undefined) ? "—" : `${n}s`; }
 function fmtPct(n) { return (n === null || n === undefined) ? "—" : `${n}%`; }
 function statusStamp(accuracy, avgTime, target) {
