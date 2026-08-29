@@ -1,0 +1,26 @@
+{
+  "note": "This file must be kept up to date manually from official notifications. The app never invents a source or a verification date.",
+  "exams": [
+    {
+      "examId": "SBI_CLERK",
+      "officialSite": "https://sbi.co.in/web/careers",
+      "lastVerified": null,
+      "verificationStatus": "NOT_YET_VERIFIED_AGAINST_LIVE_NOTIFICATION",
+      "instructions": "Before trusting the numbers in data/exams/sbi-clerk.json, open the latest official notification PDF from sbi.co.in/web/careers, confirm the Prelims/Mains section-wise question count, marks, timing and negative marking, then update lastVerified to that date."
+    },
+    {
+      "examId": "IBPS_CLERK",
+      "officialSite": "https://www.ibps.in",
+      "lastVerified": null,
+      "verificationStatus": "NOT_YET_VERIFIED_AGAINST_LIVE_NOTIFICATION",
+      "instructions": "Verify against the current year's IBPS Clerk CRP notification PDF on ibps.in before trusting data/exams/ibps-clerk.json."
+    },
+    {
+      "examId": "IBPS_RRB_OFFICE_ASSISTANT",
+      "officialSite": "https://www.ibps.in",
+      "lastVerified": null,
+      "verificationStatus": "NOT_YET_VERIFIED_AGAINST_LIVE_NOTIFICATION",
+      "instructions": "Verify against the current year's IBPS RRB CRP notification PDF on ibps.in before trusting data/exams/rrb-office-assistant.json."
+    }
+  ]
+}

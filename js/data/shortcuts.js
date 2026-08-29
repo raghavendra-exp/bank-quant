@@ -1,0 +1,107 @@
+// SHORTCUT LIBRARY — every card must explain WHY the trick works, per project rules.
+const SHORTCUTS = [
+  {
+    id: "sc-frac-percent",
+    category: "CALCULATION",
+    title: "Fraction ↔ Percentage table",
+    whenToUse: "Any time a question asks for x% of y, or you need to convert a percentage into a clean fraction to cancel with other numbers.",
+    normalMethod: "Multiply x/100 × y directly using long multiplication/division.",
+    shortMethod: "Memorize 1/2=50%, 1/3=33.33%, 1/4=25%, 1/5=20%, 1/6=16.67%, 1/7≈14.28%, 1/8=12.5%, 1/9≈11.11%, 1/10=10%, 1/12=8.33%, 1/16=6.25%, 1/20=5%. Convert the % in the question to its fraction, then cancel.",
+    why: "x% of y = (x/100)×y is always a fraction multiplication. Pre-memorized fractions turn a division into a cancellation, which is faster and less error-prone than decimal long division.",
+    example: { q: "16.67% of 480 = ?", steps: ["16.67% = 1/6", "480/6 = 80"], answer: "80" },
+    timeSaved: "≈15-20 seconds per question once the table is memorized cold.",
+    commonMistake: "Misremembering 1/7 as 14% flat instead of ≈14.28% — fine for approximation, risky for exact-answer questions.",
+    whenNotToUse: "When the percentage doesn't match a clean fraction (e.g. 23.4%) — approximate instead of forcing a fraction."
+  },
+  {
+    id: "sc-series-scan",
+    category: "NUMBER SYSTEM",
+    title: "Two-pass series scan",
+    whenToUse: "Number series questions, especially when the first-order differences don't look constant.",
+    normalMethod: "Try addition/subtraction pattern only, get stuck, restart with multiplication.",
+    shortMethod: "First pass: scan for a constant or steadily-changing difference. If that fails within 2 seconds, second pass: scan for a constant or changing ratio. Only after both fail, consider squares/cubes or alternating operations.",
+    why: "Series in banking exams are drawn from a small set of pattern families. Checking the two most common families first (difference-based, ratio-based) resolves ~70% of series in one pass instead of guessing randomly.",
+    example: { q: "3, 6, 12, 24, 48, ?", steps: ["Differences aren't constant (3,6,12,24)", "Ratios ARE constant: ×2 each time", "48×2 = 96"], answer: "96" },
+    timeSaved: "≈10-15 seconds by avoiding a false start.",
+    commonMistake: "Committing too long to the difference method when the pattern is clearly multiplicative.",
+    whenNotToUse: "Wrong-number-series questions need every term checked individually — this scan is for missing-term series."
+  },
+  {
+    id: "sc-ratio-share",
+    category: "RATIO",
+    title: "Direct-share ratio method",
+    whenToUse: "Dividing a total amount, quantity, or profit in a given ratio.",
+    normalMethod: "Set up algebraic variables (5x, 4x), solve for x using the total, then substitute back.",
+    shortMethod: "Skip the variable: share of a part = (that part's ratio number / sum of ratio numbers) × total, computed directly.",
+    why: "Setting 5x+4x=total and solving for x is algebraically identical to computing 5/9 of the total — the variable is unnecessary arithmetic overhead.",
+    example: { q: "Split ₹450 in ratio 2:3:4", steps: ["Sum of parts = 9", "Shares: 2/9×450=100, 3/9×450=150, 4/9×450=200"], answer: "100, 150, 200" },
+    timeSaved: "≈10 seconds by skipping the algebra setup.",
+    commonMistake: "Forgetting to sum ALL ratio terms (including a rarely-mentioned third or fourth part).",
+    whenNotToUse: "When the ratio itself is unknown and must be derived from other conditions first."
+  },
+  {
+    id: "sc-deviation",
+    category: "AVERAGE",
+    title: "Deviation (assumed mean) method",
+    whenToUse: "Averaging a set of numbers that are close together, especially with 5+ values.",
+    normalMethod: "Add all values, divide by count.",
+    shortMethod: "Pick a round number close to the values as an assumed average. Find each value's deviation (+/−) from it. Average = assumed average + (sum of deviations / count).",
+    why: "Summing small deviations from a round number is arithmetically lighter than summing the full original numbers, and the round assumed-average absorbs most of the calculation.",
+    example: { q: "Average of 98, 102, 95, 101, 104", steps: ["Assume 100; deviations: −2,+2,−5,+1,+4 = 0", "Average = 100 + 0/5 = 100"], answer: "100" },
+    timeSaved: "≈15-20 seconds versus summing large numbers directly.",
+    commonMistake: "Forgetting to divide the sum of deviations by count before adding back to the assumed average.",
+    whenNotToUse: "When values are widely scattered — a poorly chosen assumed average can make deviations larger, not smaller."
+  },
+  {
+    id: "sc-successive",
+    category: "PROFIT & LOSS",
+    title: "Successive change formula",
+    whenToUse: "Two or more percentage changes applied one after another (successive discounts, profit then loss, population growth then decline).",
+    normalMethod: "Apply each percentage change step by step on the running value.",
+    shortMethod: "Net % change = a + b + (ab/100), using negative values for decreases/discounts.",
+    why: "Each successive change multiplies the base by (1 ± a/100)(1 ± b/100); expanding this product algebraically gives exactly a + b + ab/100 as the net effect, so the formula is a derived shortcut, not a rule of thumb.",
+    example: { q: "Two successive discounts of 20% and 10%", steps: ["Net = −20 + (−10) + (−20×−10)/100", "= −30 + 2 = −28%"], answer: "Net 28% discount" },
+    timeSaved: "≈20-25 seconds versus computing two sequential multiplications.",
+    commonMistake: "Using the wrong sign for a decrease/discount — always treat decreases as negative in the formula.",
+    whenNotToUse: "More than two changes at once — extend the formula carefully or apply changes sequentially to avoid sign errors."
+  },
+  {
+    id: "sc-work-lcm",
+    category: "TIME & WORK",
+    title: "LCM efficiency method",
+    whenToUse: "Any Time & Work or Pipes & Cisterns question involving individual times and combined work.",
+    normalMethod: "Use fraction-of-work-per-day (1/12, 1/18) and add fractions with a common denominator each time.",
+    shortMethod: "Set total work = LCM of all given times (in convenient units). Efficiency of each worker = total work / their time, as a whole number. Add efficiencies directly.",
+    why: "Choosing the LCM as 'total work' converts every fractional efficiency into a whole number by construction, so all subsequent addition is integer arithmetic instead of fraction arithmetic.",
+    example: { q: "A: 12 days, B: 18 days, C: 36 days — together?", steps: ["LCM(12,18,36)=36 units", "Efficiencies: A=3, B=2, C=1 → combined=6/day", "36/6 = 6 days"], answer: "6 days" },
+    timeSaved: "≈20-30 seconds versus fraction addition, especially with 3+ workers.",
+    commonMistake: "Forgetting efficiency is work-per-day, not days — don't add the days directly.",
+    whenNotToUse: "Variable-efficiency problems (e.g. efficiency changes over time) need direct fractional tracking instead."
+  },
+  {
+    id: "sc-unit-conv",
+    category: "TSD",
+    title: "km/h ↔ m/s instant conversion",
+    whenToUse: "Any TSD question mixing km/h and meters/seconds (train and crossing problems almost always do).",
+    normalMethod: "Convert using full unit analysis: km/h × 1000/3600.",
+    shortMethod: "km/h → m/s: multiply by 5/18. m/s → km/h: multiply by 18/5.",
+    why: "1000 m / 3600 s simplifies exactly to 5/18 — the shortcut is the same conversion pre-reduced to its simplest fraction, so it's exact, not approximate.",
+    example: { q: "Convert 72 km/h to m/s", steps: ["72 × 5/18 = 20"], answer: "20 m/s" },
+    timeSaved: "≈10 seconds by skipping the 1000/3600 setup.",
+    commonMistake: "Multiplying by 18/5 instead of 5/18 when going km/h → m/s (the direction is easy to flip under time pressure).",
+    whenNotToUse: "Never skip it — it's exact and universally applicable for this conversion."
+  },
+  {
+    id: "sc-di-scan",
+    category: "DI",
+    title: "Read-then-solve DI discipline",
+    whenToUse: "The start of every DI set, before attempting any individual question.",
+    normalMethod: "Jump straight into the first question and start calculating, re-reading the data as needed for each question.",
+    shortMethod: "Spend 20-30 seconds reading the full data source once (title, units, categories, any footnote) before opening question 1. Note totals/patterns that look reusable across questions.",
+    why: "Re-reading the data source from scratch for every question is the single largest source of wasted time in DI sets — one upfront read amortizes that cost across all 4-5 questions in the set.",
+    example: { q: "A table with 5 companies × 2 years", steps: ["Read row/column headers once", "Note the row totals if given", "Answer all 4 questions using the same mental map"], answer: "—" },
+    timeSaved: "Can save 30-45 seconds across a full set of 4-5 questions.",
+    commonMistake: "Skipping units or footnotes (e.g. 'figures in thousands'), causing an off-by-1000 error on every question in the set.",
+    whenNotToUse: "N/A — this is a discipline, not a calculation shortcut, and should always be applied."
+  }
+];

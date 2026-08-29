@@ -1,0 +1,27 @@
+{
+  "examId": "IBPS_RRB_OFFICE_ASSISTANT",
+  "displayName": "IBPS RRB Office Assistant",
+  "sourceType": "TREND_ANALYSIS_UNVERIFIED",
+  "verificationNote": "Placeholder structure only. Populate from the current official IBPS RRB notification at ibps.in before relying on these numbers, then set lastVerified.",
+  "lastVerified": null,
+  "stages": [
+    {
+      "stage": "PRELIMS",
+      "section": "Numerical Ability",
+      "questions": null,
+      "marks": null,
+      "timeMinutes": null,
+      "negativeMarking": null,
+      "sectionalTiming": true
+    },
+    {
+      "stage": "MAINS",
+      "section": "Quantitative Aptitude",
+      "questions": null,
+      "marks": null,
+      "timeMinutes": null,
+      "negativeMarking": null,
+      "sectionalTiming": true
+    }
+  ]
+}
