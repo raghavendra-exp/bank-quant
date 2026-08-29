@@ -4,34 +4,33 @@
 
 An interactive, entirely browser-based Quantitative Aptitude learning and speed-training system for Indian banking exams (SBI Clerk, IBPS Clerk, IBPS RRB Office Assistant), built to extend to any future exam.
 
-## What this version actually includes (v2)
+## What this version actually includes (v3)
 
-This is a real, working version, not a mockup — but it is still a scoped subset of the full 100-section spec. Included now:
+This is a real, working version, not a mockup. Included now:
 
-- **Dashboard** — today's stats, Quant Speed Index, weak/strong areas, today's mission checklist
-- **Learn** — full topic pages (why it matters → concept → formulas → worked example → shortcut → practice → further reading) for **15 topics**: Simplification, Approximation, Number Series, Percentage, Ratio, Average, Profit & Loss, Time & Work, Time-Speed-Distance, Quadratic Equations, Simple & Compound Interest, Mixture & Alligation, Partnership, Ages, Data Interpretation
-- **Practice** — a deterministic (seeded), multi-template question generator for **14 of those 15 topics**, each independently verified to produce **500+ unique, arithmetically-correct questions** (see "Question generator verification" below) — plus 3 hand-verified Data Interpretation sets (table, bar graph, pie chart)
-- **PYQ Trends** — a new page summarizing real, sourced topic-weightage research (see "On PYQs" below) — paraphrased and clearly labeled as memory-based trend analysis, never presented as an official past paper
-- **Speed Lab** — Quant Speed Index (documented formula, see below), topic speed matrix with target-vs-actual times and status stamps
-- **Shortcut Library** — 11 shortcut cards, each with the mathematical justification for *why* the trick works, not just the trick
-- **Mistake Book** — every wrong answer is auto-saved with the correct method and shortcut
-- **Progress** — overall stats, export/import your data as JSON, reset
-- **Sources** — exam-pattern verification tracker
-- Offline-first via a service worker; all data stored in `localStorage`, nothing sent to any server
+- **Dashboard, Speed Lab, Shortcut Library (25 cards), Mistake Book, Progress, PYQ Trends, Sources** — same as before
+- **Learn + Practice — 32 topics total.** 31 have deterministic seeded generators (each independently verified to produce 500+ unique, arithmetically-correct questions); Data Interpretation uses 3 hand-verified sets (table, bar graph, pie chart) instead, since generating self-consistent multi-part datasets safely is a different problem from generating single-answer arithmetic.
+
+Topic list: Simplification, Approximation, Number Series, Percentage, Ratio, Average, Profit & Loss, Time & Work, Time-Speed-Distance, Quadratic Equations, Simple & Compound Interest, Mixture & Alligation, Partnership, Ages, Square Roots & Cube Roots, Decimal Fractions, Problems on Numbers, Surds and Indices, Logarithms, Chain Rule, Pipes and Cisterns, Mensuration, Races and Games, Calendar, Clocks, Stocks and Shares, Permutations & Combinations, Probability, True Discount & Banker's Discount, Heights and Distances, Odd Man Out and Series, Data Interpretation.
+
+The last 17 of these were added to match the standard chapter list of R.S. Aggarwal's *Quantitative Aptitude* — see "On the uploaded textbooks" below for how that was done without copying the book's content.
 
 ### On the uploaded textbooks (R.S. Aggarwal, Sarvesh K. Varma)
-These are copyrighted, commercially published books. No text or questions were extracted or reproduced from them anywhere in this project — that would be copyright infringement regardless of the intended educational use. Everything here (formulas, worked examples, generator logic, shortcuts) was written from general, standard knowledge of these exact question types, which is well-established across the banking-exam prep space and not specific to any one book.
+These are copyrighted, commercially published books, and one of the uploaded copies carried clear piracy-distribution watermarks. No text, questions, or explanations were extracted or reproduced from either book anywhere in this project — personal, non-commercial use does not change that. What was used: R.S. Aggarwal's publicly-known chapter *list* (a standard table of contents, not creative content) to make sure this app's topic coverage was complete. Every formula, worked example, generator, and shortcut was then written from general, standard knowledge of these question types — the same content you'd find describing "Pipes and Cisterns" or "Heights and Distances" in any banking-exam prep resource — not copied from a specific source.
 
 ### On PYQs
-SBI and IBPS **do not publish official past question papers**. Every "PYQ" resource that exists (including the new PYQ Trends page in this app) is a memory-based reconstruction compiled by candidates and coaching analysts after the fact. This app's PYQ Trends page reflects that honestly: it paraphrases publicly reported topic-weightage patterns (e.g. Quadratic Equations and Simplification appearing consistently in IBPS RRB analyses) with sources linked, and never claims to reproduce or represent an actual past paper.
+SBI and IBPS **do not publish official past question papers** — see the PYQ Trends page and the note further down for what that means for this app's PYQ content.
 
-### Question generator verification
-Every generator-backed topic was tested with a Node script before shipping:
-- **Uniqueness**: generating 4,000 seeds per topic, all 14 topics produced well over 500 unique question strings (range: 896–4,000; see git history / re-run the check yourself with the snippet in `js/data/generators.js`'s header comment logic).
-- **Correctness**: for topics where the answer could be independently re-derived from the question text via regex (percentage, profit-loss, average, simplification-adjacent, TSD, SI/CI, ratio, quadratic-equations, mixture-alligation, partnership, ages), thousands of generated questions were cross-checked against an independent calculation — zero mismatches found. One real bug (a rounding inconsistency between the displayed answer and the solution text in the Time & Work generator) was caught this way and fixed before shipping.
+### Question generator verification (updated)
+All 31 generator-backed topics were re-tested after this expansion:
+- **Uniqueness**: 4,000 seeds per topic → every topic produced 508–4,000 unique question strings (closest margins: Permutations & Combinations at 608, Number Series at 896 — still comfortably over the 500 target).
+- **Correctness**: thousands of generated questions per topic were independently recomputed from the question text via regex and compared to the displayed answer. This caught **two real bugs** before shipping:
+  1. A floating-point precision bug in Permutations & Combinations — computing full factorials of n up to 40 (e.g. 40!) exceeds double-precision accuracy and produced garbage answers like `1560.0000000000002`. Fixed by computing ⁿPᵣ as a direct bounded product (at most 10 multiplications) instead of a factorial ratio.
+  2. A double-rounding bug in Heights & Distances — rounding the height to 1 decimal place and then rounding again to a whole number occasionally shifted the final answer by 1 compared to rounding the exact value once. Fixed by rounding exactly once, consistently, in both the option and the solution text.
+- Zero mismatches remained after both fixes, across every topic checked.
 
-### Deliberately not yet built (see the original 100-section spec for the full roadmap)
-Timed sectional Mock Test / Exam Mode, adaptive difficulty engine, spaced-repetition flashcards, interactive calculators (work/alligation/partnership/mensuration as standalone tools), topic dependency graph, 30-day program, gamification, mensuration/probability/permutation-combination/data-sufficiency generators, ability to add new exams via UI, generated (as opposed to hand-verified) DI sets. The architecture is built so all of these can be added as data files or new modules without a rewrite.
+### Deliberately not yet built
+Timed sectional Mock Test / Exam Mode, adaptive difficulty engine, spaced-repetition flashcards, interactive calculators as standalone tools, topic dependency graph, 30-day program, gamification, generated (as opposed to hand-verified) DI sets, ability to add new exams via UI. The architecture is built so all of these can be added as data files or new modules without a rewrite.
 
 ## Why plain HTML/CSS/JS instead of React+Vite+TypeScript
 
