@@ -12,6 +12,22 @@ If you loaded this site even once before (e.g. on GitHub Pages) and pages now sh
 
 A second, unrelated bug was also found and fixed in this pass: the Speed Lab topic matrix and Data Interpretation tables built their `<tr>`/`<thead>` rows by injecting HTML into a plain `<div>`, which browsers silently drop per the HTML5 fragment-parsing spec (table-section tags require an actual `<table>` context). Both now build the entire table, including rows, as one valid HTML string, which resolves this correctly.
 
+## v6 update: Mock Test / Exam Mode
+
+New: a full timed exam simulation, one of the last major pieces from the original spec.
+
+- **Presets**: 10, 20, 35 (Prelims-style), 50 (Mains-style) question tests, plus a custom question-count/time option.
+- **Real exam mechanics**: countdown timer with a visual warning under 1 minute, a question palette (jump to any question), Mark for Review (with a distinct visual state for "marked but already answered" vs "marked, no answer yet"), Clear Answer, and a confirm-before-submit step. Auto-submits when time runs out.
+- **Negative marking**: on by default (−0.25 per wrong answer, no penalty for unattempted), toggleable per test.
+- **Results**: total score, accuracy, attempt rate, per-topic breakdown table, and a full question-by-question review with your answer, the correct answer, the worked solution, and the shortcut — every attempted question also feeds into Speed Lab stats and the Mistake Book, same as Practice mode.
+- **Topic pool**: draws from 14 core arithmetic/foundation topics that actually resemble a real Prelims/Mains paper (simplification, approximation, number series, quadratic equations, percentage, ratio, average, profit-loss, time-work, TSD, SI/CI, mixture-alligation, partnership, ages). Deliberately excludes DI (needs its own multi-question-per-set UI) and the more SSC-flavored topics (logarithms, surds, permutations, clocks, calendar, stocks, TD/BD, heights-distances) so a mock test reads like a real banking paper rather than a random grab-bag.
+
+Two real bugs were caught and fixed while building this, both worth knowing about if you extend it further:
+1. **Timer reset exploit**: the countdown originally computed its start time fresh every time the exam page mounted. Navigating away mid-test and back (e.g. browser back button) would silently reset the clock to the full duration — free extra time on a supposedly timed test. Fixed by anchoring the countdown to the session's persistent `startedAt` timestamp instead of a local variable, so elapsed wall-clock time is always calculated correctly regardless of remounts.
+2. **Background auto-submit leak**: the timer's `setInterval` kept running even after navigating away from the exam page entirely. Left unfixed, it would eventually hit zero and force-redirect the user to the mock test results page while they were doing something else entirely on the site. Fixed by clearing the interval in the router itself whenever the active route isn't the live exam page.
+
+**Known limitation**: an in-progress mock test lives only in memory — refreshing the browser tab loses all progress (this matches the "resets on reload" caveat, since there's no autosave-to-localStorage for a test still in progress). Worth adding if this becomes a real pain point.
+
 ## v5 update: two examples per topic, real DI charts
 
 - Every one of the 32 topics' Learn pages now has 2 worked examples (was 1) covering different sub-patterns of that topic — e.g. Percentage now shows both a successive-change example and a basic "x% of y" example. All new example arithmetic was independently verified with a script, not just eyeballed.
