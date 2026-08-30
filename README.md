@@ -4,6 +4,14 @@
 
 An interactive, entirely browser-based Quantitative Aptitude learning and speed-training system for Indian banking exams (SBI Clerk, IBPS Clerk, IBPS RRB Office Assistant), built to extend to any future exam.
 
+## ⚠️ If you deployed an earlier version and pages look empty/broken (v3 → v4 fix)
+
+If you loaded this site even once before (e.g. on GitHub Pages) and pages now show only their first card with everything else missing, **this is a stale service worker, not missing content** — the underlying data (32 topics, 500+ verified questions each) is all still there. Earlier versions of `sw.js` cached files cache-first with no version bump, so a browser that visited once keeps serving the old cached JS forever regardless of what gets redeployed. This is fixed in `sw.js` (now network-first, cache version bumped to `bqm-cache-v2`), but you may need to force your browser to drop the old registration once:
+- Easiest: open the site in a private/incognito window to confirm it's fixed there.
+- Permanent fix on your regular browser: DevTools → Application → Service Workers → Unregister (or "Update on reload"), then hard-refresh.
+
+A second, unrelated bug was also found and fixed in this pass: the Speed Lab topic matrix and Data Interpretation tables built their `<tr>`/`<thead>` rows by injecting HTML into a plain `<div>`, which browsers silently drop per the HTML5 fragment-parsing spec (table-section tags require an actual `<table>` context). Both now build the entire table, including rows, as one valid HTML string, which resolves this correctly.
+
 ## What this version actually includes (v3)
 
 This is a real, working version, not a mockup. Included now:

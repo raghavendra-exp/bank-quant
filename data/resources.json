@@ -30,5 +30,37 @@
     "topic": "number-series",
     "description": "Formal definition of arithmetic sequences underlying difference-based number series questions.",
     "level": "FOUNDATION"
+  },
+  {
+    "title": "Khan Academy — Introduction to compound interest",
+    "url": "https://www.khanacademy.org/economics-finance-domain/core-finance/interest-tutorial/compound-interest-tutorial/v/introduction-to-compound-interest",
+    "source": "Khan Academy",
+    "topic": "si-ci",
+    "description": "Builds compound interest up from the simple-interest formula, useful for seeing exactly where the (1+R/100)ⁿ term comes from.",
+    "level": "FOUNDATION"
+  },
+  {
+    "title": "Khan Academy — Angles of elevation and depression",
+    "url": "https://www.khanacademy.org/math/trigonometry/trigonometry-right-triangles/modeling-with-right-triangles/a/angles-of-elevation-and-depression",
+    "source": "Khan Academy",
+    "topic": "heights-distances",
+    "description": "Explains the elevation/depression angle setup that every Heights and Distances question is built on.",
+    "level": "FOUNDATION"
+  },
+  {
+    "title": "Khan Academy — Permutations and combinations",
+    "url": "https://www.khanacademy.org/math/statistics-probability/counting-permutations-and-combinations/combinations-lib/e/permutations_and_combinations_2",
+    "source": "Khan Academy",
+    "topic": "permutation-combination",
+    "description": "Practice set distinguishing when order matters (permutations) from when it doesn't (combinations).",
+    "level": "FOUNDATION"
+  },
+  {
+    "title": "Khan Academy — Probability with permutations and combinations",
+    "url": "https://www.khanacademy.org/math/precalculus/x9e81a4f98389efdf:prob-comb/x9e81a4f98389efdf:prob-combinatorics-precalc/e/probability_with_perm_comb",
+    "source": "Khan Academy",
+    "topic": "probability",
+    "description": "Combines counting techniques with probability — good next step once basic favorable/total probability feels easy.",
+    "level": "FOUNDATION"
   }
 ]

@@ -287,20 +287,17 @@ function renderDIPractice(content, setId) {
     return;
   }
   const set = DI_SETS.find(s => s.id === setId) || DI_SETS[0];
+  const theadHtml = `<tr>${set.columns.map(c => `<th>${c}</th>`).join("")}</tr>`;
+  const tbodyHtml = set.rows.map(r => `<tr>${r.map((v, i) => `<td class="${i === 0 ? "" : "num"}">${v}</td>`).join("")}</tr>`).join("");
   content.append(el(`
     <div class="ledger-card">
       <div class="eyebrow">Data Interpretation — ${set.sourceType === "OFFICIAL" ? "Official" : "Practice"} set</div>
       <h1 class="mt0">${set.title}</h1>
       <p class="muted">${set.caption}</p>
-      <table class="ledger" id="di-table"></table>
+      <table class="ledger"><thead>${theadHtml}</thead><tbody>${tbodyHtml}</tbody></table>
     </div>
     <div id="di-questions"></div>
   `));
-  const table = content.querySelector("#di-table");
-  table.append(el(`<thead><tr>${set.columns.map(c => `<th>${c}</th>`).join("")}</tr></thead>`));
-  const tbody = el(`<tbody></tbody>`);
-  set.rows.forEach(r => tbody.append(el(`<tr>${r.map((v, i) => `<td class="${i === 0 ? "" : "num"}">${v}</td>`).join("")}</tr>`)));
-  table.append(tbody);
 
   const qDiv = content.querySelector("#di-questions");
   const qStartTimes = [];
@@ -334,6 +331,16 @@ function renderDIPractice(content, setId) {
 function renderSpeedLab(content) {
   const overall = overallStats();
   const idx = speedIndex();
+  const rowsHtml = TOPICS.map(t => {
+    const s = statsForTopic(t.id);
+    return `<tr>
+      <td>${t.name}</td>
+      <td class="num">${fmtPct(s.accuracy)}</td>
+      <td class="num">${fmtSec(s.avgTimeSec)}</td>
+      <td class="num">${t.targetTimeSec}s</td>
+      <td>${statusStamp(s.accuracy, s.avgTimeSec, t.targetTimeSec)}</td>
+    </tr>`;
+  }).join("");
   content.append(el(`
     <div class="ledger-card">
       <div class="eyebrow">Speed Lab</div>
@@ -347,24 +354,13 @@ function renderSpeedLab(content) {
       <div class="ledger-card stat-block"><div class="label">Slowest</div><div class="value small">${fmtSec(overall.slowestSec)}</div></div>
     </div>
     <div class="ledger-card">
-      <h3>Topic speed matrix</h3>
+      <h3>Topic speed matrix (${TOPICS.length} topics)</h3>
       <table class="ledger">
         <thead><tr><th>Topic</th><th class="num">Accuracy</th><th class="num">Avg time</th><th class="num">Target</th><th>Status</th></tr></thead>
-        <tbody id="matrix-body"></tbody>
+        <tbody>${rowsHtml}</tbody>
       </table>
     </div>
   `));
-  const body = content.querySelector("#matrix-body");
-  TOPICS.forEach(t => {
-    const s = statsForTopic(t.id);
-    body.append(el(`<tr>
-      <td>${t.name}</td>
-      <td class="num">${fmtPct(s.accuracy)}</td>
-      <td class="num">${fmtSec(s.avgTimeSec)}</td>
-      <td class="num">${t.targetTimeSec}s</td>
-      <td>${statusStamp(s.accuracy, s.avgTimeSec, t.targetTimeSec)}</td>
-    </tr>`));
-  });
 }
 
 // ============================================================ SHORTCUTS
