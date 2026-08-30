@@ -275,6 +275,56 @@ function drawPracticeSummary(t) {
   `));
 }
 
+// ============================================================ DI CHART BUILDERS (inline SVG, no external library)
+function buildBarChartSVG(rows) {
+  const width = 560, height = 260, padTop = 24, padBottom = 42, padSide = 44;
+  const maxVal = Math.max(...rows.map(r => r[1]));
+  const niceMax = Math.ceil((maxVal * 1.15) / 10) * 10;
+  const plotW = width - padSide * 2, plotH = height - padTop - padBottom;
+  const gap = plotW / rows.length;
+  const barWidth = gap * 0.5;
+  let bars = "";
+  rows.forEach((r, i) => {
+    const [label, val] = r;
+    const barH = (val / niceMax) * plotH;
+    const x = padSide + i * gap + (gap - barWidth) / 2;
+    const y = height - padBottom - barH;
+    bars += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${barWidth.toFixed(1)}" height="${barH.toFixed(1)}" fill="#16233F" rx="2"></rect>
+      <text x="${(x + barWidth / 2).toFixed(1)}" y="${(y - 8).toFixed(1)}" text-anchor="middle" font-size="13" font-family="IBM Plex Mono, monospace" fill="#1A2233">${val}</text>
+      <text x="${(x + barWidth / 2).toFixed(1)}" y="${(height - padBottom + 20).toFixed(1)}" text-anchor="middle" font-size="12" fill="#4A5568">${label}</text>`;
+  });
+  let grid = "";
+  const steps = 4;
+  for (let s = 0; s <= steps; s++) {
+    const val = (niceMax / steps) * s;
+    const y = height - padBottom - (val / niceMax) * plotH;
+    grid += `<line x1="${padSide}" y1="${y.toFixed(1)}" x2="${width - padSide}" y2="${y.toFixed(1)}" stroke="#D8CFB8" stroke-width="1"></line>
+      <text x="${padSide - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end" font-size="11" fill="#4A5568">${Math.round(val)}</text>`;
+  }
+  return `<svg viewBox="0 0 ${width} ${height}" style="width:100%;max-width:560px;height:auto;display:block;margin:0 auto" role="img" aria-label="Bar chart of ${rows.map(r => r[0]).join(", ")}">${grid}<line x1="${padSide}" y1="${height - padBottom}" x2="${width - padSide}" y2="${height - padBottom}" stroke="#16233F" stroke-width="1.5"></line>${bars}</svg>`;
+}
+
+function buildPieChartSVG(rows) {
+  const total = rows.reduce((s, r) => s + r[1], 0);
+  const colors = ["#16233F", "#B8863E", "#2E7D4F", "#A6392F", "#4A5568", "#8AA0C8", "#A9762E"];
+  const cx = 130, cy = 130, r = 110;
+  let cumulative = 0, slices = "", legend = "";
+  rows.forEach((row, i) => {
+    const [label, val] = row;
+    const startAngle = (cumulative / total) * 2 * Math.PI - Math.PI / 2;
+    cumulative += val;
+    const endAngle = (cumulative / total) * 2 * Math.PI - Math.PI / 2;
+    const x1 = cx + r * Math.cos(startAngle), y1 = cy + r * Math.sin(startAngle);
+    const x2 = cx + r * Math.cos(endAngle), y2 = cy + r * Math.sin(endAngle);
+    const largeArc = (endAngle - startAngle) > Math.PI ? 1 : 0;
+    const path = `M${cx},${cy} L${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 ${largeArc} 1 ${x2.toFixed(2)},${y2.toFixed(2)} Z`;
+    const color = colors[i % colors.length];
+    slices += `<path d="${path}" fill="${color}" stroke="#F3EFE4" stroke-width="2"></path>`;
+    legend += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span style="width:13px;height:13px;background:${color};display:inline-block;border-radius:3px;flex-shrink:0"></span><span style="font-size:.88rem">${label} — <span class="num">${val}%</span></span></div>`;
+  });
+  return `<div style="display:flex;gap:28px;align-items:center;flex-wrap:wrap;justify-content:center;padding:10px 0"><svg viewBox="0 0 260 260" style="width:220px;height:220px;flex-shrink:0" role="img" aria-label="Pie chart of ${rows.map(r => r[0]).join(", ")}">${slices}</svg><div>${legend}</div></div>`;
+}
+
 function renderDIPractice(content, setId) {
   if (!setId) {
     content.append(el(`<div class="ledger-card"><div class="eyebrow">Data Interpretation</div><h1 class="mt0">Choose a set</h1><p class="muted">Each set is hand-verified for internal consistency (no generated DI yet — see README on why).</p></div>`));
@@ -287,14 +337,22 @@ function renderDIPractice(content, setId) {
     return;
   }
   const set = DI_SETS.find(s => s.id === setId) || DI_SETS[0];
-  const theadHtml = `<tr>${set.columns.map(c => `<th>${c}</th>`).join("")}</tr>`;
-  const tbodyHtml = set.rows.map(r => `<tr>${r.map((v, i) => `<td class="${i === 0 ? "" : "num"}">${v}</td>`).join("")}</tr>`).join("");
+  let visualHtml;
+  if (set.type === "BAR_GRAPH") {
+    visualHtml = buildBarChartSVG(set.rows);
+  } else if (set.type === "PIE_CHART") {
+    visualHtml = buildPieChartSVG(set.rows);
+  } else {
+    const theadHtml = `<tr>${set.columns.map(c => `<th>${c}</th>`).join("")}</tr>`;
+    const tbodyHtml = set.rows.map(r => `<tr>${r.map((v, i) => `<td class="${i === 0 ? "" : "num"}">${v}</td>`).join("")}</tr>`).join("");
+    visualHtml = `<table class="ledger"><thead>${theadHtml}</thead><tbody>${tbodyHtml}</tbody></table>`;
+  }
   content.append(el(`
     <div class="ledger-card">
       <div class="eyebrow">Data Interpretation — ${set.sourceType === "OFFICIAL" ? "Official" : "Practice"} set</div>
       <h1 class="mt0">${set.title}</h1>
       <p class="muted">${set.caption}</p>
-      <table class="ledger"><thead>${theadHtml}</thead><tbody>${tbodyHtml}</tbody></table>
+      ${visualHtml}
     </div>
     <div id="di-questions"></div>
   `));

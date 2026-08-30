@@ -14,7 +14,8 @@ const TOPICS = [
       "√(a×b) = √a × √b"
     ],
     examples: [
-      { q: "45 × 8 − 120 ÷ 4 + 15 = ?", steps: ["45 × 8 = 360", "120 ÷ 4 = 30", "360 − 30 + 15 = 345"], answer: "345" }
+      { q: "45 × 8 − 120 ÷ 4 + 15 = ?", steps: ["45 × 8 = 360", "120 ÷ 4 = 30", "360 − 30 + 15 = 345"], answer: "345" },
+      { q: "(120 + 30) ÷ 5 × 2 = ?", steps: ["120 + 30 = 150 (bracket first)", "150 ÷ 5 = 30", "30 × 2 = 60"], answer: "60" }
     ],
     shortcutId: "sc-frac-percent",
     targetTimeSec: 25,
@@ -31,7 +32,8 @@ const TOPICS = [
       "√n ≈ nearest known perfect square root, adjusted"
     ],
     examples: [
-      { q: "48.7% of 599.9 + 12.02 × 7.98 = ?", steps: ["≈ 49% of 600 = 294", "≈ 12 × 8 = 96", "294 + 96 = 390"], answer: "≈ 390" }
+      { q: "48.7% of 599.9 + 12.02 × 7.98 = ?", steps: ["≈ 49% of 600 = 294", "≈ 12 × 8 = 96", "294 + 96 = 390"], answer: "≈ 390" },
+      { q: "√401 ≈ ?", steps: ["20² = 400, very close to 401", "√401 ≈ 20"], answer: "≈ 20" }
     ],
     shortcutId: "sc-frac-percent",
     targetTimeSec: 30,
@@ -48,7 +50,8 @@ const TOPICS = [
       "Check ×/÷ by a growing or shrinking factor before assuming addition"
     ],
     examples: [
-      { q: "2, 6, 12, 20, 30, ?", steps: ["Differences: 4, 6, 8, 10 → next diff 12", "30 + 12 = 42"], answer: "42" }
+      { q: "2, 6, 12, 20, 30, ?", steps: ["Differences: 4, 6, 8, 10 → next diff 12", "30 + 12 = 42"], answer: "42" },
+      { q: "3, 6, 12, 24, 48, ?", steps: ["Each term ×2 (ratio series, not a difference series)", "48 × 2 = 96"], answer: "96" }
     ],
     shortcutId: "sc-series-scan",
     targetTimeSec: 35,
@@ -66,7 +69,8 @@ const TOPICS = [
       "Successive % change: overall = a + b + (ab/100)"
     ],
     examples: [
-      { q: "A number is increased by 20% and then decreased by 10%. Net % change?", steps: ["Net = 20 + (−10) + (20×−10)/100", "= 10 − 2 = 8"], answer: "+8%" }
+      { q: "A number is increased by 20% and then decreased by 10%. Net % change?", steps: ["Net = 20 + (−10) + (20×−10)/100", "= 10 − 2 = 8"], answer: "+8%" },
+      { q: "35% of 240 = ?", steps: ["35% = 7/20", "240 × 7/20 = 84"], answer: "84" }
     ],
     shortcutId: "sc-frac-percent",
     targetTimeSec: 40,
@@ -83,7 +87,8 @@ const TOPICS = [
       "If a:b = m:n, then a = (m/(m+n)) × total"
     ],
     examples: [
-      { q: "Divide ₹720 between A and B in ratio 5:4.", steps: ["Total parts = 9", "A = 5/9 × 720 = 400", "B = 4/9 × 720 = 320"], answer: "A=400, B=320" }
+      { q: "Divide ₹720 between A and B in ratio 5:4.", steps: ["Total parts = 9", "A = 5/9 × 720 = 400", "B = 4/9 × 720 = 320"], answer: "A=400, B=320" },
+      { q: "Divide ₹900 among A, B and C in ratio 2:3:4.", steps: ["Total parts = 9", "A = 2/9×900=200, B = 3/9×900=300, C = 4/9×900=400"], answer: "A=200, B=300, C=400" }
     ],
     shortcutId: "sc-ratio-share",
     targetTimeSec: 40,
@@ -100,7 +105,8 @@ const TOPICS = [
       "Deviation method: Actual average = assumed average + (Σ deviations / n)"
     ],
     examples: [
-      { q: "Average of 42, 47, 39, 51, 46 = ?", steps: ["Assume avg 45; deviations: −3,+2,−6,+6,+1 = 0", "Actual avg = 45 + 0/5 = 45"], answer: "45" }
+      { q: "Average of 42, 47, 39, 51, 46 = ?", steps: ["Assume avg 45; deviations: −3,+2,−6,+6,+1 = 0", "Actual avg = 45 + 0/5 = 45"], answer: "45" },
+      { q: "The average of 5 numbers is 20. Four of them are 15, 25, 20, 10. Find the fifth.", steps: ["Required total = 20×5 = 100", "Sum of known four = 15+25+20+10 = 70", "Fifth number = 100−70 = 30"], answer: "30" }
     ],
     shortcutId: "sc-deviation",
     targetTimeSec: 35,
@@ -118,7 +124,8 @@ const TOPICS = [
       "Successive discounts a%, b%: net = a + b − (ab/100) (loss to buyer)"
     ],
     examples: [
-      { q: "MP = 2000, successive discounts 10% and 5%. Find SP.", steps: ["Net discount = 10+5−(10×5)/100 = 14.5%", "SP = 2000 × 0.855 = 1710"], answer: "₹1710" }
+      { q: "MP = 2000, successive discounts 10% and 5%. Find SP.", steps: ["Net discount = 10+5−(10×5)/100 = 14.5%", "SP = 2000 × 0.855 = 1710"], answer: "₹1710" },
+      { q: "An article bought for ₹800 is sold at a loss of 12%. Find the SP.", steps: ["SP = CP × (1 − Loss%/100)", "= 800 × 0.88 = 704"], answer: "₹704" }
     ],
     shortcutId: "sc-successive",
     targetTimeSec: 45,
@@ -135,7 +142,8 @@ const TOPICS = [
       "Time (combined) = Total Work / Combined Efficiency"
     ],
     examples: [
-      { q: "A does a job in 12 days, B in 18 days. Together?", steps: ["LCM(12,18) = 36 units", "A's efficiency = 3/day, B's = 2/day", "Combined = 5/day → 36/5 = 7.2 days"], answer: "7.2 days" }
+      { q: "A does a job in 12 days, B in 18 days. Together?", steps: ["LCM(12,18) = 36 units", "A's efficiency = 3/day, B's = 2/day", "Combined = 5/day → 36/5 = 7.2 days"], answer: "7.2 days" },
+      { q: "A alone finishes a job in 15 days, B alone in 10 days. A works alone for 5 days, then leaves. How many more days does B need?", steps: ["Total work = LCM(15,10) = 30 units", "A's efficiency = 2/day, does 5×2=10 units in 5 days", "Remaining = 30−10 = 20 units", "B finishes in 20/3 ≈ 6.67 days"], answer: "≈ 6.7 days" }
     ],
     shortcutId: "sc-work-lcm",
     targetTimeSec: 50,
@@ -154,7 +162,8 @@ const TOPICS = [
       "Boat: downstream = b+s, upstream = b−s"
     ],
     examples: [
-      { q: "A train 150m long crosses a pole in 10s. Speed?", steps: ["Speed = 150/10 = 15 m/s", "= 15 × 18/5 = 54 km/h"], answer: "54 km/h" }
+      { q: "A train 150m long crosses a pole in 10s. Speed?", steps: ["Speed = 150/10 = 15 m/s", "= 15 × 18/5 = 54 km/h"], answer: "54 km/h" },
+      { q: "Two trains 300 km apart move toward each other at 60 km/h and 40 km/h. When do they meet?", steps: ["Relative speed (opposite directions) = 60+40 = 100 km/h", "Time = 300/100 = 3 hours"], answer: "3 hours" }
     ],
     shortcutId: "sc-unit-conv",
     targetTimeSec: 45,
@@ -171,7 +180,8 @@ const TOPICS = [
       "Factor by finding two numbers that multiply to c and add to b (for a=1)"
     ],
     examples: [
-      { q: "I. x² − 7x + 12 = 0  II. y² − 9y + 20 = 0. Find relation.", steps: ["x: (x−3)(x−4)=0 → x=3,4", "y: (y−4)(y−5)=0 → y=4,5", "Every y ≥ every x in the worst case → x ≤ y"], answer: "x ≤ y" }
+      { q: "I. x² − 7x + 12 = 0  II. y² − 9y + 20 = 0. Find relation.", steps: ["x: (x−3)(x−4)=0 → x=3,4", "y: (y−4)(y−5)=0 → y=4,5", "Every y ≥ every x in the worst case → x ≤ y"], answer: "x ≤ y" },
+      { q: "I. x² − 5x + 6 = 0  II. y² − 11y + 30 = 0. Find relation.", steps: ["x: (x−2)(x−3)=0 → x=2,3", "y: (y−5)(y−6)=0 → y=5,6", "max(x)=3 < min(y)=5 → every y exceeds every x"], answer: "x < y" }
     ],
     shortcutId: "sc-quad-compare",
     targetTimeSec: 40,
@@ -189,7 +199,8 @@ const TOPICS = [
       "Difference between CI and SI for 2 years = P × (R/100)²"
     ],
     examples: [
-      { q: "Find SI on ₹5000 at 8% for 3 years.", steps: ["SI = 5000×8×3/100", "= 1200"], answer: "₹1200" }
+      { q: "Find SI on ₹5000 at 8% for 3 years.", steps: ["SI = 5000×8×3/100", "= 1200"], answer: "₹1200" },
+      { q: "Find CI on ₹2000 at 10% per annum for 2 years.", steps: ["CI = P×(1+R/100)² − P", "= 2000×1.21 − 2000 = 2420−2000"], answer: "₹420" }
     ],
     shortcutId: "sc-ci-diff",
     targetTimeSec: 45,
@@ -205,7 +216,8 @@ const TOPICS = [
       "Cheaper : Dearer = (Dearer − Mean) : (Mean − Cheaper)"
     ],
     examples: [
-      { q: "Mix tea at ₹20/kg and ₹32/kg to get a mean price of ₹26/kg. Find the ratio.", steps: ["Ratio = (32−26):(26−20) = 6:6 = 1:1"], answer: "1:1" }
+      { q: "Mix tea at ₹20/kg and ₹32/kg to get a mean price of ₹26/kg. Find the ratio.", steps: ["Ratio = (32−26):(26−20) = 6:6 = 1:1"], answer: "1:1" },
+      { q: "Mix rice at ₹12/kg and ₹20/kg to get a mean price of ₹18/kg. Find the ratio.", steps: ["Ratio = (20−18):(18−12) = 2:6 = 1:3"], answer: "1:3" }
     ],
     shortcutId: "sc-alligation",
     targetTimeSec: 40,
@@ -221,7 +233,8 @@ const TOPICS = [
       "Profit share ratio = C₁T₁ : C₂T₂ : ..."
     ],
     examples: [
-      { q: "A invests ₹50,000 for 12 months, B invests ₹80,000 for 6 months. Find the profit ratio.", steps: ["A: 50000×12 = 600000", "B: 80000×6 = 480000", "Ratio = 600000:480000 = 5:4"], answer: "5:4" }
+      { q: "A invests ₹50,000 for 12 months, B invests ₹80,000 for 6 months. Find the profit ratio.", steps: ["A: 50000×12 = 600000", "B: 80000×6 = 480000", "Ratio = 600000:480000 = 5:4"], answer: "5:4" },
+      { q: "A invests ₹30,000 for 8 months, B invests ₹45,000 for 12 months. Find the profit ratio.", steps: ["A: 30000×8 = 240000", "B: 45000×12 = 540000", "Ratio = 240000:540000 = 4:9"], answer: "4:9" }
     ],
     shortcutId: "sc-ratio-share",
     targetTimeSec: 45,
@@ -238,7 +251,8 @@ const TOPICS = [
       "'x years hence' → add x to every age; 'x years ago' → subtract x"
     ],
     examples: [
-      { q: "Present ages of A and B are in ratio 3:4. After 6 years, ratio becomes 4:5. Find A's present age.", steps: ["Ages = 3k, 4k", "(3k+6)/(4k+6) = 4/5 → 15k+30 = 16k+24 → k=6", "A's age = 3×6 = 18"], answer: "18 years" }
+      { q: "Present ages of A and B are in ratio 3:4. After 6 years, ratio becomes 4:5. Find A's present age.", steps: ["Ages = 3k, 4k", "(3k+6)/(4k+6) = 4/5 → 15k+30 = 16k+24 → k=6", "A's age = 3×6 = 18"], answer: "18 years" },
+      { q: "A is 10 years older than B. B's present age is 25. Find A's age 4 years ago.", steps: ["A's present age = 25+10 = 35", "A's age 4 years ago = 35−4 = 31"], answer: "31 years" }
     ],
     shortcutId: "sc-ratio-share",
     targetTimeSec: 45,
@@ -251,7 +265,10 @@ const TOPICS = [
     why: "Exact recall of squares up to 30² and cubes up to 15² turns root-extraction questions into instant lookups instead of trial division, and directly speeds up the Approximation and Mensuration topics too.",
     concept: "The square root of n is the number which, multiplied by itself, gives n. The cube root of n is the number which, multiplied by itself three times, gives n.",
     formulas: ["√(a×b) = √a × √b", "∛(a×b) = ∛a × ∛b", "Memorize squares 1–30 and cubes 1–15 cold"],
-    examples: [{ q: "√1024 = ?", steps: ["32² = 1024"], answer: "32" }],
+    examples: [
+      { q: "√1024 = ?", steps: ["32² = 1024"], answer: "32" },
+      { q: "∛2197 = ?", steps: ["13³ = 2197"], answer: "13" }
+    ],
     shortcutId: "sc-square-cube-memo",
     targetTimeSec: 20,
     difficultyDefault: "EASY"
@@ -263,7 +280,10 @@ const TOPICS = [
     why: "Decimal arithmetic hides inside DI, SI/CI and approximation questions — aligning decimal points correctly and fast is a prerequisite speed skill, not a standalone topic to skip.",
     concept: "Decimals are fractions with denominator a power of 10. Align decimal points before adding/subtracting; count total decimal places when multiplying.",
     formulas: ["To multiply decimals, multiply as whole numbers then place the decimal point by counting total decimal digits from both numbers"],
-    examples: [{ q: "12.5 + 7.25 − 3.75 = ?", steps: ["12.5 + 7.25 = 19.75", "19.75 − 3.75 = 16"], answer: "16" }],
+    examples: [
+      { q: "12.5 + 7.25 − 3.75 = ?", steps: ["12.5 + 7.25 = 19.75", "19.75 − 3.75 = 16"], answer: "16" },
+      { q: "2.5 × 1.4 = ?", steps: ["25 × 14 = 350 (ignore decimals)", "Total decimal places = 1+1 = 2 → 3.50"], answer: "3.5" }
+    ],
     shortcutId: "sc-decimal-align",
     targetTimeSec: 25,
     difficultyDefault: "EASY"
@@ -275,7 +295,10 @@ const TOPICS = [
     why: "These translate a word description directly into a one-variable linear equation — the same translation skill used throughout Ages, Partnership and Time & Work word problems.",
     concept: "Represent the unknown number as x, translate the word conditions into an equation, and solve.",
     formulas: ["'Sum of two numbers is S, difference is D' → larger = (S+D)/2, smaller = (S−D)/2"],
-    examples: [{ q: "The sum of two numbers is 48 and their difference is 12. Find the larger number.", steps: ["Larger = (48+12)/2 = 30"], answer: "30" }],
+    examples: [
+      { q: "The sum of two numbers is 48 and their difference is 12. Find the larger number.", steps: ["Larger = (48+12)/2 = 30"], answer: "30" },
+      { q: "A number multiplied by 4 and increased by 7 gives 55. Find the number.", steps: ["4x + 7 = 55", "x = (55−7)/4 = 12"], answer: "12" }
+    ],
     shortcutId: "sc-sum-diff",
     targetTimeSec: 30,
     difficultyDefault: "EASY"
@@ -287,7 +310,10 @@ const TOPICS = [
     why: "Index laws let you simplify large powers without ever multiplying the full numbers out — a direct speed multiplier for anything with exponents.",
     concept: "Indices (exponents) follow fixed laws for multiplication, division and powers of powers.",
     formulas: ["aᵐ × aⁿ = aᵐ⁺ⁿ", "aᵐ ÷ aⁿ = aᵐ⁻ⁿ", "(aᵐ)ⁿ = aᵐⁿ", "a⁰ = 1"],
-    examples: [{ q: "2³ × 2⁴ = ?", steps: ["2³⁺⁴ = 2⁷ = 128"], answer: "128" }],
+    examples: [
+      { q: "2³ × 2⁴ = ?", steps: ["2³⁺⁴ = 2⁷ = 128"], answer: "128" },
+      { q: "5⁶ ÷ 5² = ?", steps: ["5⁶⁻² = 5⁴ = 625"], answer: "625" }
+    ],
     shortcutId: "sc-index-laws",
     targetTimeSec: 30,
     difficultyDefault: "EASY"
@@ -299,7 +325,10 @@ const TOPICS = [
     why: "Logarithm questions in banking exams are almost always a direct inverse of the index laws you already use — recognizing that connection makes them free marks.",
     concept: "logₐ(x) = n means aⁿ = x. Logarithms convert multiplication into addition: log(xy) = log(x) + log(y).",
     formulas: ["logₐ(aⁿ) = n", "logₐ(xy) = logₐ(x) + logₐ(y)", "logₐ(x/y) = logₐ(x) − logₐ(y)"],
-    examples: [{ q: "log₂(32) = ?", steps: ["2⁵ = 32, so log₂(32) = 5"], answer: "5" }],
+    examples: [
+      { q: "log₂(32) = ?", steps: ["2⁵ = 32, so log₂(32) = 5"], answer: "5" },
+      { q: "If log₃(x) = 4, find x.", steps: ["x = 3⁴ = 81"], answer: "81" }
+    ],
     shortcutId: "sc-index-laws",
     targetTimeSec: 35,
     difficultyDefault: "MEDIUM"
@@ -311,7 +340,10 @@ const TOPICS = [
     why: "Chain rule questions are the general form behind Time & Work and Partnership — recognizing direct vs inverse proportion between more than two quantities at once is the whole skill.",
     concept: "When multiple quantities vary together, decide whether each pair is directly proportional (both increase together) or inversely proportional (one increases as the other decreases), then set up one combined ratio.",
     formulas: ["Direct proportion: more of one means more of the other, ratios stay equal", "Inverse proportion: more of one means less of the other, product stays constant"],
-    examples: [{ q: "If 6 men can build a wall in 10 days, how many men are needed to build it in 4 days?", steps: ["Men × Days is constant (inverse proportion): 6×10 = 15×4", "Men needed = 60/4 = 15"], answer: "15 men" }],
+    examples: [
+      { q: "If 6 men can build a wall in 10 days, how many men are needed to build it in 4 days?", steps: ["Men × Days is constant (inverse proportion): 6×10 = 15×4", "Men needed = 60/4 = 15"], answer: "15 men" },
+      { q: "If 8 pens cost ₹96, find the cost of 15 pens.", steps: ["Cost per pen (direct proportion) = 96/8 = 12", "Cost of 15 pens = 15×12 = 180"], answer: "₹180" }
+    ],
     shortcutId: "sc-chain-rule",
     targetTimeSec: 40,
     difficultyDefault: "MEDIUM"
@@ -323,7 +355,10 @@ const TOPICS = [
     why: "This is Time & Work with a twist — an outlet pipe works against the inlet pipes — so the same LCM-efficiency method applies with one efficiency subtracted instead of added.",
     concept: "An inlet pipe fills a tank (positive efficiency); an outlet pipe empties it (negative efficiency). Net efficiency is the sum of all efficiencies, inlets positive and outlets negative.",
     formulas: ["Net efficiency = Σ(inlet efficiencies) − Σ(outlet efficiencies)", "Time to fill = Total capacity / Net efficiency"],
-    examples: [{ q: "Pipe A fills a tank in 12 hours, pipe B empties it in 20 hours. Both opened together, how long to fill?", steps: ["LCM(12,20)=60 units", "A fills 5/hr, B empties 3/hr → net = 2/hr", "Time = 60/2 = 30 hours"], answer: "30 hours" }],
+    examples: [
+      { q: "Pipe A fills a tank in 12 hours, pipe B empties it in 20 hours. Both opened together, how long to fill?", steps: ["LCM(12,20)=60 units", "A fills 5/hr, B empties 3/hr → net = 2/hr", "Time = 60/2 = 30 hours"], answer: "30 hours" },
+      { q: "Pipe A fills a tank in 6 hours, pipe B fills it in 8 hours. Both opened together, how long (approx.) to fill?", steps: ["LCM(6,8)=24 units", "A fills 4/hr, B fills 3/hr → combined = 7/hr", "Time = 24/7 ≈ 3.43 hours"], answer: "≈ 3.4 hours" }
+    ],
     shortcutId: "sc-work-lcm",
     targetTimeSec: 45,
     difficultyDefault: "MEDIUM"
@@ -335,7 +370,10 @@ const TOPICS = [
     why: "Mensuration questions are direct formula substitution — the only real skill is keeping the right formula paired with the right shape under time pressure.",
     concept: "Area measures 2D surface, perimeter measures the boundary length, and volume measures 3D space enclosed.",
     formulas: ["Rectangle: Area = l×b, Perimeter = 2(l+b)", "Circle: Area = πr², Circumference = 2πr", "Cube: Volume = a³, Surface area = 6a²"],
-    examples: [{ q: "Find the area of a rectangle with length 15 m and breadth 8 m.", steps: ["Area = 15×8 = 120 m²"], answer: "120 m²" }],
+    examples: [
+      { q: "Find the area of a rectangle with length 15 m and breadth 8 m.", steps: ["Area = 15×8 = 120 m²"], answer: "120 m²" },
+      { q: "Find the area of a circle with radius 21 m. (Use π = 22/7)", steps: ["Area = πr² = (22/7)×21² = 22×63"], answer: "1386 m²" }
+    ],
     shortcutId: "sc-mensuration-clean",
     targetTimeSec: 35,
     difficultyDefault: "EASY"
@@ -347,7 +385,10 @@ const TOPICS = [
     why: "A 'head start' problem is really a ratio-of-speeds problem in disguise — once you see that, it reuses the same ratio thinking as Partnership and Time & Work.",
     concept: "If A gives B a head start of h meters in a race of d meters and they finish together, then in the time A covers d meters, B covers only (d−h) meters — so their speed ratio equals d : (d−h).",
     formulas: ["Speed ratio (A:B) = d : (d − head start)"],
-    examples: [{ q: "In a 200 m race, A gives B a start of 40 m and they finish together. Find the ratio of their speeds.", steps: ["A:B = 200 : (200−40) = 200:160 = 5:4"], answer: "5:4" }],
+    examples: [
+      { q: "In a 200 m race, A gives B a start of 40 m and they finish together. Find the ratio of their speeds.", steps: ["A:B = 200 : (200−40) = 200:160 = 5:4"], answer: "5:4" },
+      { q: "In a 400 m race, A gives B a start of 150 m and they finish together. Find the ratio of their speeds.", steps: ["A:B = 400 : (400−150) = 400:250 = 8:5"], answer: "8:5" }
+    ],
     shortcutId: "sc-race-ratio",
     targetTimeSec: 40,
     difficultyDefault: "MEDIUM"
@@ -359,7 +400,10 @@ const TOPICS = [
     why: "Calendar questions reduce to one clean rule (odd days mod 7) once you stop trying to count days on your fingers — a rare topic where memorizing one rule solves 100% of questions.",
     concept: "Each ordinary year contributes 1 'odd day' and each leap year contributes 2, because 365 = 52×7 + 1. Adding total odd days and taking mod 7 tells you how many days of the week have shifted.",
     formulas: ["Ordinary year → 1 odd day. Leap year → 2 odd days.", "Shift in day of week = (total odd days) mod 7"],
-    examples: [{ q: "January 1, 2023 was a Sunday. What day was January 1, 2024?", steps: ["2023 is not a leap year → 1 odd day", "Sunday + 1 = Monday"], answer: "Monday" }],
+    examples: [
+      { q: "January 1, 2023 was a Sunday. What day was January 1, 2024?", steps: ["2023 is not a leap year → 1 odd day", "Sunday + 1 = Monday"], answer: "Monday" },
+      { q: "Today is Wednesday. What day will it be after 17 days?", steps: ["17 mod 7 = 3", "Wednesday + 3 days = Saturday"], answer: "Saturday" }
+    ],
     shortcutId: "sc-odd-days",
     targetTimeSec: 35,
     difficultyDefault: "MEDIUM"
@@ -371,7 +415,10 @@ const TOPICS = [
     why: "The angle-between-hands formula collapses what looks like a geometry problem into one substitution — no diagram needed once the formula is memorized.",
     concept: "The minute hand moves 6° per minute; the hour hand moves 0.5° per minute. The angle between them can be found directly from the time.",
     formulas: ["Angle = |30H − 5.5M| degrees, where H is the hour (0-11) and M is minutes"],
-    examples: [{ q: "Find the angle between the hands at 3:00.", steps: ["Angle = |30×3 − 5.5×0| = 90°"], answer: "90°" }],
+    examples: [
+      { q: "Find the angle between the hands at 3:00.", steps: ["Angle = |30×3 − 5.5×0| = 90°"], answer: "90°" },
+      { q: "Find the angle between the hands at 6:30.", steps: ["Angle = |30×6 − 5.5×30| = |180−165| = 15°"], answer: "15°" }
+    ],
     shortcutId: "sc-clock-angle",
     targetTimeSec: 35,
     difficultyDefault: "MEDIUM"
@@ -383,7 +430,10 @@ const TOPICS = [
     why: "This is percentage and ratio thinking applied to investment income — once you see market value and face value as just another cheaper/dearer pair, the calculation is routine.",
     concept: "Face value is a share's nominal (printed) value, usually ₹100. Market value is what it actually costs to buy. Dividend is paid as a percentage of face value, not market value.",
     formulas: ["Annual income = (Investment / Market Value) × (Face Value × Rate/100)"],
-    examples: [{ q: "Find the annual income from ₹4000 invested in 8% stock at ₹80 (face value ₹100).", steps: ["Number of shares = 4000/80 = 50", "Income = 50 × (100×8/100) = 50×8 = 400"], answer: "₹400" }],
+    examples: [
+      { q: "Find the annual income from ₹4000 invested in 8% stock at ₹80 (face value ₹100).", steps: ["Number of shares = 4000/80 = 50", "Income = 50 × (100×8/100) = 50×8 = 400"], answer: "₹400" },
+      { q: "Find the annual income from ₹6000 invested in a 10% stock at ₹120 (face value ₹100).", steps: ["Number of shares = 6000/120 = 50", "Income = 50 × 10 = 500"], answer: "₹500" }
+    ],
     shortcutId: "sc-stock-income",
     targetTimeSec: 40,
     difficultyDefault: "MEDIUM"
@@ -395,7 +445,10 @@ const TOPICS = [
     why: "Recognizing whether order matters (permutation) or doesn't (combination) is the entire skill — the formulas themselves are direct substitution once that call is made.",
     concept: "A permutation counts arrangements where order matters. A combination counts selections where order doesn't matter.",
     formulas: ["ⁿPᵣ = n!/(n−r)!", "ⁿCᵣ = n!/(r!(n−r)!)"],
-    examples: [{ q: "In how many ways can 3 letters be chosen from 5 distinct letters (order doesn't matter)?", steps: ["⁵C₃ = 5!/(3!2!) = 10"], answer: "10" }],
+    examples: [
+      { q: "In how many ways can 3 letters be chosen from 5 distinct letters (order doesn't matter)?", steps: ["⁵C₃ = 5!/(3!2!) = 10"], answer: "10" },
+      { q: "In how many ways can 3 letters be arranged from 6 distinct letters (order matters)?", steps: ["⁶P₃ = 6×5×4 = 120"], answer: "120" }
+    ],
     shortcutId: "sc-choose-vs-arrange",
     targetTimeSec: 35,
     difficultyDefault: "MEDIUM"
@@ -407,7 +460,10 @@ const TOPICS = [
     why: "Banking-exam probability rarely goes beyond favorable outcomes ÷ total outcomes — the challenge is counting each side correctly, not advanced theory.",
     concept: "Probability of an event = (Number of favorable outcomes) / (Total number of possible outcomes).",
     formulas: ["P(event) = Favorable outcomes / Total outcomes", "P(not event) = 1 − P(event)"],
-    examples: [{ q: "A bag has 4 red and 6 blue balls. Find the probability of drawing a red ball.", steps: ["Total balls = 10", "P(red) = 4/10 = 2/5"], answer: "2/5" }],
+    examples: [
+      { q: "A bag has 4 red and 6 blue balls. Find the probability of drawing a red ball.", steps: ["Total balls = 10", "P(red) = 4/10 = 2/5"], answer: "2/5" },
+      { q: "A die is thrown once. Find the probability of getting an even number.", steps: ["Favorable outcomes = {2,4,6} = 3", "Total outcomes = 6", "P = 3/6 = 1/2"], answer: "1/2" }
+    ],
     shortcutId: "sc-fav-total",
     targetTimeSec: 35,
     difficultyDefault: "MEDIUM"
@@ -419,7 +475,10 @@ const TOPICS = [
     why: "These formalize the difference between the interest a lender actually loses (True Discount) and what a bank charges upfront (Banker's Discount) — a classic banking-exam pairing precisely because it's bank-relevant.",
     concept: "True Discount (TD) is the interest on the present worth (PW) of a bill due in the future. Banker's Discount (BD) is the interest on the full face amount, so BD is always ≥ TD.",
     formulas: ["TD = (Amount × R × T) / (100 + R×T)", "BD = (Amount × R × T) / 100", "BD − TD = (TD × R × T)/100"],
-    examples: [{ q: "Find the True Discount on ₹1200 due in 1 year at 10% per annum.", steps: ["TD = (1200×10×1)/(100+10×1) = 12000/110 ≈ 109.09"], answer: "≈ ₹109" }],
+    examples: [
+      { q: "Find the True Discount on ₹1200 due in 1 year at 10% per annum.", steps: ["TD = (1200×10×1)/(100+10×1) = 12000/110 ≈ 109.09"], answer: "≈ ₹109" },
+      { q: "Find the Banker's Discount on ₹1500 due in 2 years at 8% per annum.", steps: ["BD = (Amount×R×T)/100 = (1500×8×2)/100 = 240"], answer: "₹240" }
+    ],
     shortcutId: "sc-td-bd",
     targetTimeSec: 45,
     difficultyDefault: "MEDIUM"
@@ -431,7 +490,10 @@ const TOPICS = [
     why: "Every question in this topic uses exactly one relationship (height = distance × tan(angle)) with one of three standard angles — memorizing three tan values solves the whole topic.",
     concept: "The angle of elevation from an observer to a point above is measured from the horizontal. Right-triangle trigonometry connects height, horizontal distance and this angle.",
     formulas: ["tan(angle) = Height / Distance", "tan30°=1/√3, tan45°=1, tan60°=√3"],
-    examples: [{ q: "A tower's angle of elevation from a point 50 m away is 45°. Find the height.", steps: ["tan45° = Height/50 = 1", "Height = 50 m"], answer: "50 m" }],
+    examples: [
+      { q: "A tower's angle of elevation from a point 50 m away is 45°. Find the height.", steps: ["tan45° = Height/50 = 1", "Height = 50 m"], answer: "50 m" },
+      { q: "The angle of elevation of the top of a pole from a point 20 m away is 60°. Find the height (approx.).", steps: ["Height = 20 × tan60° = 20 × 1.732"], answer: "≈ 34.6 m" }
+    ],
     shortcutId: "sc-standard-angles",
     targetTimeSec: 40,
     difficultyDefault: "MEDIUM"
@@ -443,7 +505,10 @@ const TOPICS = [
     why: "This is Number Series in reverse — instead of finding the next term, you find which of five given terms breaks an otherwise-consistent pattern, which is often faster to spot than to compute.",
     concept: "Four of five given numbers follow a common rule (a pattern of differences, ratios, or a arithmetic operation); the odd one out is the exception.",
     formulas: ["Test the same pattern families as Number Series: constant difference, constant ratio, or a per-term arithmetic rule"],
-    examples: [{ q: "Find the odd one: 2, 5, 10, 17, 27, 37", steps: ["Differences: 3,5,7,10,10 — should be 3,5,7,9,11 (odd numbers)", "27 should be 26 instead — 27 is the odd one out"], answer: "27" }],
+    examples: [
+      { q: "Find the odd one: 2, 5, 10, 17, 27, 37", steps: ["Differences: 3,5,7,10,10 — should be 3,5,7,9,11 (odd numbers)", "27 should be 26 instead — 27 is the odd one out"], answer: "27" },
+      { q: "Find the odd one: 5, 10, 20, 40, 75, 160", steps: ["Pattern is ×2 each time: 5,10,20,40,80,160", "75 should have been 80 — 75 is the odd one out"], answer: "75" }
+    ],
     shortcutId: "sc-series-scan",
     targetTimeSec: 40,
     difficultyDefault: "MEDIUM"
@@ -459,7 +524,8 @@ const TOPICS = [
       "Ratio between two categories = value A / value B"
     ],
     examples: [
-      { q: "If a store sold 240 units in a category worth 30% of total sales of 800, does that check out?", steps: ["30% of 800 = 240", "Yes — consistent"], answer: "Consistent" }
+      { q: "If a store sold 240 units in a category worth 30% of total sales of 800, does that check out?", steps: ["30% of 800 = 240", "Yes — consistent"], answer: "Consistent" },
+      { q: "Category X is 40% of a total of 500; category Y is 25% of the same total. Find X:Y.", steps: ["X = 40% of 500 = 200", "Y = 25% of 500 = 125", "Ratio = 200:125 = 8:5"], answer: "8:5" }
     ],
     shortcutId: "sc-di-scan",
     targetTimeSec: 90,

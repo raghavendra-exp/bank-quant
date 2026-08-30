@@ -12,6 +12,12 @@ If you loaded this site even once before (e.g. on GitHub Pages) and pages now sh
 
 A second, unrelated bug was also found and fixed in this pass: the Speed Lab topic matrix and Data Interpretation tables built their `<tr>`/`<thead>` rows by injecting HTML into a plain `<div>`, which browsers silently drop per the HTML5 fragment-parsing spec (table-section tags require an actual `<table>` context). Both now build the entire table, including rows, as one valid HTML string, which resolves this correctly.
 
+## v5 update: two examples per topic, real DI charts
+
+- Every one of the 32 topics' Learn pages now has 2 worked examples (was 1) covering different sub-patterns of that topic — e.g. Percentage now shows both a successive-change example and a basic "x% of y" example. All new example arithmetic was independently verified with a script, not just eyeballed.
+- Data Interpretation sets tagged `BAR_GRAPH` and `PIE_CHART` now render as actual inline SVG charts (a real bar chart and a real pie chart with legend), not a plain data table. The `TABLE` type DI set still renders as a table, since that's the correct format for that data. No external chart library — plain hand-built SVG, so nothing new to load or cache.
+- On sourcing this content: none of it came from any uploaded book or notes file. One uploaded file in particular ("Maths_tricks.pdf") was watermarked as paid coaching material being redistributed without authorization; it was not used for anything, including as inspiration for wording or problem selection.
+
 ## What this version actually includes (v3)
 
 This is a real, working version, not a mockup. Included now:
