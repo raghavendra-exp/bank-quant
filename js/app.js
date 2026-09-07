@@ -2,7 +2,7 @@
 
 const NAV_ITEMS = [
   ["home", "Home"], ["learn", "Learn"], ["practice", "Practice"], ["mocktest", "Mock Test"],
-  ["speedlab", "Speed Lab"], ["shortcuts", "Shortcuts"], ["pyq", "PYQ Trends"],
+  ["speedlab", "Speed Lab"], ["shortcuts", "Shortcuts"], ["mindtricks", "Mind Tricks"], ["pyq", "PYQ Trends"],
   ["mistakebook", "Mistake Book"], ["progress", "Progress"], ["sources", "Sources"]
 ];
 
@@ -45,6 +45,7 @@ function route() {
   if (page === "practice") renderPractice(rest[0], rest[1]);
   else if (page === "learn") renderLearn(rest[0]);
   else if (page === "mocktest") renderMockTest(content, rest[0]);
+  else if (page === "mindtricks") renderMindTricks(content, rest[0], rest[1]);
   else (renderers[page] || renderHome)(content);
   window.scrollTo(0, 0);
 }
@@ -507,6 +508,185 @@ function renderProgress(content) {
   content.querySelector("#btn-reset").onclick = () => {
     if (confirm("This clears all local progress permanently. Continue?")) { resetData(); location.reload(); }
   };
+}
+
+// ============================================================ MIND TRICKS
+function renderMindTricks(content, section, chartId) {
+  if (section === "patterns") return renderPatternRecognition(content);
+  if (section === "finger") return renderFingerTricks(content);
+  if (section === "magic") return renderMagicTricks(content);
+  if (section === "charts") return renderCharts(content, chartId);
+  renderMindTricksHome(content);
+}
+
+function renderMindTricksHome(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Mind Tricks</div>
+      <h1 class="mt0">Recognize it. Calculate it. Look it up.</h1>
+      <p class="muted">Four tools for raw speed: spot a topic from the question's wording before you finish reading it, calculate on your fingers with zero written work, apply a handful of genuine algebraic shortcuts, and look up any reference chart instantly instead of recomputing it.</p>
+    </div>
+    <div class="grid cols-2" id="mt-links"></div>
+  `));
+  const links = [
+    ["patterns", "Question Pattern Recognition", `${QUESTION_PATTERNS.length} keyword signals mapped to the topic they mean — read the phrase, know the chapter.`],
+    ["finger", "Finger Tricks", `${FINGER_TRICKS.length} hand-calculation methods for multiplication tables, with the algebra behind each one.`],
+    ["magic", "Magic Math Tricks", `${MAGIC_TRICKS.length} genuine Vedic-style shortcuts (squaring, ×11, Nikhilam) — each with a stated limit, not sold as universal.`],
+    ["charts", "Reference Charts", "Percentage-fraction chart, multiplication tables, squares and cubes — generated live, always exact."]
+  ];
+  const grid = content.querySelector("#mt-links");
+  links.forEach(([id, title, desc]) => {
+    const card = el(`<div class="ledger-card"><h3 style="text-transform:none;border:none">${title}</h3><p class="muted">${desc}</p><a class="btn small gold" href="#/mindtricks/${id}">Open →</a></div>`);
+    grid.append(card);
+  });
+}
+
+function renderPatternRecognition(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Mind Tricks — Pattern Recognition</div>
+      <h1 class="mt0">Identify the topic before you finish reading</h1>
+      <p class="muted">Every banking-exam question telegraphs its topic through a handful of recurring phrases. Scan for these signals and you'll often know which method to reach for by the time you finish the first sentence.</p>
+    </div>
+    <div id="pattern-list"></div>
+  `));
+  const list = content.querySelector("#pattern-list");
+  QUESTION_PATTERNS.forEach(p => {
+    const t = TOPICS.find(x => x.id === p.topic);
+    list.append(el(`
+      <div class="ledger-card">
+        <div class="pill-row">${p.signals.map(s => `<span class="pill">"${s}"</span>`).join("")}</div>
+        <p><strong>→ ${t ? t.name : p.topic}</strong></p>
+        <p class="muted">${p.tip}</p>
+        ${t ? `<a class="btn small ghost" href="#/learn/${t.id}">Open ${t.name} →</a>` : ""}
+      </div>
+    `));
+  });
+}
+
+function renderFingerTricks(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Mind Tricks — Finger Tricks</div>
+      <h1 class="mt0">Multiplication tables on two hands</h1>
+      <p class="muted">Zero written work, zero memorization required — just your fingers and the pattern behind each method.</p>
+    </div>
+    <div id="finger-list"></div>
+  `));
+  const list = content.querySelector("#finger-list");
+  FINGER_TRICKS.forEach(f => {
+    list.append(el(`
+      <div class="ledger-card">
+        <h3 style="text-transform:none;border:none">${f.title}</h3>
+        <p><strong>Setup:</strong> ${f.setup}</p>
+        <ol>${f.steps.map(s => `<li>${s}</li>`).join("")}</ol>
+        <div class="solution-box"><strong>Example: ${f.example.q}</strong><br>${f.example.walkthrough}<br>Answer: <span class="num">${f.example.answer}</span></div>
+        <p><strong>Why it works:</strong> ${f.whyItWorks}</p>
+        <p class="muted"><strong>Range:</strong> ${f.range}</p>
+      </div>
+    `));
+  });
+}
+
+function renderMagicTricks(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Mind Tricks — Magic Math Tricks</div>
+      <h1 class="mt0">Vedic-style shortcuts, with the algebra shown</h1>
+      <p class="muted">Each of these is a real, derivable identity — not an unexplained "trick." Every card also states exactly where it stops working, because a shortcut presented as universal is how careless mistakes get made under exam pressure.</p>
+    </div>
+    <div id="magic-list"></div>
+  `));
+  const list = content.querySelector("#magic-list");
+  MAGIC_TRICKS.forEach(m => {
+    list.append(el(`
+      <div class="ledger-card">
+        <h3 style="text-transform:none;border:none">${m.title}</h3>
+        <p><strong>Method:</strong> ${m.method}</p>
+        <div class="solution-box"><strong>Example: ${m.example.q}</strong><br>${m.example.walkthrough}<br>Answer: <span class="num">${m.example.answer}</span></div>
+        ${m.example2 ? `<div class="solution-box"><strong>Example: ${m.example2.q}</strong><br>${m.example2.walkthrough}<br>Answer: <span class="num">${m.example2.answer}</span></div>` : ""}
+        <p><strong>Why it works:</strong> ${m.whyItWorks}</p>
+        <p class="muted"><strong>When it doesn't apply:</strong> ${m.whenNotToUse}</p>
+      </div>
+    `));
+  });
+}
+
+// Charts are computed live in JS rather than stored as data — they're pure arithmetic,
+// so generating them guarantees correctness and means there's nothing to keep in sync.
+function renderCharts(content, chartId) {
+  if (!chartId) {
+    content.append(el(`
+      <div class="ledger-card">
+        <div class="eyebrow">Mind Tricks — Reference Charts</div>
+        <h1 class="mt0">Choose a chart</h1>
+        <p class="muted">Every value below is computed on load, not hand-typed, so there's no risk of a transcription error anywhere in the chart.</p>
+      </div>
+      <div class="grid cols-2" id="chart-links"></div>
+    `));
+    const links = [
+      ["percentage", "Percentage ↔ Fraction Chart", "1/2 through 1/30 with exact percentage equivalents."],
+      ["tables", "Multiplication Tables (1-30)", "Full times tables, ×1 through ×20, for every number 1 to 30."],
+      ["squares", "Squares Chart (1-50)", "n² for every integer from 1 to 50."],
+      ["cubes", "Cubes Chart (1-30)", "n³ for every integer from 1 to 30."]
+    ];
+    const grid = content.querySelector("#chart-links");
+    links.forEach(([id, title, desc]) => {
+      const card = el(`<div class="ledger-card"><h3 style="text-transform:none;border:none">${title}</h3><p class="muted">${desc}</p><a class="btn small gold" href="#/mindtricks/charts/${id}">Open →</a></div>`);
+      grid.append(card);
+    });
+    return;
+  }
+
+  if (chartId === "percentage") {
+    content.append(el(`<div class="ledger-card"><div class="eyebrow">Reference Chart</div><h1 class="mt0">Percentage ↔ Fraction Chart</h1><p class="muted">Memorizing this table converts most "% of" calculations into a one-step cancellation instead of long division.</p><table class="ledger" id="pct-table"></table></div>`));
+    const table = content.querySelector("#pct-table");
+    table.append(el(`<thead><tr><th>Fraction</th><th class="num">Percentage</th></tr></thead>`));
+    const tbody = el(`<tbody></tbody>`);
+    for (let n = 2; n <= 30; n++) {
+      const pct = 100 / n;
+      const pctStr = Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(2)}%`;
+      tbody.append(el(`<tr><td>1/${n}</td><td class="num">${pctStr}</td></tr>`));
+    }
+    table.append(tbody);
+    return;
+  }
+
+  if (chartId === "tables") {
+    content.append(el(`<div class="ledger-card"><div class="eyebrow">Reference Chart</div><h1 class="mt0">Multiplication Tables (1-30)</h1><p class="muted">Every row is computed live — scroll to find any table from 1 to 30, each shown ×1 through ×20.</p></div>`));
+    for (let n = 1; n <= 30; n++) {
+      const row = [];
+      for (let m = 1; m <= 20; m++) row.push(`${n}×${m}=${n * m}`);
+      content.append(el(`<div class="ledger-card"><h3 style="text-transform:none;border:none;font-size:1rem">Table of ${n}</h3><p class="num" style="line-height:1.9">${row.join("&nbsp;&nbsp;·&nbsp;&nbsp;")}</p></div>`));
+    }
+    return;
+  }
+
+  if (chartId === "squares") {
+    content.append(el(`<div class="ledger-card"><div class="eyebrow">Reference Chart</div><h1 class="mt0">Squares Chart (1-50)</h1><p class="muted">Memorizing these turns every exact-square-root question into instant recall.</p><table class="ledger" id="sq-table"></table></div>`));
+    const table = content.querySelector("#sq-table");
+    table.append(el(`<thead><tr><th class="num">n</th><th class="num">n²</th><th class="num">n</th><th class="num">n²</th></tr></thead>`));
+    const tbody = el(`<tbody></tbody>`);
+    for (let n = 1; n <= 25; n++) {
+      tbody.append(el(`<tr><td class="num">${n}</td><td class="num">${n * n}</td><td class="num">${n + 25}</td><td class="num">${(n + 25) * (n + 25)}</td></tr>`));
+    }
+    table.append(tbody);
+    return;
+  }
+
+  if (chartId === "cubes") {
+    content.append(el(`<div class="ledger-card"><div class="eyebrow">Reference Chart</div><h1 class="mt0">Cubes Chart (1-30)</h1><p class="muted">Memorizing these turns exact cube-root questions into instant recall.</p><table class="ledger" id="cube-table"></table></div>`));
+    const table = content.querySelector("#cube-table");
+    table.append(el(`<thead><tr><th class="num">n</th><th class="num">n³</th><th class="num">n</th><th class="num">n³</th></tr></thead>`));
+    const tbody = el(`<tbody></tbody>`);
+    for (let n = 1; n <= 15; n++) {
+      tbody.append(el(`<tr><td class="num">${n}</td><td class="num">${n * n * n}</td><td class="num">${n + 15}</td><td class="num">${(n + 15) * (n + 15) * (n + 15)}</td></tr>`));
+    }
+    table.append(tbody);
+    return;
+  }
+
+  content.append(el(`<p>Chart not found.</p>`));
 }
 
 // ============================================================ PYQ TRENDS

@@ -11,7 +11,7 @@ const ASSETS = [
   "./", "./index.html", "./manifest.json",
   "./css/style.css",
   "./js/app.js", "./js/storage.js",
-  "./js/data/topics.js", "./js/data/shortcuts.js", "./js/data/generators.js",
+  "./js/data/topics.js", "./js/data/shortcuts.js", "./js/data/generators.js", "./js/data/mindtricks.js",
   "./data/sources.json", "./data/resources.json"
 ];
 
