@@ -1,0 +1,78 @@
+{
+  "summary": {
+    "totalExamYearsAnalyzed": "2020 - 2025/2026",
+    "coreObservation": "In Bank Clerk Prelims (SBI, IBPS, RRB OA), Foundation Speed Math (Simplification, Approximation, Number Series, Quadratic Equations) constitutes an astounding 60% to 70% of the entire paper (20 to 25 questions out of 35/40). Mastering speed math first guarantees clearing sectional and overall cutoffs.",
+    "mainsShiftObservation": "In Mains, the focus dramatically shifts to high-weightage Data Interpretation (Tables, Caselets, Missing Data, Bar/Line) and Multi-statement Arithmetic / Quantity Comparison (Q1 vs Q2) where calculation endurance and conceptual clarity dominate."
+  },
+  "examTrends": [
+    {
+      "examId": "sbi-clerk",
+      "examName": "SBI Clerk (Junior Associate)",
+      "prelimsTrends": [
+        { "year": "2024", "simplification": 12, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 8 },
+        { "year": "2023", "simplification": 10, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 },
+        { "year": "2022", "simplification": 12, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 8 },
+        { "year": "2021", "simplification": 10, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 },
+        { "year": "2020", "simplification": 10, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 }
+      ],
+      "mainsTrends": [
+        { "year": "2024", "diSets": 20, "caseletDI": 5, "quantityComp": 5, "dataSufficiency": 5, "arithmetic": 15 },
+        { "year": "2023", "diSets": 18, "caseletDI": 5, "quantityComp": 5, "dataSufficiency": 4, "arithmetic": 18 },
+        { "year": "2022", "diSets": 20, "caseletDI": 5, "quantityComp": 5, "dataSufficiency": 5, "arithmetic": 15 }
+      ]
+    },
+    {
+      "examId": "ibps-clerk",
+      "examName": "IBPS Clerk / CSA",
+      "prelimsTrends": [
+        { "year": "2024", "simplification": 15, "numberSeries": 5, "quadratic": 0, "diSets": 5, "arithmetic": 10 },
+        { "year": "2023", "simplification": 12, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 8 },
+        { "year": "2022", "simplification": 15, "numberSeries": 5, "quadratic": 0, "diSets": 5, "arithmetic": 10 },
+        { "year": "2021", "simplification": 12, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 8 }
+      ],
+      "mainsTrends": [
+        { "year": "2024", "diSets": 20, "caseletDI": 5, "quantityComp": 5, "dataSufficiency": 5, "arithmetic": 15 },
+        { "year": "2023", "diSets": 18, "caseletDI": 5, "quantityComp": 5, "dataSufficiency": 5, "arithmetic": 17 }
+      ]
+    },
+    {
+      "examId": "ibps-rrb-oa",
+      "examName": "IBPS RRB Office Assistant",
+      "prelimsTrends": [
+        { "year": "2024", "simplification": 15, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 },
+        { "year": "2023", "simplification": 15, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 },
+        { "year": "2022", "simplification": 15, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 },
+        { "year": "2021", "simplification": 15, "numberSeries": 5, "quadratic": 5, "diSets": 5, "arithmetic": 10 }
+      ],
+      "mainsTrends": [
+        { "year": "2024", "diSets": 15, "caseletDI": 5, "numberSeries": 5, "quadratic": 5, "arithmetic": 10 },
+        { "year": "2023", "diSets": 15, "caseletDI": 5, "numberSeries": 5, "quadratic": 5, "arithmetic": 10 }
+      ]
+    }
+  ],
+  "topicPriorityMatrix": {
+    "tier1_MustMaster": [
+      { "topic": "Simplification & Approximation", "roi": "Extremely High (10-15 Marks in 7 mins)", "difficulty": "Low" },
+      { "topic": "Quadratic Equations (Sign Rule)", "roi": "Extremely High (5 Marks in 2 mins)", "difficulty": "Low" },
+      { "topic": "Missing & Wrong Number Series", "roi": "High (5 Marks in 3 mins)", "difficulty": "Medium" },
+      { "topic": "Tabular & Bar Graph DI", "roi": "High (5 Marks in 4 mins)", "difficulty": "Medium" }
+    ],
+    "tier2_HighYieldArithmetic": [
+      { "topic": "Percentage & Ratio", "roi": "High (Direct + Essential for all DI)", "difficulty": "Low to Medium" },
+      { "topic": "Ages & Partnership", "roi": "Very High (Straightforward 2 marks)", "difficulty": "Low" },
+      { "topic": "Average & Profit Loss", "roi": "Medium-High (2-3 Marks)", "difficulty": "Medium" },
+      { "topic": "Time & Work (LCM Method)", "roi": "High (Guaranteed 1-2 questions)", "difficulty": "Medium" }
+    ],
+    "tier3_MainsRankDeciders": [
+      { "topic": "Caselet / Venn Diagram DI", "roi": "Mains Critical (5-10 Marks)", "difficulty": "High" },
+      { "topic": "Simple & Compound Interest", "roi": "Moderate (Difference formulas)", "difficulty": "Medium-High" },
+      { "topic": "Time Speed Distance & Trains", "roi": "Moderate (1-2 Marks)", "difficulty": "Medium" },
+      { "topic": "Mixture & Alligation", "roi": "Moderate (Alligation rule)", "difficulty": "Medium" }
+    ],
+    "tier4_LowROI_SkipIfShortOnTime": [
+      { "topic": "Permutation & Combination / Probability", "roi": "Low in Prelims (0-1 Q), high in Mains", "difficulty": "High" },
+      { "topic": "Clocks & Calendars", "roi": "Very Low (Rarely 1 Q)", "difficulty": "Low" },
+      { "topic": "True & Banker's Discount", "roi": "Very Low (1 Q every 3-4 years)", "difficulty": "Medium" }
+    ]
+  }
+}

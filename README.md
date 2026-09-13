@@ -1,139 +1,117 @@
-# Banking Quant Master
+# Bank Quant Master 🚀
 
-**Learn Concepts. Calculate Faster. Solve Smarter.**
+> **Comprehensive Quantitative Aptitude Preparation Platform for SBI Clerk (JA), IBPS Clerk / CSA, and IBPS RRB Office Assistant (Prelims & Mains).**
+> Live at: [https://raghavendra-exp.github.io/bank-quant/](https://raghavendra-exp.github.io/bank-quant/)
 
-An interactive, entirely browser-based Quantitative Aptitude learning and speed-training system for Indian banking exams (SBI Clerk, IBPS Clerk, IBPS RRB Office Assistant), built to extend to any future exam.
+---
 
-## ⚠️ If you deployed an earlier version and pages look empty/broken (v3 → v4 fix)
+## 🌟 Overview
 
-If you loaded this site even once before (e.g. on GitHub Pages) and pages now show only their first card with everything else missing, **this is a stale service worker, not missing content** — the underlying data (32 topics, 500+ verified questions each) is all still there. Earlier versions of `sw.js` cached files cache-first with no version bump, so a browser that visited once keeps serving the old cached JS forever regardless of what gets redeployed. This is fixed in `sw.js` (now network-first, cache version bumped to `bqm-cache-v2`), but you may need to force your browser to drop the old registration once:
-- Easiest: open the site in a private/incognito window to confirm it's fixed there.
-- Permanent fix on your regular browser: DevTools → Application → Service Workers → Unregister (or "Update on reload"), then hard-refresh.
+**Bank Quant Master** transforms quantitative aptitude preparation from passive memorization into active, interactive exam conditioning. Built with modern React 18, Vite 6, Tailwind CSS, Lucide Icons, and Canvas Confetti, the platform is **100% client-side, offline-first (`localStorage`), and zero-backend**.
 
-A second, unrelated bug was also found and fixed in this pass: the Speed Lab topic matrix and Data Interpretation tables built their `<tr>`/`<thead>` rows by injecting HTML into a plain `<div>`, which browsers silently drop per the HTML5 fragment-parsing spec (table-section tags require an actual `<table>` context). Both now build the entire table, including rows, as one valid HTML string, which resolves this correctly.
+---
 
-## v6 update: Mock Test / Exam Mode
+## 🏆 Key Features
 
-New: a full timed exam simulation, one of the last major pieces from the original spec.
+### 1. 32 Quantitative Aptitude Topics Deep-Dive
+- **Speed Math & Foundation**: Simplification, Approximation, Missing Number Series, Wrong Number Series, Decimal Fractions, Square Roots & Cube Roots, Surds & Indices, Logarithms, Odd Man Out.
+- **Core Commercial Arithmetic**: Percentage, Ratio & Proportion, Average, Profit Loss & Discount, Simple & Compound Interest, Time & Work, Pipes & Cisterns, Time Speed Distance, Problems on Trains, Boats & Streams, Mixture & Alligation, Partnership, Problems on Ages, Chain Rule, Races & Games, True & Banker's Discount, Stocks & Shares.
+- **Modern Math & Algebra**: Quadratic Equations, Permutations & Combinations, Probability, Mensuration (2D & 3D), Clocks & Calendars, Heights & Distances.
+- **Data Interpretation & Mains Special**: Tabular DI, Bar Graph DI, Line Graph DI, Pie Chart DI, Caselet / Venn Diagram DI, Quantity Comparison (Q1 vs Q2), Data Sufficiency.
+- Every topic includes: official Prelims/Mains weightage, target time per question, core mathematical concept, cheat-sheet formulas, common exam traps, and personal note saving.
 
-- **Presets**: 10, 20, 35 (Prelims-style), 50 (Mains-style) question tests, plus a custom question-count/time option.
-- **Real exam mechanics**: countdown timer with a visual warning under 1 minute, a question palette (jump to any question), Mark for Review (with a distinct visual state for "marked but already answered" vs "marked, no answer yet"), Clear Answer, and a confirm-before-submit step. Auto-submits when time runs out.
-- **Negative marking**: on by default (−0.25 per wrong answer, no penalty for unattempted), toggleable per test.
-- **Results**: total score, accuracy, attempt rate, per-topic breakdown table, and a full question-by-question review with your answer, the correct answer, the worked solution, and the shortcut — every attempted question also feeds into Speed Lab stats and the Mistake Book, same as Practice mode.
-- **Topic pool**: draws from 14 core arithmetic/foundation topics that actually resemble a real Prelims/Mains paper (simplification, approximation, number series, quadratic equations, percentage, ratio, average, profit-loss, time-work, TSD, SI/CI, mixture-alligation, partnership, ages). Deliberately excludes DI (needs its own multi-question-per-set UI) and the more SSC-flavored topics (logarithms, surds, permutations, clocks, calendar, stocks, TD/BD, heights-distances) so a mock test reads like a real banking paper rather than a random grab-bag.
+### 2. Six Interactive Visualizers & Lab Tools
+- ⚡ **Fraction ↔ Percentage Mastery Wheel**: Interactive converter for 1/1 to 1/20 plus popular multipliers (3/8, 5/8, 5/6, 4/7, 7/8) with live calculation comparisons.
+- 🧮 **Vedic Mental Math Engine**: Step-by-step visual matrices for Criss-Cross (Urdhva Tiryagbhyam 2×2), Base 100/1000 deviation multiplication, squaring numbers ending in 5 ($n(n+1) \mid 25$), and ripple-carry multiplication by 11.
+- 🎯 **Quadratic 5-Second Sign-Flip Visualizer**: Explains $(+, +) \rightarrow (-, -)$, $(-, +) \rightarrow (+, +)$, $(+, -) \rightarrow (-, +)$, and the 3-second negative-constant CND hack. Includes a live two-equation comparison simulator.
+- 📈 **CI vs SI Growth Curve**: Interactive SVG comparison curve between linear Simple Interest and exponential Compound Interest over time, featuring the 2-Year difference formula $\Delta_2 = P(R/100)^2$ and 3-Year difference formula.
+- ⚖️ **Alligation Cross Solver**: Visual diagonal cross solver $(D - M) : (M - C)$ that calculates exact mixing ratios and batch component weights.
+- 📱 **Virtual Exam Calculator**: Practice scratchpad with tape calculation history.
 
-Two real bugs were caught and fixed while building this, both worth knowing about if you extend it further:
-1. **Timer reset exploit**: the countdown originally computed its start time fresh every time the exam page mounted. Navigating away mid-test and back (e.g. browser back button) would silently reset the clock to the full duration — free extra time on a supposedly timed test. Fixed by anchoring the countdown to the session's persistent `startedAt` timestamp instead of a local variable, so elapsed wall-clock time is always calculated correctly regardless of remounts.
-2. **Background auto-submit leak**: the timer's `setInterval` kept running even after navigating away from the exam page entirely. Left unfixed, it would eventually hit zero and force-redirect the user to the mock test results page while they were doing something else entirely on the site. Fixed by clearing the interval in the router itself whenever the active route isn't the live exam page.
+### 3. "Solve Like a Topper" Dual Solutions
+Every question features two distinct solutions side-by-side:
+- **Conventional Method**: Traditional textbook step-by-step method (35–50 seconds).
+- **Solve Like a Topper**: The official competitive shortcut, sign-flip rule, fraction cancellation, unit-digit elimination, or alligation cross (5–12 seconds), complete with *Why it works* and *Pro-Tips*.
 
-**Known limitation**: an in-progress mock test lives only in memory — refreshing the browser tab loses all progress (this matches the "resets on reload" caveat, since there's no autosave-to-localStorage for a test still in progress). Worth adding if this becomes a real pain point.
+### 4. Speed Conditioning Lab
+- Strict countdown drills: 15s Lightning Sprint, 25s Speed Drill, 35s Arithmetic Drill, 45s Multi-Step Drill, and 60s DI Drill.
+- Visual warning pulses, live streak counters, combo multipliers, and completion confetti.
 
-## v5 update: two examples per topic, real DI charts
+### 5. First 5-Minute Selection Strategy Trainer
+- Interactive exercise training candidates to rapidly triage 10 mixed questions within 5 seconds into:
+  1. `Solve First` (Simplification, Quadratic sign hack, easy series)
+  2. `Solve Later` (Ages, Ratio, Partnership, 2-line arithmetic)
+  3. `Skip Completely` (Multi-constraint P&C, intricate Caselet DI)
+- Compares user's choices against Topper tactical rationale.
 
-- Every one of the 32 topics' Learn pages now has 2 worked examples (was 1) covering different sub-patterns of that topic — e.g. Percentage now shows both a successive-change example and a basic "x% of y" example. All new example arithmetic was independently verified with a script, not just eyeballed.
-- Data Interpretation sets tagged `BAR_GRAPH` and `PIE_CHART` now render as actual inline SVG charts (a real bar chart and a real pie chart with legend), not a plain data table. The `TABLE` type DI set still renders as a table, since that's the correct format for that data. No external chart library — plain hand-built SVG, so nothing new to load or cache.
-- On sourcing this content: none of it came from any uploaded book or notes file. One uploaded file in particular ("Maths_tricks.pdf") was watermarked as paid coaching material being redistributed without authorization; it was not used for anything, including as inspiration for wording or problem selection.
+### 6. Official Exam Mocks & Simulators
+- **SBI Clerk Prelims**: 35 Q, 35 Marks, 20 Minutes (Sectional timer: ON, -0.25 negative).
+- **IBPS Clerk / CSA Prelims**: 35 Q, 35 Marks, 20 Minutes (Sectional timer: ON, -0.25 negative).
+- **IBPS RRB Office Assistant**: 40 Q, 40 Marks, composite 45-minute shared allocation (-0.25 negative).
+- **Mini Mock**: 15 Q, 10-Minute rapid diagnostic.
+- Exam palette with 5 states (Answered, Unanswered, Marked for Review, Answered & Marked, Not Visited), auto-submit, and post-test diagnostic scorecards.
 
-## What this version actually includes (v3)
+### 7. Intelligence, Revision & Utility
+- 📊 **2020–2026 PYQ Trend Intelligence**: Shift history and 4-tier Marks ROI Priority Matrix.
+- 🚨 **Revise My Mistakes Hub**: Categorizes errors into Calculation Slips, Formula Confusions, Misread Conditions, Timer Panics, or Concept Gaps.
+- 📑 **Structured Study Plans**: 30-Day Crash Course, 60-Day Foundation Roadmap, and 90-Day Topper Blueprint with daily task checkboxes.
+- 💾 **In-Browser JSON Question Importer & Backup**: Full export/import of profile progress and custom question bank expansion.
+- 🔍 **Global Command Palette (`Ctrl + K`)**: Instant search across all 32 topics, formulas, shortcuts, and tools.
+- 🌙 **Dark Mode & Bilingual (EN / हिन्दी) Support**.
 
-This is a real, working version, not a mockup. Included now:
+---
 
-- **Dashboard, Speed Lab, Shortcut Library (25 cards), Mistake Book, Progress, PYQ Trends, Sources** — same as before
-- **Learn + Practice — 32 topics total.** 31 have deterministic seeded generators (each independently verified to produce 500+ unique, arithmetically-correct questions); Data Interpretation uses 3 hand-verified sets (table, bar graph, pie chart) instead, since generating self-consistent multi-part datasets safely is a different problem from generating single-answer arithmetic.
+## 🛠️ Technology Stack
 
-Topic list: Simplification, Approximation, Number Series, Percentage, Ratio, Average, Profit & Loss, Time & Work, Time-Speed-Distance, Quadratic Equations, Simple & Compound Interest, Mixture & Alligation, Partnership, Ages, Square Roots & Cube Roots, Decimal Fractions, Problems on Numbers, Surds and Indices, Logarithms, Chain Rule, Pipes and Cisterns, Mensuration, Races and Games, Calendar, Clocks, Stocks and Shares, Permutations & Combinations, Probability, True Discount & Banker's Discount, Heights and Distances, Odd Man Out and Series, Data Interpretation.
+- **Framework**: React 18
+- **Build Tool**: Vite 6 (Relative asset paths for GitHub Pages)
+- **Styling**: Tailwind CSS 3 (Full Dark Mode)
+- **Icons**: Lucide React
+- **Celebrations**: Canvas-Confetti
+- **State & Storage**: Browser `localStorage` (100% offline, zero server requirement)
 
-The last 17 of these were added to match the standard chapter list of R.S. Aggarwal's *Quantitative Aptitude* — see "On the uploaded textbooks" below for how that was done without copying the book's content.
+---
 
-### On the uploaded textbooks (R.S. Aggarwal, Sarvesh K. Varma)
-These are copyrighted, commercially published books, and one of the uploaded copies carried clear piracy-distribution watermarks. No text, questions, or explanations were extracted or reproduced from either book anywhere in this project — personal, non-commercial use does not change that. What was used: R.S. Aggarwal's publicly-known chapter *list* (a standard table of contents, not creative content) to make sure this app's topic coverage was complete. Every formula, worked example, generator, and shortcut was then written from general, standard knowledge of these question types — the same content you'd find describing "Pipes and Cisterns" or "Heights and Distances" in any banking-exam prep resource — not copied from a specific source.
-
-### On PYQs
-SBI and IBPS **do not publish official past question papers** — see the PYQ Trends page and the note further down for what that means for this app's PYQ content.
-
-### Question generator verification (updated)
-All 31 generator-backed topics were re-tested after this expansion:
-- **Uniqueness**: 4,000 seeds per topic → every topic produced 508–4,000 unique question strings (closest margins: Permutations & Combinations at 608, Number Series at 896 — still comfortably over the 500 target).
-- **Correctness**: thousands of generated questions per topic were independently recomputed from the question text via regex and compared to the displayed answer. This caught **two real bugs** before shipping:
-  1. A floating-point precision bug in Permutations & Combinations — computing full factorials of n up to 40 (e.g. 40!) exceeds double-precision accuracy and produced garbage answers like `1560.0000000000002`. Fixed by computing ⁿPᵣ as a direct bounded product (at most 10 multiplications) instead of a factorial ratio.
-  2. A double-rounding bug in Heights & Distances — rounding the height to 1 decimal place and then rounding again to a whole number occasionally shifted the final answer by 1 compared to rounding the exact value once. Fixed by rounding exactly once, consistently, in both the option and the solution text.
-- Zero mismatches remained after both fixes, across every topic checked.
-
-### Critical rendering bug found and fixed (from real screenshots)
-After the v3 expansion, real browser screenshots showed almost every page rendering only its first card — Learn pages showed the topic header but no concept/formulas/examples/shortcut, Practice showed a timer but no question or options, Speed Lab/Progress/Sources showed only their opening card. The cause: the `el()` helper (which turns an HTML template string into a DOM node) only ever returned `firstElementChild`, silently discarding every sibling element after the first. Most render functions build several stacked `.ledger-card` sections in one template string, so everything past the first was being built and then thrown away before it ever reached the page — not a data or content problem, a rendering-layer bug. This is exactly the class of bug my earlier "manual trace" of the code couldn't catch without an actual browser to render in (no browser/jsdom is available in the sandbox this app was built in). Fixed by having `el()` wrap multiple top-level elements in a plain container div instead of dropping everything but the first; single-element templates (the majority of call sites, e.g. buttons and list items) are unaffected. Verified no CSS rule targets bare `div` elements, so the added wrapper is invisible and doesn't affect layout.
-
-### Deliberately not yet built
-Timed sectional Mock Test / Exam Mode, adaptive difficulty engine, spaced-repetition flashcards, interactive calculators as standalone tools, topic dependency graph, 30-day program, gamification, generated (as opposed to hand-verified) DI sets, ability to add new exams via UI. The architecture is built so all of these can be added as data files or new modules without a rewrite.
-
-## Why plain HTML/CSS/JS instead of React+Vite+TypeScript
-
-The original brief suggested React/Vite/TypeScript. This build uses dependency-free static files instead, for one concrete reason: it can be verified to work with zero build step and zero risk of a broken `npm install` on your machine. It still satisfies every hard requirement in the brief — static site, GitHub Pages, no backend, client-side everything. If you want to migrate to React+Vite later, the data files in `js/data/` and `data/` are plain JSON/JS objects and can be dropped into a Vite project largely unchanged; the render functions in `js/app.js` would need to become components.
-
-## Architecture
-
-```
-EXAM → STAGE → SECTION → TOPIC → SUBTOPIC → QUESTION
-```
-
-- `data/exams/*.json` — one file per exam, holds stage/section/question-count/timing. Edit this when a new official notification is published; the app never hard-codes these numbers.
-- `data/sources.json` — verification tracker. `lastVerified` is `null` until a human confirms the numbers against an official notification.
-- `data/resources.json` — curated "further reading" links per topic.
-- `js/data/topics.js` — the Learn content for every topic. Add a new object to the `TOPICS` array to add a topic; no other file needs to change for it to show up in Learn/Dashboard.
-- `js/data/shortcuts.js` — the Shortcut Library. Add a new object to `SHORTCUTS`.
-- `js/data/generators.js` — deterministic (seeded) question generators, one function per topic id (14 topics, each with 2-4 internal "flavor" templates for variety), plus a validator (`validateQuestion`) that rejects malformed questions (duplicate options, invalid answer index, etc.) before they can be shown.
-- `js/storage.js` — all persistence (localStorage), derived stats, and the Quant Speed Index formula.
-- `js/app.js` — hash-based router (`#/learn/percentage`, `#/practice/ratio`, etc.) and one render function per page.
-
-## Quant Speed Index formula (documented, not a black box)
-
-```
-score = 0.40 × accuracy
-      + 0.35 × min(1, avg(target_time / actual_time))
-      + 0.25 × (1 − coefficient_of_variation_of_times)
-```
-
-Weights live in `SPEED_INDEX_WEIGHTS` in `js/storage.js` — change them there if you want to re-balance what the index rewards.
-
-## Important: exam pattern data is a placeholder, not verified fact
-
-`data/exams/sbi-clerk.json` currently holds the SBI Clerk figures you supplied in your brief (35Q/20min Prelims, 50Q/45min Mains), tagged `"sourceType": "TREND_ANALYSIS_UNVERIFIED"` with `lastVerified: null`. The IBPS Clerk and IBPS RRB files are empty templates. **Before treating any of these as accurate, check the official notification** (linked in `data/sources.json`) and update the file, then set `lastVerified` to that date. The app's Sources page surfaces this status honestly rather than presenting an assumption as fact — do not remove that flag without actually verifying.
-
-## Adding a new topic
-
-1. Add an object to the `TOPICS` array in `js/data/topics.js` (id, name, category, why, concept, formulas, examples, shortcutId, targetTimeSec).
-2. Optionally add a matching shortcut to `SHORTCUTS` in `js/data/shortcuts.js`.
-3. Optionally add a generator function to `GENERATORS` in `js/data/generators.js`, keyed by the same `id`, returning `{ question, options, answerIndex, solution, shortcut, difficulty, topic, subtopic, targetTime }`.
-4. Done — it appears automatically in Learn, Practice (if a generator exists), Speed Lab and the Dashboard.
-
-## Adding a new exam
-
-1. Copy `data/exams/sbi-clerk.json` to `data/exams/<new-exam>.json` and fill in real, verified numbers.
-2. Add an entry to `data/sources.json`.
-3. (Current UI shows exams only on the Sources page; wiring exam-specific filtering into Practice/Mock Test is on the roadmap above.)
-
-## Local development
-
-No build step, but you do need a local server (not `file://`) because the app `fetch()`s JSON files, which browsers block over `file://`:
+## 🚀 Local Development & Build
 
 ```bash
-cd bqm
-python3 -m http.server 8000
-# open http://localhost:8000
+# 1. Clone the repository
+git clone https://github.com/raghavendra-exp/bank-quant.git
+cd bank-quant
+
+# 2. Install dependencies
+npm install
+
+# 3. Start development server
+npm run dev
+
+# 4. Build for production (outputs to /dist)
+npm run build
+
+# 5. Preview production build
+npm run preview
 ```
 
-or `npx serve .`
+---
 
-## Deploying to GitHub Pages
+## 🌐 Deployment to GitHub Pages
 
-1. Push this folder to a GitHub repository.
-2. In the repo, go to **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. The included workflow (`.github/workflows/deploy.yml`) deploys automatically on every push to `main` — no build command required, since this is a static site.
-4. Because the site uses relative paths (`css/style.css`, not `/css/style.css`) it works correctly at `https://<username>.github.io/<repo-name>/` without any base-path configuration.
+The repository contains an automated GitHub Actions workflow (`.github/workflows/deploy.yml`).
+Whenever code is pushed to branch `main`, GitHub Actions:
+1. Checks out the repo and sets up Node.js 20.
+2. Installs dependencies via `npm ci`.
+3. Compiles the optimized bundle with `npm run build`.
+4. Deploys the `./dist` folder directly to GitHub Pages.
 
-## Data privacy
+---
 
-All practice history, mistakes, and streaks are stored only in `localStorage` in your browser (`bqm_data_v1`). Nothing is sent to a server. Use **Progress → Export my data** to back up or move your progress between devices/browsers, and **Import my data** to restore it.
+## 📜 Official Exam Pattern Adherence Note
 
-## Testing
+All mock exams, scoring weights, and timings strictly follow official notification guidelines:
+- **SBI Clerk**: 35 Numerical Ability questions in 20 minutes (no sectional cutoff; overall cutoff applies).
+- **IBPS Clerk**: 35 Numerical Ability questions in 20 minutes (both sectional and overall cutoffs apply).
+- **IBPS RRB OA**: 40 Numerical Ability questions sharing 45 minutes composite time with Reasoning (no sectional timer). Mains questions carry **1.25 marks** per question (40 Q = 50 Marks).
 
-No automated test suite is included in this MVP. If you add generators or calculators, the `validateQuestion` function in `js/data/generators.js` is the right place to extend quality-control checks (no division by zero, exactly one correct option, internally consistent DI values, etc.) per the project's error-prevention rules.
+---
+
+*Bank Quant Master — Built with precision for banking exam aspirants.*

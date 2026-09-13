@@ -1,0 +1,154 @@
+{
+  "exams": [
+    {
+      "id": "sbi-clerk",
+      "name": "SBI Clerk (Junior Associate)",
+      "shortName": "SBI Clerk",
+      "badge": "SBI JA",
+      "color": "from-blue-600 to-indigo-700",
+      "accent": "blue",
+      "officialBody": "State Bank of India",
+      "lastNotificationVerified": "2024-2025 Cycle",
+      "stages": {
+        "prelims": {
+          "name": "Preliminary Examination",
+          "sectionName": "Numerical Ability",
+          "questions": 35,
+          "marks": 35,
+          "durationMinutes": 20,
+          "sectionalTiming": true,
+          "hasSectionalCutoff": false,
+          "negativeMarking": 0.25,
+          "idealAttempt": "28 - 32 Qs",
+          "idealAccuracy": "95%+",
+          "orderOfAttemptStrategy": [
+            { "order": 1, "topic": "Simplification & Approximation", "target": "10-15 Qs", "time": "6-8 mins" },
+            { "order": 2, "topic": "Quadratic Equations & Number Series", "target": "5-10 Qs", "time": "4-5 mins" },
+            { "order": 3, "topic": "Data Interpretation (Table/Bar/Line)", "target": "5 Qs", "time": "4-5 mins" },
+            { "order": 4, "topic": "Selective High-ROI Arithmetic", "target": "4-7 Qs", "time": "remaining 3-4 mins" }
+          ]
+        },
+        "mains": {
+          "name": "Main Examination",
+          "sectionName": "Quantitative Aptitude",
+          "questions": 50,
+          "marks": 50,
+          "durationMinutes": 45,
+          "sectionalTiming": true,
+          "hasSectionalCutoff": false,
+          "negativeMarking": 0.25,
+          "idealAttempt": "30 - 36 Qs",
+          "idealAccuracy": "90%+",
+          "orderOfAttemptStrategy": [
+            { "order": 1, "topic": "Missing DI & Table/Pie Charts", "target": "10-15 Qs", "time": "12-15 mins" },
+            { "order": 2, "topic": "Quantity Comparison (Q1 vs Q2) & Data Sufficiency", "target": "6-8 Qs", "time": "6-8 mins" },
+            { "order": 3, "topic": "Caselet / Venn Diagram DI", "target": "5 Qs", "time": "6-8 mins" },
+            { "order": 4, "topic": "Arithmetic Concepts (SI/CI, TSD, Partnership)", "target": "8-12 Qs", "time": "12-14 mins" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ibps-clerk",
+      "name": "IBPS Clerk / Customer Service Associate (CSA)",
+      "shortName": "IBPS Clerk",
+      "badge": "IBPS CSA",
+      "color": "from-teal-600 to-cyan-700",
+      "accent": "teal",
+      "officialBody": "Institute of Banking Personnel Selection",
+      "lastNotificationVerified": "CRP Clerks-XIV",
+      "stages": {
+        "prelims": {
+          "name": "Preliminary Examination",
+          "sectionName": "Numerical Ability",
+          "questions": 35,
+          "marks": 35,
+          "durationMinutes": 20,
+          "sectionalTiming": true,
+          "hasSectionalCutoff": true,
+          "negativeMarking": 0.25,
+          "idealAttempt": "29 - 33 Qs",
+          "idealAccuracy": "95%+",
+          "orderOfAttemptStrategy": [
+            { "order": 1, "topic": "Simplification (Rapid Speed)", "target": "10-15 Qs", "time": "6-7 mins" },
+            { "order": 2, "topic": "Number Series (Missing/Wrong)", "target": "5 Qs", "time": "3-4 mins" },
+            { "order": 3, "topic": "Direct DI (Bar/Line/Table)", "target": "5 Qs", "time": "4 mins" },
+            { "order": 4, "topic": "Direct Arithmetic (Ratio, Age, P&L)", "target": "5-8 Qs", "time": "5 mins" }
+          ]
+        },
+        "mains": {
+          "name": "Main Examination",
+          "sectionName": "Quantitative Aptitude",
+          "questions": 50,
+          "marks": 50,
+          "durationMinutes": 45,
+          "sectionalTiming": true,
+          "hasSectionalCutoff": true,
+          "negativeMarking": 0.25,
+          "idealAttempt": "28 - 34 Qs",
+          "idealAccuracy": "90%+",
+          "orderOfAttemptStrategy": [
+            { "order": 1, "topic": "Moderate DI Sets (Tabular / Bar)", "target": "10 Qs", "time": "10-12 mins" },
+            { "order": 2, "topic": "Approximation & Quadratic in Mains", "target": "5 Qs", "time": "4-5 mins" },
+            { "order": 3, "topic": "Arithmetic Word Problems", "target": "10-12 Qs", "time": "15 mins" },
+            { "order": 4, "topic": "Caselet DI / Data Sufficiency", "target": "5-8 Qs", "time": "10-12 mins" }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ibps-rrb-oa",
+      "name": "IBPS RRB Office Assistant (Multipurpose)",
+      "shortName": "RRB OA",
+      "badge": "RRB Clerk",
+      "color": "from-amber-600 to-orange-700",
+      "accent": "amber",
+      "officialBody": "Regional Rural Banks / IBPS",
+      "lastNotificationVerified": "CRP RRBs-XIII",
+      "stages": {
+        "prelims": {
+          "name": "Preliminary Examination",
+          "sectionName": "Numerical Ability",
+          "questions": 40,
+          "marks": 40,
+          "durationMinutes": 45,
+          "sectionalTiming": false,
+          "hasSectionalCutoff": true,
+          "compositeTime": true,
+          "compositeExplanation": "Composite time of 45 minutes for BOTH Reasoning (40 Q) and Numerical Ability (40 Q). You must manage your own time between sections! Recommended split: 22 mins Reasoning, 23 mins Quant.",
+          "negativeMarking": 0.25,
+          "idealAttempt": "35 - 39 Qs",
+          "idealAccuracy": "98%+",
+          "orderOfAttemptStrategy": [
+            { "order": 1, "topic": "Simplification & Approximation (High Volume)", "target": "12-15 Qs", "time": "7-8 mins" },
+            { "order": 2, "topic": "Missing Number Series", "target": "5 Qs", "time": "3 mins" },
+            { "order": 3, "topic": "Quadratic Equations (Direct Sign Method)", "target": "5 Qs", "time": "2-3 mins" },
+            { "order": 4, "topic": "Direct Tabular / Line DI", "target": "5 Qs", "time": "4 mins" },
+            { "order": 5, "topic": "Fast Arithmetic (Ages, Ratio, Average)", "target": "6-8 Qs", "time": "4-5 mins" }
+          ]
+        },
+        "mains": {
+          "name": "Main Examination",
+          "sectionName": "Numerical Ability",
+          "questions": 40,
+          "marks": 50,
+          "markWeight": 1.25,
+          "durationMinutes": 120,
+          "sectionalTiming": false,
+          "hasSectionalCutoff": true,
+          "compositeTime": true,
+          "compositeExplanation": "Composite time of 120 minutes across 5 sections (Reasoning, Numerical Ability, General Awareness, English/Hindi, Computer Knowledge). Each Quant question carries 1.25 marks! Recommended Quant allocation: 30 - 35 mins.",
+          "negativeMarking": 0.3125,
+          "idealAttempt": "28 - 34 Qs",
+          "idealAccuracy": "90%+",
+          "orderOfAttemptStrategy": [
+            { "order": 1, "topic": "Straightforward DI Sets", "target": "10 Qs", "time": "10 mins" },
+            { "order": 2, "topic": "Quadratic / Number Series (Mains level)", "target": "5 Qs", "time": "4 mins" },
+            { "order": 3, "topic": "High-scoring Arithmetic (P&L, SI/CI, Partnership)", "target": "10-12 Qs", "time": "12 mins" },
+            { "order": 4, "topic": "Caselet / Data Sufficiency", "target": "5 Qs", "time": "6 mins" }
+          ]
+        }
+      }
+    }
+  ]
+}

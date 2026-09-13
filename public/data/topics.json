@@ -1,0 +1,733 @@
+[
+  {
+    "id": "simplification",
+    "name": "Simplification",
+    "hindiName": "सरलीकरण",
+    "category": "Speed Math & Foundation",
+    "weightagePrelims": "10-15 Qs (~35-40%)",
+    "weightageMains": "0-5 Qs",
+    "targetTimeSec": 20,
+    "difficulty": "EASY",
+    "why": "Simplification questions appear directly (10-15 per Prelims) and form the computational engine for every DI and Arithmetic question.",
+    "concept": "Simplify an expression using VBODMAS: Vinculum (Bar) → Brackets () [] {} → Of (%) → Division → Multiplication → Addition → Subtraction evaluated left-to-right.",
+    "keyFormulas": [
+      "VBODMAS precedence order: Vinculum → () → of/% → ÷ → × → + → −",
+      "a/b + c/d = (ad + bc) / bd",
+      "√(a × b) = √a × √b",
+      "Unit digit technique: check last digit when options have distinct endings",
+      "Digital Sum: Sum digits until a single digit (ignore 9s). If lhs ≠ rhs, option is eliminated."
+    ],
+    "commonTraps": [
+      "Performing multiplication before 'of' (% of X)",
+      "Misinterpreting -a² vs (-a)²",
+      "Forgetting order of left-to-right divisions: a ÷ b ÷ c = (a/b) ÷ c = a / (b × c)"
+    ],
+    "visualizerId": "vedic-math",
+    "shortcutId": "sc-frac-percent"
+  },
+  {
+    "id": "approximation",
+    "name": "Approximation",
+    "hindiName": "सन्निकटन",
+    "category": "Speed Math & Foundation",
+    "weightagePrelims": "5-10 Qs",
+    "weightageMains": "0-5 Qs",
+    "targetTimeSec": 25,
+    "difficulty": "EASY",
+    "why": "Approximation explicitly asks for the 'closest value'. Exact calculation wastes precious seconds — strategic rounding is the test.",
+    "concept": "Round each term to its nearest friendly baseline (nearest 10, 50, 100, or clean fraction equivalent) before multiplying or dividing.",
+    "keyFormulas": [
+      "49.8% of 599.9 ≈ 50% of 600 = 300",
+      "√402 ≈ √400 = 20",
+      "12.02 × 7.98 ≈ 12 × 8 = 96",
+      "Compensating error rule: If you round one factor UP, round the other DOWN when multiplying."
+    ],
+    "commonTraps": [
+      "Trying to calculate decimal places exactly",
+      "Over-rounding when option choices are tightly clustered (e.g., 142, 145, 148)"
+    ],
+    "visualizerId": "fraction-percent",
+    "shortcutId": "sc-frac-percent"
+  },
+  {
+    "id": "number-series",
+    "name": "Missing Number Series",
+    "hindiName": "लुप्त संख्या श्रृंखला",
+    "category": "Speed Math & Foundation",
+    "weightagePrelims": "5 Qs",
+    "weightageMains": "0-3 Qs",
+    "targetTimeSec": 30,
+    "difficulty": "MEDIUM",
+    "why": "A guaranteed 5-question block in every Bank Clerk Prelims. 2-pass recognition allows securing 5 marks in 2.5 minutes.",
+    "concept": "Determine the governing rule connecting terms: constant difference, double difference (2nd order), constant/growing ratio, n² ± k, n³ ± k, or alternating operations.",
+    "keyFormulas": [
+      "Pass 1: Difference check (step 1 difference, if not clear check step 2 difference)",
+      "Pass 2: Ratio check (×0.5, ×1, ×1.5, ×2 or ×2+1, ×3+2, etc.)",
+      "Pass 3: Power patterns (1³+1=2, 2³-1=7, 3³+1=28, 4³-1=63...)",
+      "Pass 4: Alternating or Prime number additions (+2, +3, +5, +7, +11, +13)"
+    ],
+    "commonTraps": [
+      "Spending >45 seconds stuck on a single series instead of skipping and returning",
+      "Assuming addition when terms are rapidly growing (multiplication indicator)"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-series-scan"
+  },
+  {
+    "id": "wrong-number-series",
+    "name": "Wrong Number Series",
+    "hindiName": "गलत संख्या श्रृंखला",
+    "category": "Speed Math & Foundation",
+    "weightagePrelims": "5 Qs (alternative to missing)",
+    "weightageMains": "3-5 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "HARD",
+    "why": "Frequently tested in IBPS Clerk & SBI Clerk to slow candidates down. Identifying the single faulty term requires verifying ripple effects across two differences.",
+    "concept": "One term in the sequence violates the otherwise uniform rule. A single wrong term typically corrupts TWO consecutive difference values.",
+    "keyFormulas": [
+      "Identify the two irregular differences — the common boundary term between them is almost always the culprit.",
+      "Re-calculate the expected term to confirm the remainder of the series restores consistency."
+    ],
+    "commonTraps": [
+      "Picking the term after the faulty term without checking the forward connection"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-series-scan"
+  },
+  {
+    "id": "quadratic-equations",
+    "name": "Quadratic Equations",
+    "hindiName": "द्विघात समीकरण",
+    "category": "Algebra & Comparison",
+    "weightagePrelims": "5 Qs",
+    "weightageMains": "3-5 Qs",
+    "targetTimeSec": 25,
+    "difficulty": "MEDIUM",
+    "why": "Another guaranteed 5-mark block. With the Sign Method, 2 out of 5 questions can be answered in under 5 seconds without factorizing!",
+    "concept": "Solve ax² + bx + c = 0 and dy² + ey + f = 0, then compare all roots of x with all roots of y to establish: x > y, x < y, x ≥ y, x ≤ y, or x = y / CND.",
+    "keyFormulas": [
+      "Standard sign flip rule:",
+      "Equation (+, +) → Roots are (-, -)",
+      "Equation (-, +) → Roots are (+, +)",
+      "Equation (+, -) → Roots are (-, +)",
+      "Equation (-, -) → Roots are (+, -)",
+      "SUPER HACK: If constant terms in both equations are negative (c < 0 and f < 0), relationship is ALWAYS 'Cannot be determined (CND)'!"
+    ],
+    "commonTraps": [
+      "Forgetting to divide root factors by leading coefficient 'a' when a ≠ 1",
+      "Confusing x² = 64 (roots +8, -8) with x = √64 (principal root only: +8)"
+    ],
+    "visualizerId": "quadratic-sign",
+    "shortcutId": "sc-quad-compare"
+  },
+  {
+    "id": "percentage",
+    "name": "Percentage",
+    "hindiName": "प्रतिशत",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs direct (+ 10 Qs in DI)",
+    "weightageMains": "2-3 Qs",
+    "targetTimeSec": 35,
+    "difficulty": "EASY",
+    "why": "The foundational language of all commercial arithmetic (P&L, SI/CI, Ratio, Partnership, DI).",
+    "concept": "A fraction with denominator 100. Percentage change = (Change / Original) × 100.",
+    "keyFormulas": [
+      "x% of y = y% of x  [Commutative property: 64% of 25 = 25% of 64 = 16]",
+      "Successive % change = a + b + (ab / 100)",
+      "Product constancy: If Price increases by 1/n, Consumption must decrease by 1/(n+1) to keep expenditure constant",
+      "Fraction table: 1/6 = 16.67%, 1/7 = 14.28%, 1/8 = 12.5%, 1/9 = 11.11%, 1/11 = 9.09%, 1/12 = 8.33%, 1/15 = 6.67%"
+    ],
+    "commonTraps": [
+      "Dividing by the final value instead of the original/base value when calculating % change"
+    ],
+    "visualizerId": "fraction-percent",
+    "shortcutId": "sc-frac-percent"
+  },
+  {
+    "id": "ratio-proportion",
+    "name": "Ratio & Proportion",
+    "hindiName": "अनुपात एवं समानुपात",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs (+ key to DI)",
+    "weightageMains": "2-3 Qs",
+    "targetTimeSec": 35,
+    "difficulty": "EASY",
+    "why": "Replaces tedious multi-variable algebra with single-multiplier unit scaling.",
+    "concept": "Comparison of two quantities of the same unit. If a : b = c : d, then product of extremes = product of means (ad = bc).",
+    "keyFormulas": [
+      "Unit method: If ratio is 5 : 3 and difference is 20, 2 units = 20 ⇒ 1 unit = 10",
+      "Combined Ratio: If A:B = 2:3 and B:C = 4:5 ⇒ A:B:C = (2×4) : (3×4) : (3×5) = 8:12:15",
+      "Mean Proportional between a & b = √(ab)",
+      "Third Proportional to a & b = b² / a",
+      "Fourth Proportional to a, b, c = (b × c) / a"
+    ],
+    "commonTraps": [
+      "Adding absolute quantities directly to ratio components without converting to units"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-ratio-share"
+  },
+  {
+    "id": "average",
+    "name": "Average",
+    "hindiName": "औसत",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs",
+    "weightageMains": "1-2 Qs",
+    "targetTimeSec": 35,
+    "difficulty": "EASY",
+    "why": "One of the quickest arithmetic marks when solved via the Deviation (Net Balance) Method instead of total summing.",
+    "concept": "Average = Sum of items / Number of items. Total sum = Average × Number.",
+    "keyFormulas": [
+      "Net Deviation Method: Actual Avg = Assumed Avg + (Net Deviation / n)",
+      "Inclusion/Exclusion: Weight of new person = New Avg + (Change in Avg × Old Count)",
+      "Weighted Average = (n₁A₁ + n₂A₂) / (n₁ + n₂)",
+      "Average of first n consecutive natural numbers = (n + 1) / 2",
+      "Average of first n consecutive even numbers = n + 1",
+      "Average of first n consecutive odd numbers = n"
+    ],
+    "commonTraps": [
+      "Recalculating total sums from scratch when a new member replaces an existing one"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-deviation"
+  },
+  {
+    "id": "profit-loss",
+    "name": "Profit, Loss & Discount",
+    "hindiName": "लाभ, हानि एवं छूट",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs",
+    "weightageMains": "2-4 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Regular staple in both Prelims and Mains, linking CP, SP, MP, and Discount percentages.",
+    "concept": "Profit/Loss is always calculated on Cost Price (CP) unless stated otherwise. Discount is always calculated on Marked Price (MP).",
+    "keyFormulas": [
+      "CP / MP relation: CP / MP = (100 - Discount%) / (100 + Profit%)",
+      "Dishonest dealer profit% = [Error / (True Value - Error)] × 100",
+      "When two articles are sold at same SP, one at x% profit and other at x% loss, overall is ALWAYS a loss = (x/10)%²",
+      "Successive discounts d₁ and d₂: Net discount = d₁ + d₂ - (d₁d₂ / 100)"
+    ],
+    "commonTraps": [
+      "Calculating discount percentage on CP instead of MP",
+      "Assuming no profit/loss when SP is same and profit% equals loss%"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-successive"
+  },
+  {
+    "id": "simple-compound-interest",
+    "name": "Simple & Compound Interest",
+    "hindiName": "साधारण एवं चक्रवृद्धि ब्याज",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs",
+    "weightageMains": "2-3 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "MEDIUM",
+    "why": "Direct test of percentage compounding. 2-year and 3-year CI-SI difference formulas save up to 2 minutes of calculation.",
+    "concept": "SI grows linearly on Principal. CI grows exponentially on Principal + Accumulated Interest.",
+    "keyFormulas": [
+      "SI = (P × R × T) / 100",
+      "CI Amount = P(1 + R/100)ᵀ",
+      "2-Year CI - SI Difference = P × (R / 100)²",
+      "3-Year CI - SI Difference = P × (R / 100)² × (3 + R / 100)",
+      "Effective rate for 2 years CI at r% = 2r + r²/100",
+      "Rule of 72: Doubling time in years ≈ 72 / Interest Rate"
+    ],
+    "commonTraps": [
+      "Using full annual rate R when compounding is half-yearly (use R/2 and 2T) or quarterly (use R/4 and 4T)"
+    ],
+    "visualizerId": "interest-curve",
+    "shortcutId": "sc-ci-diff"
+  },
+  {
+    "id": "time-and-work",
+    "name": "Time & Work",
+    "hindiName": "कार्य एवं समय",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs",
+    "weightageMains": "2-3 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "MEDIUM",
+    "why": "LCM / Efficiency method completely eliminates fractions and turns word problems into clean integer arithmetic.",
+    "concept": "Total Work = LCM of individual times. Efficiency (units/day) = Total Work / Time. Combined Time = Total Work / Total Efficiency.",
+    "keyFormulas": [
+      "Total Work = Efficiency × Time",
+      "M₁D₁H₁ / W₁ = M₂D₂H₂ / W₂  [MDH Formula]",
+      "Efficiency ratio is inversely proportional to time taken: If E_A : E_B = 3 : 2 ⇒ T_A : T_B = 2 : 3",
+      "Wages are distributed in the ratio of work done (or efficiency if time worked is same)"
+    ],
+    "commonTraps": [
+      "Adding days directly (e.g. 10 days + 15 days ≠ 25 days)",
+      "Miscounting days when persons join or leave midway through the project"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-work-lcm"
+  },
+  {
+    "id": "pipes-and-cisterns",
+    "name": "Pipes and Cisterns",
+    "hindiName": "नल एवं टंकी",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "1-2 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "MEDIUM",
+    "why": "Time & Work with negative efficiency. Once you treat emptying pipes as negative rates, the logic is identical.",
+    "concept": "Inlet pipes add capacity (+ve rate); outlet pipes remove capacity (-ve rate). Net Rate = Σ(Inlet rates) - Σ(Outlet rates).",
+    "keyFormulas": [
+      "Tank Capacity = LCM(t₁, t₂, ...)",
+      "Net Filling Rate = (Capacity / t_in) - (Capacity / t_out)",
+      "Leak problem: If pipe fills in T hours and with leak takes T' hours, leak empties full tank in: (T × T') / (T' - T) hours"
+    ],
+    "commonTraps": [
+      "Adding outlet efficiency instead of subtracting it from the total rate"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-work-lcm"
+  },
+  {
+    "id": "time-speed-distance",
+    "name": "Time, Speed & Distance",
+    "hindiName": "समय, गति एवं दूरी",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1-2 Qs",
+    "weightageMains": "2-3 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "MEDIUM",
+    "why": "Unifies linear motion, trains, boats, and races under Distance = Speed × Time.",
+    "concept": "When Distance is constant, Speed ∝ 1/Time. When Time is constant, Distance ∝ Speed.",
+    "keyFormulas": [
+      "km/h to m/s: multiply by 5/18; m/s to km/h: multiply by 18/5",
+      "Average Speed for equal distances: (2 × s₁ × s₂) / (s₁ + s₂)",
+      "Relative Speed (Opposite directions): s₁ + s₂",
+      "Relative Speed (Same direction): |s₁ - s₂|",
+      "Meeting time = Distance between them / Relative Speed"
+    ],
+    "commonTraps": [
+      "Averaging speeds directly as (s₁ + s₂)/2 instead of using harmonic mean when distances are equal"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-unit-conv"
+  },
+  {
+    "id": "trains",
+    "name": "Problems on Trains",
+    "hindiName": "ट्रेन संबंधी प्रश्न",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "1-2 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Direct application of Relative Speed with train lengths acting as distance.",
+    "concept": "To cross a point object (pole, standing man), train covers its own length L. To cross an extended object (platform, bridge, tunnel, another train), distance covered = L₁ + L₂.",
+    "keyFormulas": [
+      "Time to cross pole = L_train / Speed",
+      "Time to cross platform = (L_train + L_platform) / Speed",
+      "Time for two trains to cross = (L₁ + L₂) / Relative Speed"
+    ],
+    "commonTraps": [
+      "Forgetting to convert speed from km/h to m/s when lengths are in meters and time in seconds"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-unit-conv"
+  },
+  {
+    "id": "boats-and-streams",
+    "name": "Boats and Streams",
+    "hindiName": "नाव एवं धारा",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "1-2 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Clean two-variable linear system. Downstream speed D and Upstream speed U yield boat speed B and stream speed S instantly.",
+    "concept": "Downstream speed D = B + S. Upstream speed U = B - S.",
+    "keyFormulas": [
+      "Speed of boat in still water B = (D + U) / 2",
+      "Speed of stream S = (D - U) / 2",
+      "Ratio B : S = (Time_up + Time_down) : (Time_up - Time_down) for equal distance"
+    ],
+    "commonTraps": [
+      "Confusing Downstream (+ stream) with Upstream (- stream)"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-boat-stream"
+  },
+  {
+    "id": "mixture-and-alligation",
+    "name": "Mixture & Alligation",
+    "hindiName": "मिश्रण एवं पृथक्करण",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "1-3 Qs",
+    "targetTimeSec": 35,
+    "difficulty": "MEDIUM",
+    "why": "The alligation cross rule solves weighted average and replacement problems without equations in 15 seconds.",
+    "concept": "Ratio of Cheaper to Dearer quantity = (Price of Dearer - Mean Price) : (Mean Price - Price of Cheaper).",
+    "keyFormulas": [
+      "Quantity_Cheaper / Quantity_Dearer = (Dearer - Mean) / (Mean - Cheaper)",
+      "Repeated replacement formula: Remaining original liquid = Initial × [1 - (x / C)]ⁿ, where x is quantity removed each time and C is total capacity."
+    ],
+    "commonTraps": [
+      "Placing SP in the alligation cross when other values are CP (all three inputs must be on the same basis, e.g. all CP)"
+    ],
+    "visualizerId": "alligation-cross",
+    "shortcutId": "sc-alligation"
+  },
+  {
+    "id": "partnership",
+    "name": "Partnership",
+    "hindiName": "साझेदारी",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "1-2 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "EASY",
+    "why": "High-scoring topic where profit ratio = Capital × Time ratio.",
+    "concept": "Profit is distributed strictly proportional to effective investment: P₁ : P₂ = (C₁ × T₁) : (C₂ × T₂).",
+    "keyFormulas": [
+      "Profit Ratio = (Capital A × Months A) : (Capital B × Months B)",
+      "Active partner salary is subtracted from total profit BEFORE splitting remainder in ratio"
+    ],
+    "commonTraps": [
+      "Forgetting to adjust capital when a partner adds or withdraws money after 3, 6, or 8 months"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-ratio-share"
+  },
+  {
+    "id": "ages",
+    "name": "Problems on Ages",
+    "hindiName": "आयु संबंधी प्रश्न",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "1 Q",
+    "targetTimeSec": 35,
+    "difficulty": "EASY",
+    "why": "Extremely high accuracy topic. The key insight is that the difference between two persons' ages NEVER changes.",
+    "concept": "Age difference remains constant across all years. Make ratio difference equal to bridge past, present, and future.",
+    "keyFormulas": [
+      "Age difference (A - B) at any time t is constant",
+      "Ratio equalization: Multiply ratios by cross-differences to align unit passage of time"
+    ],
+    "commonTraps": [
+      "Adding x years to only one person instead of both when shifting from past to future"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-ratio-share"
+  },
+  {
+    "id": "permutation-and-combination",
+    "name": "Permutations & Combinations",
+    "hindiName": "क्रमचय एवं संचय",
+    "category": "Modern Math",
+    "weightagePrelims": "0-1 Q",
+    "weightageMains": "1-3 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "HARD",
+    "why": "Tested heavily in Mains. The whole skill is distinguishing whether order matters (arrangement) or not (selection).",
+    "concept": "Permutation ⁿPᵣ = n! / (n - r)! (Order matters). Combination ⁿCᵣ = n! / [r! × (n - r)!] (Order does not matter).",
+    "keyFormulas": [
+      "ⁿCᵣ = ⁿCₙ₋ᵣ  [e.g., ¹⁰C₈ = ¹⁰C₂ = (10×9)/(2×1) = 45]",
+      "Arranging n items with repetitions: n! / (p! × q! × r!)",
+      "Items kept together: Tie them into a single super-item, arrange inside and outside",
+      "Circular permutation of n distinct items = (n - 1)!"
+    ],
+    "commonTraps": [
+      "Using permutation formula when only selection is required"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-choose-vs-arrange"
+  },
+  {
+    "id": "probability",
+    "name": "Probability",
+    "hindiName": "प्रायिकता",
+    "category": "Modern Math",
+    "weightagePrelims": "0-1 Q",
+    "weightageMains": "1-3 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "HARD",
+    "why": "Commonly asked in Mains and Clerk Prelims arithmetic. Standard questions involve balls in bags, playing cards, or coins/dice.",
+    "concept": "P(E) = Number of favorable outcomes / Total possible outcomes.",
+    "keyFormulas": [
+      "P(A or B) = P(A) + P(B) - P(A ∩ B)",
+      "P(At least 1) = 1 - P(None)",
+      "Drawing without replacement: P(R₁ and R₂) = (r / total) × [(r - 1) / (total - 1)]"
+    ],
+    "commonTraps": [
+      "Calculating with replacement when the question specifies without replacement"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-fav-total"
+  },
+  {
+    "id": "mensuration",
+    "name": "Mensuration (2D & 3D)",
+    "hindiName": "क्षेत्रमिति",
+    "category": "Modern Math",
+    "weightagePrelims": "1 Q",
+    "weightageMains": "2-3 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Direct formula substitution. 95% of questions check cylinder, cone, sphere, rectangle, or circle.",
+    "concept": "2D: Perimeter and Area. 3D: Curved Surface Area (CSA), Total Surface Area (TSA), and Volume.",
+    "keyFormulas": [
+      "Circle: Area = πr², Circumference = 2πr (For r = 7, Area = 154, Circumference = 44)",
+      "Cylinder: Volume = πr²h, CSA = 2πrh, TSA = 2πr(h + r)",
+      "Cone: Volume = ⅓πr²h, CSA = πrl (where l = √(r² + h²))",
+      "Sphere: Volume = (4/3)πr³, Surface Area = 4πr²",
+      "Semisphere: TSA = 3πr², Volume = ⅔πr³"
+    ],
+    "commonTraps": [
+      "Confusing CSA with TSA in hemisphere and cylinder problems"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-mensuration-clean"
+  },
+  {
+    "id": "data-interpretation-tables",
+    "name": "Tabular Data Interpretation",
+    "hindiName": "तालिका डेटा व्याख्या",
+    "category": "Data Interpretation",
+    "weightagePrelims": "5 Qs",
+    "weightageMains": "5-10 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "MEDIUM",
+    "why": "Carries 5-15 marks per exam. Fast row/column cross-referencing and percentage comparisons make or break your score.",
+    "concept": "Data organized in rows and columns. Read headers and footnotes first, then compute differences, ratios, and percentages.",
+    "keyFormulas": [
+      "% More/Less = |A - B| / Base × 100",
+      "Average = Row/Column Total / Count",
+      "Ratio A to B = Value(A) / Value(B)"
+    ],
+    "commonTraps": [
+      "Looking at the wrong row or year under exam stress"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-di-scan"
+  },
+  {
+    "id": "data-interpretation-bar-line",
+    "name": "Bar Graph & Line Graph DI",
+    "hindiName": "बार एवं रेखा ग्राफ",
+    "category": "Data Interpretation",
+    "weightagePrelims": "5 Qs",
+    "weightageMains": "5-10 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "MEDIUM",
+    "why": "Visual trend analysis. Checking axis scales and grid intervals allows immediate estimation of quantities.",
+    "concept": "Bar heights or line peaks represent numerical values across categories or years.",
+    "keyFormulas": [
+      "Growth Rate = (Value_Final - Value_Initial) / Value_Initial × 100",
+      "Visual subtraction: Count grid units between bars instead of reading and subtracting large numbers"
+    ],
+    "commonTraps": [
+      "Misidentifying axis scale markings (e.g. each line is 5 units, not 10)"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-di-scan"
+  },
+  {
+    "id": "data-interpretation-pie",
+    "name": "Pie Chart DI",
+    "hindiName": "पाई चार्ट",
+    "category": "Data Interpretation",
+    "weightagePrelims": "5 Qs",
+    "weightageMains": "5 Qs",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Angle to percentage conversion (360° = 100% ⇒ 3.6° = 1%) allows instant direct ratio answers without computing raw values.",
+    "concept": "Distribution of a total 100% or 360° among distinct sectors.",
+    "keyFormulas": [
+      "360° = 100% ⇒ 1% = 3.6° and 1° = (5/18)%",
+      "When comparing sectors of the same chart, compare degrees/percentages directly — NEVER calculate raw rupee/unit values first!"
+    ],
+    "commonTraps": [
+      "Converting each percentage into raw values before computing the ratio (wastes 45 seconds)"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-di-scan"
+  },
+  {
+    "id": "caselet-di",
+    "name": "Caselet & Venn Diagram DI",
+    "hindiName": "केसलेट एवं वेन आरेख",
+    "category": "Data Interpretation",
+    "weightagePrelims": "0-5 Qs",
+    "weightageMains": "5-10 Qs",
+    "targetTimeSec": 90,
+    "difficulty": "HARD",
+    "why": "Standard in Mains exams. Raw paragraph text must be decoded into a neat 2-way table or 3-circle Venn diagram.",
+    "concept": "Unpack given clues into a Venn diagram: Only A, Only B, Both A & B, All three, None.",
+    "keyFormulas": [
+      "n(A ∪ B) = n(A) + n(B) - n(A ∩ B)",
+      "Total = (Only A + Only B + Only C) + (A∩B only + B∩C only + C∩A only) + (All 3) + None"
+    ],
+    "commonTraps": [
+      "Confusing 'People who like A' with 'People who like ONLY A'"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-di-scan"
+  },
+  {
+    "id": "quantity-comparison",
+    "name": "Quantity Comparison (Q1 vs Q2)",
+    "hindiName": "मात्रा तुलना (Q1 vs Q2)",
+    "category": "Mains Special",
+    "weightagePrelims": "0-3 Qs",
+    "weightageMains": "5 Qs",
+    "targetTimeSec": 50,
+    "difficulty": "HARD",
+    "why": "High-yield format in SBI & IBPS Clerk Mains. Tests two arithmetic concepts in one question and compares results.",
+    "concept": "Evaluate Quantity I and Quantity II independently to choose: Q1 > Q2, Q1 < Q2, Q1 ≥ Q2, Q1 ≤ Q2, or Q1 = Q2 / Relation cannot be established.",
+    "keyFormulas": [
+      "Always check edge conditions (zero, negative numbers, fractions between 0 and 1) when quantities involve powers or roots"
+    ],
+    "commonTraps": [
+      "Finding both values accurately but selecting the wrong relation sign in haste"
+    ],
+    "visualizerId": null,
+    "shortcutId": null
+  },
+  {
+    "id": "data-sufficiency",
+    "name": "Data Sufficiency",
+    "hindiName": "आंकड़ों की पर्याप्तता",
+    "category": "Mains Special",
+    "weightagePrelims": "0 Qs",
+    "weightageMains": "5 Qs",
+    "targetTimeSec": 45,
+    "difficulty": "HARD",
+    "why": "Unique topic where you DO NOT need to calculate the numerical answer! You only evaluate whether the given statements provide sufficient information.",
+    "concept": "Test Statement I alone, Statement II alone, and then Statements I & II together to see if a unique answer exists.",
+    "keyFormulas": [
+      "Step 1: Check Statement I alone",
+      "Step 2: Check Statement II alone",
+      "Step 3: If neither alone works, combine I + II",
+      "Golden rule: Stop solving the moment uniqueness is proven — never waste time on final calculation!"
+    ],
+    "commonTraps": [
+      "Accidentally carrying information from Statement I over when testing Statement II alone"
+    ],
+    "visualizerId": null,
+    "shortcutId": null
+  },
+  {
+    "id": "races-and-games",
+    "name": "Races & Games of Skill",
+    "hindiName": "दौड़ एवं खेल",
+    "category": "Core Arithmetic",
+    "weightagePrelims": "0-1 Q",
+    "weightageMains": "1 Q",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Head start and beat-by problems convert directly into speed ratios.",
+    "concept": "If A gives B a head start of h meters in a race of d meters, in the same time A runs d meters, B runs (d - h) meters.",
+    "keyFormulas": [
+      "Speed Ratio A : B = d : (d - head_start)",
+      "If A beats B by t seconds, B's speed = distance_beaten / t"
+    ],
+    "commonTraps": [
+      "Confusing start in distance (meters) with start in time (seconds)"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-race-ratio"
+  },
+  {
+    "id": "clocks-and-calendars",
+    "name": "Clocks & Calendars",
+    "hindiName": "घड़ी एवं कैलेंडर",
+    "category": "Foundation & Misc",
+    "weightagePrelims": "0-1 Q",
+    "weightageMains": "1 Q",
+    "targetTimeSec": 35,
+    "difficulty": "EASY",
+    "why": "100% formulaic. Once you know odd days mod 7 and |30H - 5.5M|, you score full marks in 30 seconds.",
+    "concept": "Clocks: Angle between hands = |30H - 5.5M|. Calendars: Count odd days mod 7 across ordinary and leap years.",
+    "keyFormulas": [
+      "Clock angle = |30H - (11/2)M| degrees",
+      "Hands coincide (0°): 11 times in 12 hours, 22 times in 24 hours",
+      "Hands in opposite direction (180°): 22 times in 24 hours",
+      "Ordinary year = 1 odd day; Leap year = 2 odd days"
+    ],
+    "commonTraps": [
+      "Taking an interior reflex angle (>180°) instead of the acute angle (subtract from 360°)"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-clock-angle"
+  },
+  {
+    "id": "discount-td-bd",
+    "name": "True & Banker's Discount",
+    "hindiName": "महाजनी बट्टा एवं शुद्ध बट्टा",
+    "category": "Foundation & Misc",
+    "weightagePrelims": "0-1 Q",
+    "weightageMains": "1 Q",
+    "targetTimeSec": 40,
+    "difficulty": "MEDIUM",
+    "why": "Bank-specific financial mathematics comparing true present worth interest with bill discount.",
+    "concept": "True Discount (TD) is interest on Present Worth (PW). Banker's Discount (BD) is interest on Face Value. BD is always > TD.",
+    "keyFormulas": [
+      "Amount = PW + TD",
+      "TD = (Amount × R × T) / (100 + RT)",
+      "BD = (Amount × R × T) / 100",
+      "Banker's Gain (BG) = BD - TD = (TD × R × T) / 100",
+      "Amount = (BD × TD) / (BD - TD)"
+    ],
+    "commonTraps": [
+      "Confusing Banker's Discount (BD) with trade discount in Profit & Loss"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-td-bd"
+  },
+  {
+    "id": "surds-and-indices",
+    "name": "Surds & Indices",
+    "hindiName": "घातांक एवं करणी",
+    "category": "Speed Math & Foundation",
+    "weightagePrelims": "1-2 Qs",
+    "weightageMains": "1 Q",
+    "targetTimeSec": 25,
+    "difficulty": "EASY",
+    "why": "Simplifies huge exponential equations without multiplying powers out.",
+    "concept": "Base alignment and power arithmetic rules.",
+    "keyFormulas": [
+      "aᵐ × aⁿ = aᵐ⁺ⁿ",
+      "aᵐ ÷ aⁿ = aᵐ⁻ⁿ",
+      "(aᵐ)ⁿ = aᵐⁿ",
+      "a⁻ⁿ = 1 / aⁿ",
+      "a⁰ = 1",
+      "If aˣ = aʸ (a ≠ 0, 1, -1), then x = y"
+    ],
+    "commonTraps": [
+      "Applying power laws when bases are different without reducing to common prime base first"
+    ],
+    "visualizerId": null,
+    "shortcutId": "sc-index-laws"
+  },
+  {
+    "id": "square-cube-roots",
+    "name": "Square & Cube Roots",
+    "hindiName": "वर्ग एवं घनमूल",
+    "category": "Speed Math & Foundation",
+    "weightagePrelims": "2-3 Qs embedded",
+    "weightageMains": "1-2 Qs embedded",
+    "targetTimeSec": 15,
+    "difficulty": "EASY",
+    "why": "Instant recall of squares 1-50 and cubes 1-25 unlocks 10-second simplification.",
+    "concept": "Direct unit-digit matching and nearest square/cube estimation.",
+    "keyFormulas": [
+      "Unit digit of perfect square: 1→1,9; 4→2,8; 5→5; 6→4,6; 9→3,7; 0→0 (2, 3, 7, 8 NEVER end a square)",
+      "Unit digit of cube: 1→1, 4→4, 5→5, 6→6, 9→9; 2↔8, 3↔7",
+      "Base 50 squaring trick: For 50+x, answer is (25+x) | x²"
+    ],
+    "commonTraps": [
+      "Guessing square root without verifying the ten's digit against the lower square bound"
+    ],
+    "visualizerId": "vedic-math",
+    "shortcutId": "sc-square-cube-memo"
+  }
+]

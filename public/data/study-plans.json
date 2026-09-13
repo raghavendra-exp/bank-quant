@@ -1,0 +1,136 @@
+{
+  "plans": [
+    {
+      "id": "plan-30-day",
+      "title": "30-Day Crash Course: Prelims Speed Sprint",
+      "tagline": "Best for candidates with pending exams within 4 weeks (SBI/IBPS/RRB Clerk Prelims).",
+      "durationDays": 30,
+      "dailyCommitment": "3 - 4 Hours",
+      "targetScore": "30+ / 35 in Prelims",
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "days": "Days 1 - 8",
+          "title": "Speed Math & Calculation Mastery",
+          "description": "Lock down 20 marks in 10 minutes. Tables up to 25, squares 1-50, cubes 1-25, fraction-percentage conversions, Vedic criss-cross, and sign-flip rule.",
+          "dailyTasks": [
+            "Day 1: Multiplication hacks (Vedic criss-cross, base 100, squaring ending in 5)",
+            "Day 2: Fraction-percentage wheel (1/1 to 1/20) + 30 Simplification questions",
+            "Day 3: VBODMAS rule deep dive + 40 Simplification questions",
+            "Day 4: Approximation techniques + 40 Approximation questions",
+            "Day 5: Quadratic Equations (Sign-flip method) + 30 Quadratic questions",
+            "Day 6: Missing Number Series patterns + 30 Series questions",
+            "Day 7: Wrong Number Series diagnostics + 25 Series questions",
+            "Day 8: Speed Math Sprint Test: 35 questions in 18 minutes + Error analysis"
+          ]
+        },
+        {
+          "phaseNumber": 2,
+          "days": "Days 9 - 18",
+          "title": "High-Yield Arithmetic & DI Basics",
+          "description": "Master the arithmetic topics that provide 100% predictable marks: Ratio, Ages, Partnership, Percentage, P&L, Time & Work.",
+          "dailyTasks": [
+            "Day 9: Percentage & Successive % change + 25 questions",
+            "Day 10: Ratio & Proportion + 25 questions",
+            "Day 11: Ages & Partnership + 30 questions",
+            "Day 12: Tabular Data Interpretation (5 sets) + 20 Simplification",
+            "Day 13: Bar & Line Graph DI (5 sets) + 20 Simplification",
+            "Day 14: Profit, Loss & Marked Price + 25 questions",
+            "Day 15: Time & Work (LCM method) + 25 questions",
+            "Day 16: Pipes & Cisterns + 20 questions",
+            "Day 17: Simple & Compound Interest (Difference formulas) + 25 questions",
+            "Day 18: Full Sectional Mock 1 (35 Q, 20 min) + Revision of all mistakes"
+          ]
+        },
+        {
+          "phaseNumber": 3,
+          "days": "Days 19 - 30",
+          "title": "Intensive Mock Drills & Exam Simulation",
+          "description": "Daily timed mocks, question selection training (what to skip in first 30s), and eliminating negative marks.",
+          "dailyTasks": [
+            "Day 19: Time Speed Distance, Trains & Boats (Core formulas) + 20 questions",
+            "Day 20: Mixture & Alligation + 20 questions",
+            "Day 21: Pie Chart DI & Mixed DI (5 sets)",
+            "Day 22: Prelims Mock Test 1 + In-depth Post-Test Analysis",
+            "Day 23: Speed Lab Sprints (15s & 25s drill) + 40 mixed questions",
+            "Day 24: Prelims Mock Test 2 + Error Log review",
+            "Day 25: Question Selection Practice (First 5-minute scan drill)",
+            "Day 26: Prelims Mock Test 3 + Sectional Cutoff validation",
+            "Day 27: Formula Flashcards Revision + 50 Simplification sprint",
+            "Day 28: Prelims Mock Test 4 + Calm mindset conditioning",
+            "Day 29: Final Full Mock Test + Revise My Mistakes hub",
+            "Day 30: Relaxed light formula scan, proper sleep, exam center readiness"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan-60-day",
+      "title": "60-Day Complete Roadmap: Prelims + Mains Foundation",
+      "tagline": "The gold standard preparation blueprint for beginners targeting upcoming banking cycles.",
+      "durationDays": 60,
+      "dailyCommitment": "2 - 3 Hours",
+      "targetScore": "32+ / 35 Prelims & 35+ / 50 Mains",
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "days": "Days 1 - 15",
+          "title": "Zero to Hero: Fast Calculation & Foundation",
+          "description": "Build unbreakable calculation instincts: Vedic math, tables, squares, fractions, and BODMAS speed drills."
+        },
+        {
+          "phaseNumber": 2,
+          "days": "Days 16 - 35",
+          "title": "Arithmetic Deep Dive (Zero to Topper Methods)",
+          "description": "Complete all 18 arithmetic topics with both Conventional & Topper short methods."
+        },
+        {
+          "phaseNumber": 3,
+          "days": "Days 36 - 48",
+          "title": "Advanced Data Interpretation & Mains Caselets",
+          "description": "Missing DI, Radar charts, 3-variable Venn Diagrams, and Mains level caselet interpretation."
+        },
+        {
+          "phaseNumber": 4,
+          "days": "Days 49 - 60",
+          "title": "Full Length Mocks & Performance Fine-Tuning",
+          "description": "Alternate day sectional and full mocks, accuracy stabilization at 95%+."
+        }
+      ]
+    },
+    {
+      "id": "plan-90-day",
+      "title": "90-Day Comprehensive Topper Blueprint: SBI / IBPS / RRB",
+      "tagline": "Ideal for freshers starting from scratch targeting 100% syllabus mastery and top 1 percentile ranking.",
+      "durationDays": 90,
+      "dailyCommitment": "2 Hours",
+      "targetScore": "34+ / 35 Prelims & 40+ / 50 Mains",
+      "phases": [
+        {
+          "phaseNumber": 1,
+          "days": "Days 1 - 25",
+          "title": "Phase 1: Speed Foundation & Basic Arithmetic",
+          "description": "Master calculation mechanics, percentage, ratios, and quadratic equations."
+        },
+        {
+          "phaseNumber": 2,
+          "days": "Days 26 - 55",
+          "title": "Phase 2: Comprehensive Arithmetic & DI Systems",
+          "description": "Full coverage of all 32 topics with topic-wise quizzes and dual solution analysis."
+        },
+        {
+          "phaseNumber": 3,
+          "days": "Days 56 - 75",
+          "title": "Phase 3: Mains Special (Q1 vs Q2, Data Sufficiency, Caselets)",
+          "description": "Advanced problem solving, multi-concept questions, and speed endurance."
+        },
+        {
+          "phaseNumber": 4,
+          "days": "Days 76 - 90",
+          "title": "Phase 4: Exam Simulation & Final Rank Calibration",
+          "description": "30+ full mocks, real exam UI practice, and psychological readiness."
+        }
+      ]
+    }
+  ]
+}
