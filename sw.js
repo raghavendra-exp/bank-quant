@@ -1,18 +1,12 @@
-// Network-first service worker. Correctness matters more than offline support while this app
-// is under active development — a cache-first strategy here previously caused returning visitors
-// to see permanently stale JS/data even after the site was updated and redeployed.
-//
-// IMPORTANT: bump CACHE_VERSION any time you ship a real update. Changing this string is what makes
-// browsers detect a new service worker, install it, and evict the old cache via the activate handler
-// below — without a version bump, a browser that visited once keeps the OLD sw.js (and whatever
-// caching behavior it had) indefinitely, regardless of what files you deploy afterward.
-const CACHE_VERSION = "bqm-cache-v2";
+// Network-first service worker with full offline asset caching
+const CACHE_VERSION = "bqm-cache-v3";
 const ASSETS = [
   "./", "./index.html", "./manifest.json",
   "./css/style.css",
   "./js/app.js", "./js/storage.js",
   "./js/data/topics.js", "./js/data/shortcuts.js", "./js/data/generators.js", "./js/data/mindtricks.js",
-  "./data/sources.json", "./data/resources.json"
+  "./data/sources.json", "./data/resources.json",
+  "./data/exams/sbi-clerk.json", "./data/exams/ibps-clerk.json", "./data/exams/rrb-office-assistant.json"
 ];
 
 self.addEventListener("install", (e) => {

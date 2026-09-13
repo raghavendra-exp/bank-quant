@@ -40,8 +40,13 @@ function route() {
   // results while they're on a completely different page. Only the live exam page should have
   // an active interval — every other route clears it (the session itself is untouched, so the
   // true elapsed time is still recovered correctly if the user navigates back to the exam).
-  if (!(page === "mocktest" && rest[0] === "exam") && typeof mockTimerInterval !== "undefined") {
+  if (!(page === "mocktest" && rest[0] === "exam") && typeof mockTimerInterval !== "undefined" && mockTimerInterval) {
     clearInterval(mockTimerInterval);
+    mockTimerInterval = null;
+  }
+  if (!(page === "practice" && rest[0]) && typeof window.practiceTimerInterval !== "undefined" && window.practiceTimerInterval) {
+    clearInterval(window.practiceTimerInterval);
+    window.practiceTimerInterval = null;
   }
   renderNav(page);
   const content = document.getElementById("app-content");
@@ -234,19 +239,25 @@ function drawPracticeQuestion(t) {
 
   const timerEl = root.querySelector("#timer");
   const warnAt = (q.targetTime || 45) * 1.5;
-  const interval = setInterval(() => {
+  if (window.practiceTimerInterval) clearInterval(window.practiceTimerInterval);
+  window.practiceTimerInterval = setInterval(() => {
     const elapsed = (performance.now() - s.qStart) / 1000;
     const mm = String(Math.floor(elapsed / 60)).padStart(2, "0");
     const ss = String(Math.floor(elapsed % 60)).padStart(2, "0");
-    timerEl.textContent = `${mm}:${ss}`;
-    timerEl.classList.toggle("warn", elapsed > warnAt);
+    if (timerEl) {
+      timerEl.textContent = `${mm}:${ss}`;
+      timerEl.classList.toggle("warn", elapsed > warnAt);
+    }
   }, 250);
 
   const optsDiv = root.querySelector("#opts");
   q.options.forEach((opt, i) => {
     const btn = el(`<button class="option-btn">${opt}</button>`);
     btn.onclick = () => {
-      clearInterval(interval);
+      if (window.practiceTimerInterval) {
+        clearInterval(window.practiceTimerInterval);
+        window.practiceTimerInterval = null;
+      }
       const timeMs = performance.now() - s.qStart;
       const correct = i === q.answerIndex;
       optsDiv.querySelectorAll("button").forEach((b, bi) => {
@@ -467,21 +478,123 @@ function renderShortcuts(content) {
 }
 
 // ============================================================ MISTAKE BOOK
+let mistakeFilter = "active"; // "all" | "active" | "mastered"
+
 function renderMistakeBook(content) {
-  content.append(el(`<div class="ledger-card"><div class="eyebrow">Mistake Book</div><h1 class="mt0">${STATE.mistakes.length} recorded mistakes</h1><p class="muted">Every wrong answer is saved automatically with the correct method and shortcut.</p></div>`));
-  if (STATE.mistakes.length === 0) {
-    content.append(el(`<div class="ledger-card"><p class="muted">No mistakes recorded yet — they'll appear here the moment you answer something incorrectly in Practice.</p></div>`));
-    return;
-  }
-  [...STATE.mistakes].reverse().forEach((m, i) => {
-    content.append(el(`
+  const total = STATE.mistakes.length;
+  const activeCount = STATE.mistakes.filter(m => !m.mastered).length;
+  const masteredCount = STATE.mistakes.filter(m => m.mastered).length;
+
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Mistake Book</div>
+      <h1 class="mt0">${total} recorded mistakes</h1>
+      <p class="muted">Every wrong answer is logged here with its solution and shortcut. Re-attempt any question until you master it.</p>
+      <div class="pill-row" style="margin-top:14px">
+        <button class="btn small ${mistakeFilter === 'active' ? 'gold' : 'ghost'}" id="filter-active">Active (${activeCount})</button>
+        <button class="btn small ${mistakeFilter === 'all' ? 'gold' : 'ghost'}" id="filter-all">All (${total})</button>
+        <button class="btn small ${mistakeFilter === 'mastered' ? 'gold' : 'ghost'}" id="filter-mastered">Mastered (${masteredCount})</button>
+      </div>
+    </div>
+    <div id="mistake-list"></div>
+  `));
+
+  content.querySelector("#filter-active").onclick = () => { mistakeFilter = "active"; renderMistakeBook(content); };
+  content.querySelector("#filter-all").onclick = () => { mistakeFilter = "all"; renderMistakeBook(content); };
+  content.querySelector("#filter-mastered").onclick = () => { mistakeFilter = "mastered"; renderMistakeBook(content); };
+
+  const listContainer = content.querySelector("#mistake-list");
+  const filtered = STATE.mistakes.filter(m => {
+    if (mistakeFilter === "active") return !m.mastered;
+    if (mistakeFilter === "mastered") return m.mastered;
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    listContainer.append(el(`
       <div class="ledger-card">
-        <div class="pill-row"><span class="pill">${m.topic}</span><span class="pill">${new Date(m.ts).toLocaleDateString()}</span></div>
-        <p><strong>${m.question}</strong></p>
-        <p>Your answer: <span class="stamp wrong">${m.options[m.chosenIndex]}</span> &nbsp; Correct: <span class="stamp correct">${m.options[m.answerIndex]}</span></p>
-        <div class="solution-box">${m.solution}<br><em>Shortcut:</em> ${m.shortcut}</div>
+        <p class="muted">${mistakeFilter === 'active' && total > 0 ? "🎉 Amazing work! All recorded mistakes have been mastered." : "No mistakes found in this category."}</p>
       </div>
     `));
+    return;
+  }
+
+  [...filtered].reverse().forEach((m, idx) => {
+    const isMastered = Boolean(m.mastered);
+    const card = el(`
+      <div class="ledger-card" id="mcard-${idx}">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <div class="pill-row" style="margin:0">
+            <span class="pill">${TOPICS.find(t => t.id === m.topic)?.name || m.topic}</span>
+            <span class="pill">${new Date(m.ts).toLocaleDateString()}</span>
+            <span class="stamp ${isMastered ? "mastered" : "weak"}">${isMastered ? "Mastered" : "Needs Review"}</span>
+          </div>
+          <div style="display:flex;gap:6px">
+            <button class="btn small gold btn-reattempt">Re-attempt</button>
+            <button class="btn small ghost btn-toggle-mastered">${isMastered ? "Mark Active" : "Mark Mastered"}</button>
+            <button class="btn small ghost btn-del-mistake" style="color:var(--red);border-color:var(--red)" title="Remove">✕</button>
+          </div>
+        </div>
+        <p style="margin-top:14px"><strong>${m.question}</strong></p>
+        <div class="m-review-view">
+          <p>Your previous answer: <span class="stamp wrong">${m.options && m.chosenIndex !== null ? m.options[m.chosenIndex] : "None"}</span> &nbsp; Correct: <span class="stamp correct">${m.options ? m.options[m.answerIndex] : ""}</span></p>
+          <div class="solution-box">${m.solution}<br><em>Shortcut:</em> ${m.shortcut}</div>
+        </div>
+        <div class="m-quiz-view" style="display:none;margin-top:14px">
+          <div class="m-opts"></div>
+          <div class="m-feedback" style="margin-top:10px"></div>
+        </div>
+      </div>
+    `);
+
+    // Toggle Re-attempt Mode
+    const reviewView = card.querySelector(".m-review-view");
+    const quizView = card.querySelector(".m-quiz-view");
+    const optsContainer = card.querySelector(".m-opts");
+    const feedbackDiv = card.querySelector(".m-feedback");
+
+    card.querySelector(".btn-reattempt").onclick = () => {
+      reviewView.style.display = "none";
+      quizView.style.display = "block";
+      optsContainer.innerHTML = "";
+      feedbackDiv.innerHTML = "";
+
+      m.options.forEach((opt, oi) => {
+        const obtn = el(`<button class="option-btn">${opt}</button>`);
+        obtn.onclick = () => {
+          optsContainer.querySelectorAll("button").forEach((b, bi) => {
+            b.disabled = true;
+            if (bi === m.answerIndex) b.classList.add("correct");
+            else if (bi === oi) b.classList.add("wrong");
+          });
+
+          if (oi === m.answerIndex) {
+            markMistakeMastered(m.id || m.ts);
+            feedbackDiv.innerHTML = `<span class="stamp correct">✓ Mastered! Solved correctly.</span>`;
+          } else {
+            feedbackDiv.innerHTML = `<div class="solution-box" style="margin-top:8px">${m.solution}<br><em>Shortcut:</em> ${m.shortcut}</div>`;
+          }
+        };
+        optsContainer.append(obtn);
+      });
+    };
+
+    // Toggle Mastered
+    card.querySelector(".btn-toggle-mastered").onclick = () => {
+      m.mastered = !m.mastered;
+      saveState(STATE);
+      renderMistakeBook(content);
+    };
+
+    // Delete Mistake
+    card.querySelector(".btn-del-mistake").onclick = () => {
+      if (confirm("Remove this mistake from your book?")) {
+        removeMistake(m.id || m.ts);
+        renderMistakeBook(content);
+      }
+    };
+
+    listContainer.append(card);
   });
 }
 
@@ -847,9 +960,6 @@ function renderSources(content) {
 
 // ============================================================ MOCK TEST / EXAM MODE
 // Curated pool of topics that actually resemble Prelims/Mains Numerical Ability question mix.
-// Deliberately excludes DI (needs its own multi-question set UI) and the more SSC-flavored
-// topics (logarithms, surds, permutation-combination, clocks, calendar, stocks, TD/BD,
-// heights-distances) so a generated mock test reads like a real banking paper, not a grab-bag.
 const MOCK_TEST_TOPIC_POOL = [
   "simplification", "approximation", "number-series", "quadratic-equations",
   "percentage", "ratio", "average", "profit-loss", "time-work", "tsd",
@@ -864,8 +974,58 @@ const MOCK_TEST_PRESETS = [
 ];
 
 let mockSession = null;
+let mockTimerInterval = null;
+
+// Session persistence for mock tests (prevents data loss on reload / accidental navigation)
+function saveActiveMock(session) {
+  try {
+    if (session && !session.submitted) {
+      sessionStorage.setItem("bqm_active_mock", JSON.stringify(session));
+    }
+  } catch (e) {}
+}
+
+function getActiveMock() {
+  try {
+    const raw = sessionStorage.getItem("bqm_active_mock");
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function clearActiveMock() {
+  try {
+    sessionStorage.removeItem("bqm_active_mock");
+  } catch (e) {}
+}
+
+// Realistic 35-question Banking Prelims paper distribution
+function buildPrelims35QuestionSet(seedBase) {
+  const spec = [
+    { topics: ["simplification", "approximation"], count: 10 },
+    { topics: ["number-series"], count: 5 },
+    { topics: ["quadratic-equations"], count: 5 },
+    { topics: ["percentage", "ratio", "average", "profit-loss", "ages"], count: 8 },
+    { topics: ["time-work", "tsd", "si-ci", "partnership", "mixture-alligation"], count: 7 }
+  ];
+  const questions = [];
+  let seed = seedBase;
+  spec.forEach(group => {
+    let tIdx = 0;
+    for (let i = 0; i < group.count; i++) {
+      const tid = group.topics[tIdx % group.topics.length];
+      tIdx++;
+      const q = generateQuestion(tid, seed++);
+      if (q) questions.push(q);
+    }
+  });
+  return shuffle(mulberry32(seedBase), questions);
+}
 
 function buildMockQuestionSet(count, seedBase) {
+  if (count === 35) return buildPrelims35QuestionSet(seedBase);
+
   const out = [];
   let seed = seedBase;
   let topicIdx = 0;
@@ -880,17 +1040,65 @@ function buildMockQuestionSet(count, seedBase) {
 }
 
 function renderMockTest(content, sub) {
-  if (sub === "exam" && mockSession) { drawMockExam(content); return; }
-  if (sub === "results" && mockSession && mockSession.submitted) { drawMockResults(content); return; }
+  if (sub === "exam") {
+    if (!mockSession) {
+      const saved = getActiveMock();
+      if (saved && !saved.submitted) {
+        mockSession = saved;
+      }
+    }
+    if (mockSession && !mockSession.submitted) {
+      const totalMs = mockSession.totalSeconds * 1000;
+      const elapsed = Date.now() - mockSession.startedAt;
+      if (elapsed >= totalMs) {
+        submitMockTest();
+        return;
+      }
+      drawMockExam(content);
+      return;
+    }
+    location.hash = "#/mocktest";
+    return;
+  }
+  if (sub === "results" && mockSession && mockSession.submitted) {
+    drawMockResults(content);
+    return;
+  }
   renderMockTestSetup(content);
 }
 
 function renderMockTestSetup(content) {
+  const existing = getActiveMock();
+  let resumeBanner = "";
+  if (existing && !existing.submitted) {
+    const totalMs = existing.totalSeconds * 1000;
+    const elapsed = Date.now() - existing.startedAt;
+    const remainingSec = Math.max(0, Math.floor((totalMs - elapsed) / 1000));
+    if (remainingSec > 0) {
+      const attempted = existing.answers.filter(a => a !== null).length;
+      resumeBanner = `
+        <div class="alert-banner">
+          <div>
+            <strong>⚠️ In-progress mock test found:</strong>
+            ${attempted} of ${existing.questions.length} questions attempted · ~${Math.ceil(remainingSec / 60)} min remaining
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn gold small" id="btn-resume-mock">Resume test →</button>
+            <button class="btn ghost small" id="btn-discard-mock" style="border-color:var(--red);color:var(--red)">Discard</button>
+          </div>
+        </div>
+      `;
+    } else {
+      clearActiveMock();
+    }
+  }
+
   content.append(el(`
+    ${resumeBanner}
     <div class="ledger-card">
       <div class="eyebrow">Mock Test</div>
       <h1 class="mt0">Timed exam simulation</h1>
-      <p class="muted">Sectional timing, question palette, mark for review, and negative marking — as close to real exam conditions as a browser-only tool gets. Draws from ${MOCK_TEST_TOPIC_POOL.length} core arithmetic/foundation topics (excludes DI, which has its own practice mode).</p>
+      <p class="muted">Sectional timing, TCS iON palette colors, mark for review, and negative marking — replicates real exam conditions. 35Q Prelims tests use official SBI/IBPS section weightage.</p>
     </div>
     <div class="grid cols-2" id="preset-grid"></div>
     <div class="ledger-card">
@@ -906,6 +1114,21 @@ function renderMockTestSetup(content) {
       <label><input type="checkbox" id="negative-marking" checked> Apply negative marking (−0.25 per wrong answer)</label>
     </div>
   `));
+
+  if (content.querySelector("#btn-resume-mock")) {
+    content.querySelector("#btn-resume-mock").onclick = () => {
+      mockSession = existing;
+      location.hash = "#/mocktest/exam";
+    };
+    content.querySelector("#btn-discard-mock").onclick = () => {
+      if (confirm("Discard this in-progress mock test?")) {
+        clearActiveMock();
+        mockSession = null;
+        renderMockTestSetup(content);
+      }
+    };
+  }
+
   const grid = content.querySelector("#preset-grid");
   MOCK_TEST_PRESETS.forEach(p => {
     const card = el(`<div class="ledger-card"><h3 style="text-transform:none;border:none;font-size:1.05rem">${p.label}</h3><p class="muted">${p.count} questions · ${p.minutes} minutes</p><button class="btn gold small">Start</button></div>`);
@@ -936,6 +1159,7 @@ function startMockTest(count, minutes) {
     submitted: false,
     startedAt: Date.now()
   };
+  saveActiveMock(mockSession);
   location.hash = "#/mocktest/exam";
 }
 
@@ -946,13 +1170,14 @@ function mockSwitchTo(newIndex) {
   s.lastSwitchTs = now;
   s.current = newIndex;
   s.visited[newIndex] = true;
+  saveActiveMock(s);
 }
-
-let mockTimerInterval = null;
 
 function drawMockExam(content) {
   const s = mockSession;
   s.visited[s.current] = true;
+  saveActiveMock(s);
+
   content.append(el(`
     <div class="ledger-card">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
@@ -972,13 +1197,14 @@ function drawMockExam(content) {
         </div>
       </div>
       <div class="ledger-card">
-        <h3>Question palette</h3>
+        <h3>Question palette (TCS iON)</h3>
         <div id="palette" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px"></div>
-        <div style="margin-top:12px;font-size:.75rem" class="muted">
-          <div><span class="stamp correct" style="margin-right:4px">■</span> Answered</div>
-          <div><span class="stamp improve" style="margin-right:4px">■</span> Marked for review (no answer)</div>
-          <div><span class="stamp trend" style="margin-right:4px">■</span> Marked for review (answered)</div>
-          <div><span class="stamp weak" style="margin-right:4px">■</span> Visited, unanswered</div>
+        <div style="margin-top:14px;font-size:.75rem" class="muted">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span class="ion-palette-btn ans" style="width:16px;height:16px;padding:0"></span> Answered</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span class="ion-palette-btn not-ans" style="width:16px;height:16px;padding:0"></span> Not answered</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span class="ion-palette-btn marked-only" style="width:16px;height:16px;padding:0"></span> Marked for review</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px"><span class="ion-palette-btn marked-ans" style="width:16px;height:16px;padding:0"></span> Answered &amp; Marked</div>
+          <div style="display:flex;align-items:center;gap:6px"><span class="ion-palette-btn not-visited" style="width:16px;height:16px;padding:0"></span> Not visited</div>
         </div>
         <button class="btn gold" id="btn-submit" style="width:100%;margin-top:16px">Submit test</button>
       </div>
@@ -992,7 +1218,12 @@ function drawMockExam(content) {
     optsDiv.innerHTML = "";
     q.options.forEach((opt, i) => {
       const btn = el(`<button class="option-btn${s.answers[s.current] === i ? " selected" : ""}">${opt}</button>`);
-      btn.onclick = () => { s.answers[s.current] = i; drawQuestion(); drawPalette(); };
+      btn.onclick = () => {
+        s.answers[s.current] = i;
+        saveActiveMock(s);
+        drawQuestion();
+        drawPalette();
+      };
       optsDiv.append(btn);
     });
     content.querySelector("#btn-mark").textContent = s.marked[s.current] ? "Unmark review" : "Mark for review";
@@ -1003,15 +1234,13 @@ function drawMockExam(content) {
     const palette = content.querySelector("#palette");
     palette.innerHTML = "";
     s.questions.forEach((q, i) => {
-      let stampClass = "";
-      if (s.marked[i] && s.answers[i] !== null) stampClass = "markedAnswered";
-      else if (s.marked[i]) stampClass = "improve";
-      else if (s.answers[i] !== null) stampClass = "correct";
-      else if (s.visited[i]) stampClass = "weak";
-      const colorVar = stampClass === "correct" ? "green" : stampClass === "improve" ? "amber" : stampClass === "markedAnswered" ? "gold" : stampClass === "weak" ? "red" : null;
-      const btn = el(`<button class="btn small ${i === s.current ? "gold" : "ghost"}" style="padding:6px 0">${i + 1}</button>`);
-      if (colorVar && i !== s.current) btn.style.borderColor = `var(--${colorVar})`;
-      if (stampClass === "markedAnswered" && i !== s.current) btn.style.borderWidth = "3px";
+      let stateClass = "not-visited";
+      if (s.marked[i] && s.answers[i] !== null) stateClass = "marked-ans";
+      else if (s.marked[i]) stateClass = "marked-only";
+      else if (s.answers[i] !== null) stateClass = "ans";
+      else if (s.visited[i]) stateClass = "not-ans";
+
+      const btn = el(`<button class="ion-palette-btn ${stateClass} ${i === s.current ? "current" : ""}">${i + 1}</button>`);
       btn.onclick = () => { mockSwitchTo(i); drawQuestion(); drawPalette(); };
       palette.append(btn);
     });
@@ -1024,10 +1253,16 @@ function drawMockExam(content) {
     if (s.current > 0) { mockSwitchTo(s.current - 1); drawQuestion(); drawPalette(); }
   };
   content.querySelector("#btn-mark").onclick = () => {
-    s.marked[s.current] = !s.marked[s.current]; drawQuestion(); drawPalette();
+    s.marked[s.current] = !s.marked[s.current];
+    saveActiveMock(s);
+    drawQuestion();
+    drawPalette();
   };
   content.querySelector("#btn-clear").onclick = () => {
-    s.answers[s.current] = null; drawQuestion(); drawPalette();
+    s.answers[s.current] = null;
+    saveActiveMock(s);
+    drawQuestion();
+    drawPalette();
   };
   content.querySelector("#btn-submit").onclick = () => {
     if (confirm("Submit the test? You can't change answers after this.")) submitMockTest();
@@ -1037,9 +1272,6 @@ function drawMockExam(content) {
   drawPalette();
 
   const timerEl = content.querySelector("#exam-timer");
-  // Use the session's persistent startedAt (set once, at test start) rather than a fresh
-  // timestamp on every mount — otherwise navigating away from this page and back would
-  // silently reset the clock to the full duration, giving free extra time on a timed test.
   const totalMs = s.totalSeconds * 1000;
   const alreadyElapsed = Date.now() - s.startedAt;
   if (alreadyElapsed >= totalMs) { submitMockTest(); return; }
@@ -1056,12 +1288,14 @@ function drawMockExam(content) {
 
 function submitMockTest() {
   clearInterval(mockTimerInterval);
+  mockTimerInterval = null;
   const s = mockSession;
   const now = performance.now();
   s.questionTimeMs[s.current] += now - s.lastSwitchTs;
   s.submitted = true;
+  clearActiveMock();
 
-  // record every attempted question into the shared attempt/mistake history, same as Practice mode
+  // Record every attempted question into the shared attempt/mistake history
   s.questions.forEach((q, i) => {
     if (s.answers[i] === null) return;
     const correct = s.answers[i] === q.answerIndex;
@@ -1085,7 +1319,7 @@ function drawMockResults(content) {
   const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
   const totalTimeSec = Math.round(s.questionTimeMs.reduce((a, b) => a + b, 0) / 1000);
 
-  // per-topic breakdown
+  // Per-topic breakdown
   const byTopic = {};
   s.questions.forEach((q, i) => {
     byTopic[q.topic] = byTopic[q.topic] || { total: 0, correct: 0, attempted: 0 };
@@ -1140,8 +1374,36 @@ function drawMockResults(content) {
   });
 }
 
-// ============================================================ boot
+// ============================================================ THEME MANAGEMENT
+function initTheme() {
+  const saved = localStorage.getItem("bqm_theme");
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const isDark = saved === "dark" || (!saved && prefersDark);
+  applyTheme(isDark);
+
+  const toggleBtn = document.getElementById("theme-toggle");
+  if (toggleBtn) {
+    toggleBtn.onclick = () => {
+      const curIsDark = document.body.classList.contains("dark-mode");
+      applyTheme(!curIsDark);
+      try {
+        localStorage.setItem("bqm_theme", !curIsDark ? "dark" : "light");
+      } catch (e) {}
+    };
+  }
+}
+
+function applyTheme(isDark) {
+  document.body.classList.toggle("dark-mode", isDark);
+  const icon = document.getElementById("theme-icon");
+  if (icon) icon.textContent = isDark ? "☀️" : "🌙";
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.setAttribute("content", isDark ? "#0F172A" : "#16233F");
+}
+
+// ============================================================ BOOT
 document.addEventListener("DOMContentLoaded", async () => {
+  initTheme();
   try {
     const res = await fetch("data/sources.json");
     window.SOURCES_JSON = await res.json();

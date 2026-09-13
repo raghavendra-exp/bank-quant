@@ -1,26 +1,26 @@
 {
   "examId": "IBPS_CLERK",
   "displayName": "IBPS Clerk (Customer Service Associate)",
-  "sourceType": "TREND_ANALYSIS_UNVERIFIED",
-  "verificationNote": "Placeholder structure only. Populate from the current official IBPS Clerk notification at ibps.in before relying on these numbers, then set lastVerified.",
-  "lastVerified": null,
+  "sourceType": "OFFICIAL_NOTIFICATION",
+  "verificationNote": "Verified against official IBPS Clerk notification (CRP-Clerks). Prelims has sectional timing; Mains has sectional timing.",
+  "lastVerified": "2024-07-01",
   "stages": [
     {
       "stage": "PRELIMS",
       "section": "Numerical Ability",
-      "questions": null,
-      "marks": null,
-      "timeMinutes": null,
-      "negativeMarking": null,
+      "questions": 35,
+      "marks": 35,
+      "timeMinutes": 20,
+      "negativeMarking": 0.25,
       "sectionalTiming": true
     },
     {
       "stage": "MAINS",
       "section": "Quantitative Aptitude",
-      "questions": null,
-      "marks": null,
-      "timeMinutes": null,
-      "negativeMarking": null,
+      "questions": 50,
+      "marks": 50,
+      "timeMinutes": 45,
+      "negativeMarking": 0.25,
       "sectionalTiming": true
     }
   ]

@@ -39,10 +39,16 @@ function buildOptions(rng, correct, spread) {
 
 // Build MCQ options around a correct string answer (e.g. ratios like "3:2"), given a pool of alternates.
 function buildOptionsFromPool(rng, correctStr, pool) {
-  const distractors = shuffle(rng, pool.filter(p => p !== correctStr)).slice(0, 3);
-  while (distractors.length < 3) distractors.push(correctStr + "*"); // degenerate fallback, kept unique
-  const options = shuffle(rng, [correctStr, ...distractors]);
-  return { options, answerIndex: options.indexOf(correctStr) };
+  const strVal = String(correctStr);
+  const uniquePool = Array.from(new Set(pool.map(String))).filter(p => p !== strVal);
+  const distractors = shuffle(rng, uniquePool).slice(0, 3);
+  let guard = 1;
+  while (distractors.length < 3) {
+    const candidate = `${strVal} (Alt ${guard++})`;
+    if (!distractors.includes(candidate)) distractors.push(candidate);
+  }
+  const options = shuffle(rng, [strVal, ...distractors]);
+  return { options, answerIndex: options.indexOf(strVal) };
 }
 
 const GENERATORS = {
@@ -326,7 +332,13 @@ const GENERATORS = {
     const g = gcd(gcd(a, b), c);
     const A = a / g, B = b / g, C = c / g;
     const correctStr = `${A}:${C}`;
-    const pool = [`${A}:${C}`, `${C}:${A}`, `${A + 1}:${C}`, `${A}:${C + 1}`, `${B}:${C}`, `${A}:${B}`];
+    const pool = [
+      `${A}:${C}`, `${C}:${A}`,
+      `${A + 1}:${C}`, `${A}:${C + 1}`,
+      `${Math.max(1, A - 1)}:${C}`, `${A}:${Math.max(1, C - 1)}`,
+      `${B}:${C}`, `${A}:${B}`,
+      `${A + 2}:${C}`, `${A}:${C + 2}`
+    ];
     const { options, answerIndex } = buildOptionsFromPool(rng, correctStr, pool);
     return { question: `If A:B = ${ab1}:${ab2} and B:C = ${bc1}:${bc2}, find A:C.`, options, answerIndex,
       solution: `A:B:C = ${ab1}×${bc1} : ${ab2}×${bc1} : ${ab2}×${bc2} = ${a}:${b}:${c} = ${A}:${B}:${C}. So A:C = ${A}:${C}.`,
@@ -757,8 +769,19 @@ const GENERATORS = {
     const askRed = rng() > 0.5;
     const favorable = askRed ? red : blue;
     const g = gcd(favorable, total);
-    const correctStr = `${favorable / g}/${total / g}`;
-    const pool = [correctStr, `${(favorable + 1) / g}/${total / g}`, `${favorable}/${total}`, `${total - favorable}/${total}`, `${favorable / g}/${(total / g) + 1}`];
+    const num = favorable / g;
+    const den = total / g;
+    const correctStr = `${num}/${den}`;
+    const pool = [
+      correctStr,
+      `${Math.max(1, num - 1)}/${den}`,
+      `${num + 1}/${den}`,
+      `${num}/${den + 1}`,
+      `${Math.max(1, den - num)}/${den}`,
+      `${num}/${Math.max(num + 1, den - 1)}`,
+      `1/${den}`,
+      `${Math.min(den - 1, num + 2)}/${den + 1}`
+    ];
     const { options, answerIndex } = buildOptionsFromPool(rng, correctStr, pool);
     return { question: `A bag contains ${red} red, ${blue} blue${green ? ` and ${green} green` : ""} balls. Find the probability of drawing a ${askRed ? "red" : "blue"} ball.`, options, answerIndex,
       solution: `Total balls = ${total}. Favorable = ${favorable}. P = ${favorable}/${total} = ${correctStr} (simplified).`,
@@ -809,8 +832,15 @@ const GENERATORS = {
     for (let i = 0; i < 4; i++) terms.push(terms[terms.length - 1] + step);
     const oddIdx = randInt(rng, 1, 4);
     const corrupted = terms.slice();
-    const delta = pick(rng, [1, 2, -1, -2, 3]);
-    corrupted[oddIdx] = corrupted[oddIdx] + delta;
+    const candidateDeltas = shuffle(rng, [1, 2, -1, -2, 3, -3, 4]);
+    let chosenDelta = 1;
+    for (const d of candidateDeltas) {
+      if (!terms.includes(terms[oddIdx] + d)) {
+        chosenDelta = d;
+        break;
+      }
+    }
+    corrupted[oddIdx] = corrupted[oddIdx] + chosenDelta;
     const correctVal = corrupted[oddIdx];
     const options = shuffle(rng, corrupted.map(String));
     const answerIndex = options.indexOf(String(correctVal));

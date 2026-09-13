@@ -36,22 +36,79 @@ function saveState(state) {
 
 let STATE = loadState();
 
+function getLocalDateStr(d = new Date()) {
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
 function recordAttempt(a) {
-  a.ts = Date.now();
-  STATE.attempts.push(a);
-  if (!a.correct) {
-    STATE.mistakes.push(Object.assign({ reviewCount: 0 }, a));
+  const now = Date.now();
+  const lightweightAttempt = {
+    topic: a.topic,
+    difficulty: a.difficulty || "MEDIUM",
+    correct: Boolean(a.correct),
+    timeMs: Math.round(a.timeMs || 0),
+    ts: a.ts || now
+  };
+  STATE.attempts.push(lightweightAttempt);
+  if (STATE.attempts.length > 10000) {
+    STATE.attempts = STATE.attempts.slice(-8000); // prevent localStorage quota overflow
   }
+
+  if (!a.correct) {
+    STATE.mistakes.push({
+      id: "m_" + now + "_" + Math.floor(Math.random() * 1000),
+      topic: a.topic,
+      difficulty: a.difficulty || "MEDIUM",
+      question: a.question,
+      options: a.options,
+      answerIndex: a.answerIndex,
+      chosenIndex: a.chosenIndex,
+      solution: a.solution,
+      shortcut: a.shortcut,
+      reviewCount: 0,
+      mastered: false,
+      ts: now
+    });
+    if (STATE.mistakes.length > 500) {
+      STATE.mistakes = STATE.mistakes.slice(-400);
+    }
+  }
+
   updateStreak();
   saveState(STATE);
 }
 
 function updateStreak() {
-  const today = new Date().toISOString().slice(0, 10);
+  const now = new Date();
+  const today = getLocalDateStr(now);
   if (STATE.streak.lastDate === today) return;
-  const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0, 10);
+  const yesterday = getLocalDateStr(new Date(now.getTime() - 86400000));
   STATE.streak.count = STATE.streak.lastDate === yesterday ? STATE.streak.count + 1 : 1;
   STATE.streak.lastDate = today;
+}
+
+function markMistakeMastered(mistakeId) {
+  const m = STATE.mistakes.find(x => x.id === mistakeId || String(x.ts) === String(mistakeId));
+  if (m) {
+    m.mastered = true;
+    m.reviewCount = (m.reviewCount || 0) + 1;
+    saveState(STATE);
+    return true;
+  }
+  return false;
+}
+
+function removeMistake(mistakeId) {
+  const idx = STATE.mistakes.findIndex(x => x.id === mistakeId || String(x.ts) === String(mistakeId));
+  if (idx !== -1) {
+    STATE.mistakes.splice(idx, 1);
+    saveState(STATE);
+    return true;
+  }
+  return false;
 }
 
 function exportData() {
@@ -59,7 +116,7 @@ function exportData() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = `quant-progress-${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `quant-progress-${getLocalDateStr()}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }
