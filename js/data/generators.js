@@ -22,28 +22,30 @@ function shuffle(rng, arr) {
   return a;
 }
 
-// Build MCQ options around a correct numeric answer.
-function buildOptions(rng, correct, spread) {
+// Build MCQ options around a correct numeric answer (standard 5 options for banking exams).
+function buildOptions(rng, correct, spread, count = 5) {
+  const targetDistractors = count - 1;
   const distractors = new Set();
   let guard = 0;
-  while (distractors.size < 3 && guard < 50) {
+  while (distractors.size < targetDistractors && guard < 60) {
     guard++;
     const delta = randInt(rng, 1, Math.max(1, spread)) * (rng() > 0.5 ? 1 : -1);
     const val = correct + delta;
     if (val !== correct) distractors.add(val);
   }
-  while (distractors.size < 3) distractors.add(correct + distractors.size + 1); // fallback, never leaves <3
+  while (distractors.size < targetDistractors) distractors.add(correct + distractors.size + 1); // fallback
   const options = shuffle(rng, [correct, ...distractors]);
   return { options: options.map(v => String(v)), answerIndex: options.indexOf(correct) };
 }
 
 // Build MCQ options around a correct string answer (e.g. ratios like "3:2"), given a pool of alternates.
-function buildOptionsFromPool(rng, correctStr, pool) {
+function buildOptionsFromPool(rng, correctStr, pool, count = 5) {
   const strVal = String(correctStr);
+  const targetDistractors = count - 1;
   const uniquePool = Array.from(new Set(pool.map(String))).filter(p => p !== strVal);
-  const distractors = shuffle(rng, uniquePool).slice(0, 3);
+  const distractors = shuffle(rng, uniquePool).slice(0, targetDistractors);
   let guard = 1;
-  while (distractors.length < 3) {
+  while (distractors.length < targetDistractors) {
     const candidate = `${strVal} (Alt ${guard++})`;
     if (!distractors.includes(candidate)) distractors.push(candidate);
   }

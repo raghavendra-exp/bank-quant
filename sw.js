@@ -1,9 +1,9 @@
 // Network-first service worker with full offline asset caching
-const CACHE_VERSION = "bqm-cache-v3";
+const CACHE_VERSION = "bqm-cache-v4";
 const ASSETS = [
-  "./", "./index.html", "./manifest.json",
-  "./css/style.css",
-  "./js/app.js", "./js/storage.js",
+  "./", "./index.html", "./manifest.json", "./icon.svg",
+  "./css/style.css", "./css/calculator.css",
+  "./js/app.js", "./js/storage.js", "./js/calculator.js",
   "./js/data/topics.js", "./js/data/shortcuts.js", "./js/data/generators.js", "./js/data/mindtricks.js",
   "./data/sources.json", "./data/resources.json",
   "./data/exams/sbi-clerk.json", "./data/exams/ibps-clerk.json", "./data/exams/rrb-office-assistant.json"

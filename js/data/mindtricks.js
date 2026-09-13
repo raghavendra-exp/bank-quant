@@ -41,7 +41,12 @@ const QUESTION_PATTERNS = [
   { topic: "stocks-shares", signals: ["% stock at", "face value", "market value", "dividend"], tip: "'X% stock at ₹Y' is the stocks-and-shares signature — find number of shares first, always." },
   { topic: "heights-distances", signals: ["angle of elevation", "angle of depression", "height of the tower"], tip: "'Angle of elevation/depression' means Height = Distance × tan(angle) — check for 30°/45°/60° first." },
   { topic: "problems-on-numbers", signals: ["sum of two numbers", "a number is", "twice a number"], tip: "A number described only through arithmetic relationships (sum, difference, multiplied by) with no other context is plain algebra translation." },
-  { topic: "decimal-fractions", signals: [".", "decimal"], tip: "When a question is pure decimal arithmetic with no percentages or units involved, it's testing decimal-point alignment, not concept." }
+  { topic: "decimal-fractions", signals: [".", "decimal"], tip: "When a question is pure decimal arithmetic with no percentages or units involved, it's testing decimal-point alignment, not concept." },
+  { topic: "simplification", signals: ["% of ? +", "% of ?", "× ? ="], tip: "An equation with '?' embedded in percentages or products is an Unknown Isolation question — calculate the constant term first, subtract, then cross-divide." },
+  { topic: "simplification", signals: ["last digit", "ends in", "large 5-digit sum"], tip: "When 5-digit additions/subtractions are presented with distinct option endings, skip full calculation — solve strictly by the Units digit or Last Two Digits." },
+  { topic: "permutation-combination", signals: ["letters of the word", "how many different ways", "arranged"], tip: "'In how many different ways can the letters of the word ... be arranged' is always word permutation: n! divided by repetitions of identical letters." },
+  { topic: "square-cube-roots", signals: ["least number added", "least number subtracted", "make it a perfect square"], tip: "Questions asking for least number to add/subtract for a perfect square require bounding between two consecutive integer squares (e.g. 68² and 69²)." },
+  { topic: "heights-distances", signals: ["if sinθ + cosθ", "find the value of", "tan A tan B tan C"], tip: "Any identity or trigonometric formula expression with variable options is a Value Substitution trigger — put θ = 45° or 90° and eliminate wrong options in 5 seconds." }
 ];
 
 // ---------------------------------------------------------------------------

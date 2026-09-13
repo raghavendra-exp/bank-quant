@@ -298,3 +298,81 @@ select, input[type="text"], input[type="number"] { font-family: var(--font-body)
   flex-wrap: wrap;
   gap: 12px;
 }
+
+/* Speed Lab Vault & Drill Extensions */
+.vault-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+.vault-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 8px;
+  text-align: center;
+  transition: all 0.15s ease;
+}
+.vault-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.vault-card .v-num {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+.vault-card .v-val {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 2px;
+}
+.drill-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 16px;
+  max-width: 620px;
+}
+.drill-question-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 16px 0;
+  color: var(--ink);
+}
+.drill-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 18px 0;
+}
+.drill-btn {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  padding: 14px;
+  border-radius: var(--radius);
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--ink);
+  transition: all 0.15s ease;
+}
+.drill-btn:hover {
+  border-color: var(--accent);
+  background: rgba(99, 102, 241, 0.08);
+}
+.drill-btn.correct {
+  background: #22c55e !important;
+  color: #ffffff !important;
+  border-color: #16a34a !important;
+}
+.drill-btn.wrong {
+  background: #ef4444 !important;
+  color: #ffffff !important;
+  border-color: #dc2626 !important;
+}
+

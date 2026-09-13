@@ -415,9 +415,42 @@ function renderDIPractice(content, setId) {
 }
 
 // ============================================================ SPEED LAB
+let speedLabSubTab = "matrix"; // "matrix" | "vault" | "drills"
+let speedVaultCategory = "tables"; // "tables" | "squares" | "cubes" | "fractions"
+let selectedTableNum = 19;
+let activeDrill = null; // { type: 'unit'|'digsum', questions: [], idx: 0, score: 0 }
+
 function renderSpeedLab(content) {
   const overall = overallStats();
   const idx = speedIndex();
+
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="eyebrow">Speed Lab</div>
+      <h1 class="mt0">Quant Speed Gym & Reference Vault</h1>
+      <p class="muted">Master calculation speed through real-time metrics, rapid flash drills, and verified speed-math charts.</p>
+      <div class="pill-row" style="margin-top:14px">
+        <button class="btn small ${speedLabSubTab === 'matrix' ? 'gold' : 'ghost'}" id="sl-tab-matrix">Speed Matrix & Metrics</button>
+        <button class="btn small ${speedLabSubTab === 'vault' ? 'gold' : 'ghost'}" id="sl-tab-vault">Reference Vault (Tables, Squares, Cubes)</button>
+        <button class="btn small ${speedLabSubTab === 'drills' ? 'gold' : 'ghost'}" id="sl-tab-drills">⚡ Rapid Flash Drills</button>
+      </div>
+    </div>
+  `));
+
+  content.querySelector("#sl-tab-matrix").onclick = () => { speedLabSubTab = "matrix"; renderSpeedLab(content); };
+  content.querySelector("#sl-tab-vault").onclick = () => { speedLabSubTab = "vault"; renderSpeedLab(content); };
+  content.querySelector("#sl-tab-drills").onclick = () => { speedLabSubTab = "drills"; renderSpeedLab(content); };
+
+  if (speedLabSubTab === "matrix") {
+    renderSpeedMatrix(content, overall, idx);
+  } else if (speedLabSubTab === "vault") {
+    renderSpeedVault(content);
+  } else if (speedLabSubTab === "drills") {
+    renderSpeedDrills(content);
+  }
+}
+
+function renderSpeedMatrix(content, overall, idx) {
   const rowsHtml = TOPICS.map(t => {
     const s = statsForTopic(t.id);
     return `<tr>
@@ -428,10 +461,10 @@ function renderSpeedLab(content) {
       <td>${statusStamp(s.accuracy, s.avgTimeSec, t.targetTimeSec)}</td>
     </tr>`;
   }).join("");
+
   content.append(el(`
     <div class="ledger-card">
-      <div class="eyebrow">Speed Lab</div>
-      <h1 class="mt0">Quant Speed Index: ${idx === null ? "Not enough data yet" : idx + " / 100"}</h1>
+      <h3 class="mt0">Quant Speed Index: ${idx === null ? "Not enough data yet" : idx + " / 100"}</h3>
       <p class="muted">Formula: 40% accuracy + 35% speed-vs-target + 25% consistency across all recorded attempts. Weights are configurable in <span class="num">js/storage.js</span>.</p>
     </div>
     <div class="grid cols-4">
@@ -448,6 +481,241 @@ function renderSpeedLab(content) {
       </table>
     </div>
   `));
+}
+
+function renderSpeedVault(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <div class="pill-row" style="margin-bottom:16px">
+        <button class="btn small ${speedVaultCategory === 'tables' ? 'gold' : 'ghost'}" id="sv-tab-tables">Tables (1 to 30)</button>
+        <button class="btn small ${speedVaultCategory === 'squares' ? 'gold' : 'ghost'}" id="sv-tab-squares">Squares (1² to 60²)</button>
+        <button class="btn small ${speedVaultCategory === 'cubes' ? 'gold' : 'ghost'}" id="sv-tab-cubes">Cubes (1³ to 30³)</button>
+        <button class="btn small ${speedVaultCategory === 'fractions' ? 'gold' : 'ghost'}" id="sv-tab-fractions">Fractions ↔ % Chart</button>
+      </div>
+      <div id="vault-display"></div>
+    </div>
+  `));
+
+  content.querySelector("#sv-tab-tables").onclick = () => { speedVaultCategory = "tables"; renderSpeedLab(content); };
+  content.querySelector("#sv-tab-squares").onclick = () => { speedVaultCategory = "squares"; renderSpeedLab(content); };
+  content.querySelector("#sv-tab-cubes").onclick = () => { speedVaultCategory = "cubes"; renderSpeedLab(content); };
+  content.querySelector("#sv-tab-fractions").onclick = () => { speedVaultCategory = "fractions"; renderSpeedLab(content); };
+
+  const display = content.querySelector("#vault-display");
+
+  if (speedVaultCategory === "tables") {
+    const tableButtons = Array.from({ length: 29 }, (_, i) => i + 2).map(n =>
+      `<button class="btn small ${selectedTableNum === n ? 'gold' : 'ghost'}" data-tablenum="${n}">${n}</button>`
+    ).join(" ");
+
+    const rows = Array.from({ length: 10 }, (_, i) => i + 1).map(m =>
+      `<div class="vault-card"><div class="v-num">${selectedTableNum} × ${m}</div><div class="v-val">${selectedTableNum * m}</div></div>`
+    ).join("");
+
+    display.append(el(`
+      <div>
+        <p class="muted">Select a multiplication table to practice or review:</p>
+        <div class="pill-row" style="margin-bottom:14px">${tableButtons}</div>
+        <div class="vault-grid">${rows}</div>
+      </div>
+    `));
+
+    display.querySelectorAll("button[data-tablenum]").forEach(btn => {
+      btn.onclick = () => {
+        selectedTableNum = parseInt(btn.dataset.tablenum, 10);
+        renderSpeedLab(content);
+      };
+    });
+  } else if (speedVaultCategory === "squares") {
+    const squares = Array.from({ length: 60 }, (_, i) => i + 1).map(n =>
+      `<div class="vault-card"><div class="v-num">${n}²</div><div class="v-val">${n * n}</div></div>`
+    ).join("");
+
+    display.append(el(`
+      <div>
+        <p class="muted">Squares from 1² to 60² (Mental Anchor: Any number ending in 5 has square ending in 25 with prefix N×(N+1)):</p>
+        <div class="vault-grid">${squares}</div>
+      </div>
+    `));
+  } else if (speedVaultCategory === "cubes") {
+    const cubes = Array.from({ length: 30 }, (_, i) => i + 1).map(n =>
+      `<div class="vault-card"><div class="v-num">${n}³</div><div class="v-val">${n * n * n}</div></div>`
+    ).join("");
+
+    display.append(el(`
+      <div>
+        <p class="muted">Cubes from 1³ to 30³ (Notice: 2↔8 and 3↔7 end-digit reciprocal symmetry; 1, 4, 5, 6, 9, 0 retain their units digit):</p>
+        <div class="vault-grid">${cubes}</div>
+      </div>
+    `));
+  } else if (speedVaultCategory === "fractions") {
+    const fractions = [
+      ["1/1", "100%", "1.00", "Base unit"],
+      ["1/2", "50%", "0.50", "Half"],
+      ["1/3", "33.33%", "0.333", "2/3 = 66.67%"],
+      ["1/4", "25%", "0.25", "3/4 = 75%"],
+      ["1/5", "20%", "0.20", "2/5 = 40%, 3/5 = 60%, 4/5 = 80%"],
+      ["1/6", "16.67%", "0.166", "5/6 = 83.33%"],
+      ["1/7", "14.28%", "0.1428", "2/7=28.57%, 3/7=42.85%, 4/7=57.14%"],
+      ["1/8", "12.50%", "0.125", "3/8 = 37.5%, 5/8 = 62.5%, 7/8 = 87.5%"],
+      ["1/9", "11.11%", "0.111", "Repeating double digit: 2/9 = 22.22%"],
+      ["1/10", "10%", "0.10", "Tenth"],
+      ["1/11", "9.09%", "0.0909", "Table of 9: 2/11 = 18.18%, 3/11 = 27.27%"],
+      ["1/12", "8.33%", "0.0833", "5/12 = 41.67%, 7/12 = 58.33%"],
+      ["1/13", "7.69%", "0.0769", "2/13 = 15.38%"],
+      ["1/14", "7.14%", "0.0714", "Half of 1/7"],
+      ["1/15", "6.67%", "0.0667", "2/15 = 13.33%, 4/15 = 26.67%"],
+      ["1/16", "6.25%", "0.0625", "3/16 = 18.75%, 5/16 = 31.25%"],
+      ["1/20", "5.00%", "0.05", "Twentieth"],
+      ["1/25", "4.00%", "0.04", "Twenty-fifth"]
+    ].map(([f, pct, dec, tip]) =>
+      `<tr><td class="num"><strong>${f}</strong></td><td class="num" style="color:var(--gold)">${pct}</td><td class="num">${dec}</td><td class="muted">${tip}</td></tr>`
+    ).join("");
+
+    display.append(el(`
+      <div>
+        <p class="muted">Essential Fraction ↔ Percentage equivalents for Banking Simplification & DI:</p>
+        <table class="ledger" style="margin-top:12px">
+          <thead><tr><th class="num">Fraction</th><th class="num">Percentage</th><th class="num">Decimal</th><th>Key Multiples & Trick</th></tr></thead>
+          <tbody>${fractions}</tbody>
+        </table>
+      </div>
+    `));
+  }
+}
+
+function renderSpeedDrills(content) {
+  content.append(el(`
+    <div class="ledger-card">
+      <h3 class="mt0">⚡ Rapid Speed Drills (Inspired by Numerical Ability)</h3>
+      <p class="muted">Train your brain to spot Unit Digits and Digital Sums in under 3 seconds.</p>
+      <div class="pill-row" style="margin:14px 0">
+        <button class="btn small ${(!activeDrill || activeDrill.type === 'unit') ? 'gold' : 'ghost'}" id="start-unit-drill">Start Unit Digit Sprint (10 Qs)</button>
+        <button class="btn small ${(activeDrill && activeDrill.type === 'digsum') ? 'gold' : 'ghost'}" id="start-digsum-drill">Start Digital Sum Sprint (10 Qs)</button>
+      </div>
+      <div id="drill-area"></div>
+    </div>
+  `));
+
+  content.querySelector("#start-unit-drill").onclick = () => startFlashDrill("unit", content);
+  content.querySelector("#start-digsum-drill").onclick = () => startFlashDrill("digsum", content);
+
+  if (activeDrill) {
+    drawActiveDrill(content);
+  } else {
+    content.querySelector("#drill-area").append(el(`
+      <p class="muted">Select a sprint above to begin. Answer each question before moving to the next!</p>
+    `));
+  }
+}
+
+function startFlashDrill(type, content) {
+  const questions = [];
+  for (let i = 0; i < 10; i++) {
+    if (type === "unit") {
+      const a = Math.floor(Math.random() * 890) + 110;
+      const b = Math.floor(Math.random() * 890) + 110;
+      const c = Math.floor(Math.random() * 89) + 11;
+      const op = Math.random() > 0.5 ? "+" : "×";
+      let ans = 0;
+      let text = "";
+      if (op === "+") {
+        text = `${a} + ${b} + ${c}`;
+        ans = (a + b + c) % 10;
+      } else {
+        text = `${a} × ${c}`;
+        ans = (a * c) % 10;
+      }
+      const opts = [ans];
+      while (opts.length < 4) {
+        const r = Math.floor(Math.random() * 10);
+        if (!opts.includes(r)) opts.push(r);
+      }
+      opts.sort(() => Math.random() - 0.5);
+      questions.push({ text: `Unit digit of: ${text} = ?`, ans, options: opts });
+    } else {
+      const num = Math.floor(Math.random() * 89990) + 10010;
+      let s = num;
+      while (s > 9) {
+        s = String(s).split('').reduce((acc, d) => acc + parseInt(d, 10), 0);
+      }
+      const ans = s;
+      const opts = [ans];
+      while (opts.length < 4) {
+        const r = Math.floor(Math.random() * 9) + 1;
+        if (!opts.includes(r)) opts.push(r);
+      }
+      opts.sort(() => Math.random() - 0.5);
+      questions.push({ text: `Digital Root (mod 9) of: ${num}`, ans, options: opts });
+    }
+  }
+
+  activeDrill = {
+    type,
+    questions,
+    idx: 0,
+    score: 0
+  };
+
+  renderSpeedLab(content);
+}
+
+function drawActiveDrill(content) {
+  const area = content.querySelector("#drill-area");
+  if (!area) return;
+  area.innerHTML = "";
+
+  if (activeDrill.idx >= activeDrill.questions.length) {
+    area.append(el(`
+      <div class="drill-box" style="text-align:center">
+        <h2>🎉 Drill Completed!</h2>
+        <p class="lead">Your Score: <strong>${activeDrill.score} / ${activeDrill.questions.length}</strong> (${Math.round((activeDrill.score / activeDrill.questions.length) * 100)}%)</p>
+        <button class="btn gold" style="margin-top:14px" id="drill-restart">Play Again</button>
+      </div>
+    `));
+    area.querySelector("#drill-restart").onclick = () => {
+      startFlashDrill(activeDrill.type, content);
+    };
+    return;
+  }
+
+  const q = activeDrill.questions[activeDrill.idx];
+  const card = el(`
+    <div class="drill-box">
+      <div class="flex-between">
+        <span class="muted">Question ${activeDrill.idx + 1} of ${activeDrill.questions.length}</span>
+        <span class="num" style="color:var(--gold)">Score: ${activeDrill.score}</span>
+      </div>
+      <div class="drill-question-text">${q.text}</div>
+      <div class="drill-options-grid">
+        ${q.options.map(opt => `<button class="drill-btn" data-opt="${opt}">${opt}</button>`).join("")}
+      </div>
+      <div id="drill-feedback" class="muted" style="text-align:center;min-height:24px"></div>
+    </div>
+  `);
+
+  area.append(card);
+
+  card.querySelectorAll(".drill-btn").forEach(btn => {
+    btn.onclick = () => {
+      const chosen = parseInt(btn.dataset.opt, 10);
+      const isCorrect = chosen === q.ans;
+      if (isCorrect) {
+        btn.classList.add("correct");
+        activeDrill.score++;
+        card.querySelector("#drill-feedback").innerHTML = `<span style="color:#22c55e">✓ Correct! Spotting unit digit / digital sum saves precious seconds.</span>`;
+      } else {
+        btn.classList.add("wrong");
+        card.querySelectorAll(`.drill-btn[data-opt="${q.ans}"]`)[0]?.classList.add("correct");
+        card.querySelector("#drill-feedback").innerHTML = `<span style="color:#ef4444">✕ Incorrect. Correct answer is ${q.ans}.</span>`;
+      }
+      card.querySelectorAll(".drill-btn").forEach(b => b.disabled = true);
+      setTimeout(() => {
+        activeDrill.idx++;
+        drawActiveDrill(content);
+      }, 1000);
+    };
+  });
 }
 
 // ============================================================ SHORTCUTS
