@@ -7,13 +7,21 @@ const NAV_ITEMS = [
 ];
 
 function el(html) {
-  const d = document.createElement("div");
-  d.innerHTML = html.trim();
+  // Use <template> rather than a plain <div> to parse the HTML string. This matters for
+  // more than multi-root fragments: browsers apply special parsing rules to table markup
+  // (<thead>, <tbody>, <tr>, <td>) that only create real table elements when parsed inside
+  // an actual <table> or inside <template> content — parsing them via div.innerHTML silently
+  // drops the table structure and keeps only the text. <template>.content is specifically
+  // exempt from that restriction, so this one change fixes every table built this way.
+  const tpl = document.createElement("template");
+  tpl.innerHTML = html.trim();
+  const frag = tpl.content;
   // Most render functions build several stacked cards in one template string.
-  // Returning only firstElementChild silently drops every sibling after it —
-  // wrap in the container div itself when there's more than one root element.
-  if (d.children.length === 1) return d.firstElementChild;
-  return d;
+  // Returning only firstElementChild would silently drop every sibling after it,
+  // so for multi-root fragments we return the DocumentFragment itself — appending
+  // a fragment moves all of its children into the target in one call.
+  if (frag.children.length === 1) return frag.firstElementChild;
+  return frag;
 }
 function fmtSec(n) { return (n === null || n === undefined) ? "—" : `${n}s`; }
 function fmtPct(n) { return (n === null || n === undefined) ? "—" : `${n}%`; }
@@ -640,6 +648,24 @@ function renderCharts(content, chartId) {
 
   // ---------------- PERCENTAGE CHART WITH TRICKS ----------------
   if (chartId === "percentage") {
+    const hints = {
+      2: "Anchor — memorize.", 3: "Anchor — memorize (repeating 3s).", 4: "Anchor — memorize.",
+      5: "Anchor — memorize.", 10: "Anchor — memorize.",
+      6: "Half of 1/3 (33.33% ÷ 2)", 7: "Repeating block 142857 — memorize ≈14.29%",
+      8: "Half of 1/4 (25% ÷ 2)", 9: "Repeating 1s — memorize ≈11.11%",
+      11: "Repeating '09' pattern — memorize ≈9.09%", 12: "Half of 1/6, or a third of 1/4 (25% ÷ 3)",
+      13: "No clean shortcut — memorize ≈7.69% if needed", 14: "Half of 1/7 (14.29% ÷ 2)",
+      15: "A third of 1/5 (20% ÷ 3)", 16: "Half of 1/8 (12.5% ÷ 2)",
+      17: "No clean shortcut — memorize ≈5.88% if needed", 18: "Half of 1/9 (11.11% ÷ 2)",
+      19: "No clean shortcut — memorize ≈5.26% if needed", 20: "Anchor — memorize."
+    };
+    let rows = "";
+    for (let n = 2; n <= 20; n++) {
+      const pct = 100 / n;
+      const pctStr = Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(2)}%`;
+      rows += `<tr><td>1/${n}</td><td class="num">${pctStr}</td><td class="muted">${hints[n]}</td></tr>`;
+    }
+    const fullTable = `<table class="ledger"><thead><tr><th>Fraction</th><th class="num">Percentage</th><th>How to get it fast</th></tr></thead><tbody>${rows}</tbody></table>`;
     content.append(el(`
       <div class="ledger-card">
         <div class="eyebrow">Reference Chart</div>
@@ -648,8 +674,7 @@ function renderCharts(content, chartId) {
       </div>
       <div class="ledger-card">
         <h3>Step 1 — Memorize these 5 anchors cold</h3>
-        <table class="ledger"><thead><tr><th>Fraction</th><th class="num">Percentage</th></tr></thead>
-        <tbody>
+        <table class="ledger"><thead><tr><th>Fraction</th><th class="num">Percentage</th></tr></thead><tbody>
           <tr><td>1/2</td><td class="num">50%</td></tr>
           <tr><td>1/3</td><td class="num">33.33%</td></tr>
           <tr><td>1/4</td><td class="num">25%</td></tr>
@@ -670,111 +695,80 @@ function renderCharts(content, chartId) {
       </div>
       <div class="ledger-card">
         <h3>Full chart (1/2 to 1/20)</h3>
-        <table class="ledger" id="pct-table"></table>
+        ${fullTable}
       </div>
     `));
-    const table = content.querySelector("#pct-table");
-    table.append(el(`<thead><tr><th>Fraction</th><th class="num">Percentage</th><th>How to get it fast</th></tr></thead>`));
-    const tbody = el(`<tbody></tbody>`);
-    const hints = {
-      2: "Anchor — memorize.", 3: "Anchor — memorize (repeating 3s).", 4: "Anchor — memorize.",
-      5: "Anchor — memorize.", 10: "Anchor — memorize.",
-      6: "Half of 1/3 (33.33% ÷ 2)", 7: "Repeating block 142857 — memorize ≈14.29%",
-      8: "Half of 1/4 (25% ÷ 2)", 9: "Repeating 1s — memorize ≈11.11%",
-      11: "Repeating '09' pattern — memorize ≈9.09%", 12: "Half of 1/6, or a third of 1/4 (25% ÷ 3)",
-      13: "No clean shortcut — memorize ≈7.69% if needed", 14: "Half of 1/7 (14.29% ÷ 2)",
-      15: "A third of 1/5 (20% ÷ 3)", 16: "Half of 1/8 (12.5% ÷ 2)",
-      17: "No clean shortcut — memorize ≈5.88% if needed", 18: "Half of 1/9 (11.11% ÷ 2)",
-      19: "No clean shortcut — memorize ≈5.26% if needed", 20: "Anchor — memorize."
-    };
-    for (let n = 2; n <= 20; n++) {
-      const pct = 100 / n;
-      const pctStr = Number.isInteger(pct) ? `${pct}%` : `${pct.toFixed(2)}%`;
-      tbody.append(el(`<tr><td>1/${n}</td><td class="num">${pctStr}</td><td class="muted">${hints[n]}</td></tr>`));
-    }
-    table.append(tbody);
     return;
   }
 
   // ---------------- MULTIPLICATION CHART ----------------
   if (chartId === "tables") {
+    let headRow = `<tr><th>×</th>`;
+    for (let c = 1; c <= 10; c++) headRow += `<th class="num">${c}</th>`;
+    headRow += `</tr>`;
+    let gridRows = "";
+    for (let r = 1; r <= 10; r++) {
+      let row = `<tr><td class="rowhead">${r}</td>`;
+      for (let c = 1; c <= 10; c++) row += `<td class="gridcell">${r * c}</td>`;
+      row += `</tr>`;
+      gridRows += row;
+    }
+    const gridTable = `<table class="ledger grid-chart"><thead>${headRow}</thead><tbody>${gridRows}</tbody></table>`;
+
+    let extendedHtml = "";
+    for (let n = 11; n <= 30; n++) {
+      const headCells = Array.from({ length: 10 }, (_, i) => `<th class="num">×${i + 1}</th>`).join("");
+      let row = `<tr><td class="rowhead">${n}</td>`;
+      for (let m = 1; m <= 10; m++) row += `<td class="gridcell">${n * m}</td>`;
+      row += `</tr>`;
+      extendedHtml += `<table class="ledger" style="margin-bottom:14px"><thead><tr><th>Table of ${n}</th>${headCells}</tr></thead><tbody>${row}</tbody></table>`;
+    }
+
     content.append(el(`
       <div class="ledger-card">
         <div class="eyebrow">Reference Chart</div>
         <h1 class="mt0">Multiplication Chart (up to 100)</h1>
         <p class="muted">Read it like a coordinate grid: pick a row number and a column number, and their product is where the row and column meet.</p>
-        <table class="ledger grid-chart" id="mult-grid"></table>
+        ${gridTable}
       </div>
       <div class="ledger-card">
         <h3>Extended tables (11 to 30)</h3>
         <p class="muted">Same idea, one full table per number — useful once the 1-10 grid above is second nature.</p>
-        <div id="ext-tables"></div>
+        ${extendedHtml}
       </div>
     `));
-    const grid = content.querySelector("#mult-grid");
-    let headRow = `<tr><th>×</th>`;
-    for (let c = 1; c <= 10; c++) headRow += `<th class="num">${c}</th>`;
-    headRow += `</tr>`;
-    grid.append(el(`<thead>${headRow}</thead>`));
-    const tbody = el(`<tbody></tbody>`);
-    for (let r = 1; r <= 10; r++) {
-      let row = `<tr><td class="rowhead">${r}</td>`;
-      for (let c = 1; c <= 10; c++) row += `<td class="gridcell">${r * c}</td>`;
-      row += `</tr>`;
-      tbody.append(el(row));
-    }
-    grid.append(tbody);
-
-    const extDiv = content.querySelector("#ext-tables");
-    for (let n = 11; n <= 30; n++) {
-      const table = el(`<table class="ledger" style="margin-bottom:14px"></table>`);
-      table.append(el(`<thead><tr><th>Table of ${n}</th>${Array.from({ length: 10 }, (_, i) => `<th class="num">×${i + 1}</th>`).join("")}</tr></thead>`));
-      let row = `<tr><td class="rowhead">${n}</td>`;
-      for (let m = 1; m <= 10; m++) row += `<td class="gridcell">${n * m}</td>`;
-      row += `</tr>`;
-      table.append(el(`<tbody>${row}</tbody>`));
-      extDiv.append(table);
-    }
     return;
   }
 
   // ---------------- SQUARES CHART ----------------
   if (chartId === "squares") {
+    let rows = "";
+    for (let n = 1; n <= 50; n++) rows += `<tr><td class="num">${n}</td><td class="num">${n * n}</td></tr>`;
+    const fullTable = `<table class="ledger"><thead><tr><th class="num">n</th><th class="num">n²</th></tr></thead><tbody>${rows}</tbody></table>`;
     content.append(el(`
       <div class="ledger-card">
         <div class="eyebrow">Reference Chart</div>
         <h1 class="mt0">Squares Chart (1-50)</h1>
         <p class="muted">Memorizing these turns every exact-square-root question into instant recall instead of a calculation.</p>
-        <table class="ledger" id="sq-table"></table>
+        ${fullTable}
       </div>
     `));
-    const table = content.querySelector("#sq-table");
-    table.append(el(`<thead><tr><th class="num">n</th><th class="num">n²</th></tr></thead>`));
-    const tbody = el(`<tbody></tbody>`);
-    for (let n = 1; n <= 50; n++) {
-      tbody.append(el(`<tr><td class="num">${n}</td><td class="num">${n * n}</td></tr>`));
-    }
-    table.append(tbody);
     return;
   }
 
   // ---------------- CUBES / CUBE ROOTS CHART ----------------
   if (chartId === "cubes") {
+    let rows = "";
+    for (let n = 1; n <= 30; n++) rows += `<tr><td class="num">${n}</td><td class="num">${n * n * n}</td></tr>`;
+    const fullTable = `<table class="ledger"><thead><tr><th class="num">n</th><th class="num">n³ (cube)</th></tr></thead><tbody>${rows}</tbody></table>`;
     content.append(el(`
       <div class="ledger-card">
         <div class="eyebrow">Reference Chart</div>
         <h1 class="mt0">Cube / Cube-Root Chart (1-30)</h1>
         <p class="muted">Read n → n³ to find a cube. Spot a number in the n³ column and read n back to instantly find its cube root — the same table works both directions.</p>
-        <table class="ledger" id="cube-table"></table>
+        ${fullTable}
       </div>
     `));
-    const table = content.querySelector("#cube-table");
-    table.append(el(`<thead><tr><th class="num">n</th><th class="num">n³ (cube)</th></tr></thead>`));
-    const tbody = el(`<tbody></tbody>`);
-    for (let n = 1; n <= 30; n++) {
-      tbody.append(el(`<tr><td class="num">${n}</td><td class="num">${n * n * n}</td></tr>`));
-    }
-    table.append(tbody);
     return;
   }
 
