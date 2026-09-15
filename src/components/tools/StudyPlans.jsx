@@ -10,7 +10,7 @@ export default function StudyPlans() {
   const [completedTasks, setCompletedTasks] = useState(() => storage.get(STORAGE_KEY, {}));
 
   useEffect(() => {
-    fetch('./data/study-plans.json')
+    fetch(`${import.meta.env.BASE_URL}data/study-plans.json`)
       .then(res => res.json())
       .then(data => {
         if (data.plans) setPlansData(data.plans);

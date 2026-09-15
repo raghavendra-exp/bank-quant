@@ -6,7 +6,7 @@ export default function ExamPatternDashboard() {
   const [selectedExamId, setSelectedExamId] = useState('sbi-clerk');
 
   useEffect(() => {
-    fetch('./data/exam-config.json')
+    fetch(`${import.meta.env.BASE_URL}data/exam-config.json`)
       .then(res => res.json())
       .then(data => setExamConfig(data))
       .catch(err => console.error('Failed to load exam-config.json', err));

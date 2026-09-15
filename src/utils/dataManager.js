@@ -48,7 +48,7 @@ export async function getAllQuestions() {
 
   let curated = [];
   try {
-    const res = await fetch('./data/questions.json');
+    const res = await fetch(`${import.meta.env.BASE_URL}data/questions.json`);
     if (res.ok) {
       curated = await res.json();
     }
