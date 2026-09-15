@@ -98,7 +98,7 @@ export default function App() {
       items: [
         { id: 'pyq', label: '2020-2026 PYQ Trends', icon: TrendingUp },
         { id: 'patterns', label: 'Official Exam Patterns', icon: ShieldCheck },
-        { id: 'tricks', label: 'Topper Shortcuts & Sutras', icon: Sparkles },
+        { id: 'tricks', label: 'Mind Tricks & Human Calc', icon: Sparkles },
         { id: 'mistakes', label: 'Revise My Mistakes', icon: AlertCircle },
         { id: 'bookmarks', label: 'Saved Questions', icon: Bookmark },
         { id: 'plans', label: 'Study Plans (30/60/90D)', icon: Calendar },

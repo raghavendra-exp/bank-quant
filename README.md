@@ -28,30 +28,46 @@
 - ⚖️ **Alligation Cross Solver**: Visual diagonal cross solver $(D - M) : (M - C)$ that calculates exact mixing ratios and batch component weights.
 - 📱 **Virtual Exam Calculator**: Practice scratchpad with tape calculation history.
 
-### 3. "Solve Like a Topper" Dual Solutions
+### 3. "Mental Math: Tricks To Become A Human Calculator" (Ofpad System) 🧠
+Complete incorporation of the best-selling mental math book by **Abhishek V.R (Ofpad - The School of Genius, 2nd Edition)**:
+- **18 In-Depth Chapter Guides**: Covers the LR (Left-to-Right) working memory RAM paradigm, overcoming math anxiety with audio-vocal reinforcement, and eliminating skill atrophy with 10-minute daily micro-habits.
+- **Dual Verification Engine (DS & DD)**: Digit Sum (casting out 9s) and Digit Difference (casting out 11s) step-by-step checkers that catch calculation slips, swapped digits, and misplaced decimal points with near 100% certainty.
+- **Mental Arithmetic Arsenal**:
+  - LR Addition & Subtraction with Instant Complements ("All from 9, last from 10").
+  - Turning painful multi-borrow subtractions into fast additions by rounding the subtrahend.
+  - Multiplication by 11, 1-Digit and 2-Digit LR, Factoring into single-digit factors $\le 11$.
+  - Stem Method (Base 10, 100, 20, 50, 30, 40) for cross-addition and deviation multiplication.
+  - Squaring numbers ending in 5 ($n(n+1) \mid 25$) and general squaring via $(x-d)(x+d)+d^2$.
+  - Bridge & Vitruvian Man Method with physical finger-pacing.
+  - UT Method (Units & Tens Trachtenberg Pair Products).
+  - LR Division with Factoring, Divisors Ending in 5 (Double & Shift), Prime Divisors $> 11$ (Rounding & Correction), and FP Division (Flag & Pole / Dhvajanka).
+- **5 Interactive Simulators**: Live DS/DD Verifier, Stem Multiplier, Instant Complements Generator, UT Pair Product Explorer, and Flag & Pole Stepper.
+- **17 Full Practice Workbooks**: All 17 original exercise sets from the book (250+ problems) with automatic scoring, stopwatch speed timer, and instant feedback.
+
+### 4. "Solve Like a Topper" Dual Solutions
 Every question features two distinct solutions side-by-side:
 - **Conventional Method**: Traditional textbook step-by-step method (35–50 seconds).
 - **Solve Like a Topper**: The official competitive shortcut, sign-flip rule, fraction cancellation, unit-digit elimination, or alligation cross (5–12 seconds), complete with *Why it works* and *Pro-Tips*.
 
-### 4. Speed Conditioning Lab
+### 5. Speed Conditioning Lab
 - Strict countdown drills: 15s Lightning Sprint, 25s Speed Drill, 35s Arithmetic Drill, 45s Multi-Step Drill, and 60s DI Drill.
 - Visual warning pulses, live streak counters, combo multipliers, and completion confetti.
 
-### 5. First 5-Minute Selection Strategy Trainer
+### 6. First 5-Minute Selection Strategy Trainer
 - Interactive exercise training candidates to rapidly triage 10 mixed questions within 5 seconds into:
   1. `Solve First` (Simplification, Quadratic sign hack, easy series)
   2. `Solve Later` (Ages, Ratio, Partnership, 2-line arithmetic)
   3. `Skip Completely` (Multi-constraint P&C, intricate Caselet DI)
 - Compares user's choices against Topper tactical rationale.
 
-### 6. Official Exam Mocks & Simulators
+### 7. Official Exam Mocks & Simulators
 - **SBI Clerk Prelims**: 35 Q, 35 Marks, 20 Minutes (Sectional timer: ON, -0.25 negative).
 - **IBPS Clerk / CSA Prelims**: 35 Q, 35 Marks, 20 Minutes (Sectional timer: ON, -0.25 negative).
 - **IBPS RRB Office Assistant**: 40 Q, 40 Marks, composite 45-minute shared allocation (-0.25 negative).
 - **Mini Mock**: 15 Q, 10-Minute rapid diagnostic.
 - Exam palette with 5 states (Answered, Unanswered, Marked for Review, Answered & Marked, Not Visited), auto-submit, and post-test diagnostic scorecards.
 
-### 7. Intelligence, Revision & Utility
+### 8. Intelligence, Revision & Utility
 - 📊 **2020–2026 PYQ Trend Intelligence**: Shift history and 4-tier Marks ROI Priority Matrix.
 - 🚨 **Revise My Mistakes Hub**: Categorizes errors into Calculation Slips, Formula Confusions, Misread Conditions, Timer Panics, or Concept Gaps.
 - 📑 **Structured Study Plans**: 30-Day Crash Course, 60-Day Foundation Roadmap, and 90-Day Topper Blueprint with daily task checkboxes.

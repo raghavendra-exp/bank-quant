@@ -80,21 +80,29 @@ export default function GlobalSearchModal({ isOpen, onClose, onSelectTopic, onNa
             <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block mb-2">
               Quick Actions
             </span>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-3 gap-2">
               <button
                 onClick={() => { onNavigate('speedlab'); onClose(); }}
-                className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
               >
-                <Zap className="w-3.5 h-3.5 text-amber-500" />
-                <span>Quant Speed Lab</span>
+                <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                <span className="truncate">Speed Lab</span>
+              </button>
+
+              <button
+                onClick={() => { onNavigate('tricks'); onClose(); }}
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <span className="truncate">Mind Tricks</span>
               </button>
 
               <button
                 onClick={() => { onNavigate('mock'); onClose(); }}
-                className="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2"
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
               >
-                <Trophy className="w-3.5 h-3.5 text-purple-500" />
-                <span>Full Mock Simulator</span>
+                <Trophy className="w-3.5 h-3.5 text-purple-500 shrink-0" />
+                <span className="truncate">Mock Simulator</span>
               </button>
             </div>
           </div>
