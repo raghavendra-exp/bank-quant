@@ -45,7 +45,7 @@ export default function App() {
 
   // Load initial data
   useEffect(() => {
-    fetch('./data/topics.json')
+    fetch(`${import.meta.env.BASE_URL}data/topics.json`)
       .then(res => res.json())
       .then(data => setTopics(data))
       .catch(err => console.error('Failed to load topics.json', err));
