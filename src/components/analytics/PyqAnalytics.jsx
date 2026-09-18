@@ -6,7 +6,7 @@ export default function PyqAnalytics() {
   const [selectedExamId, setSelectedExamId] = useState('sbi-clerk');
 
   useEffect(() => {
-    fetch('./data/pyq.json')
+    fetch(`${import.meta.env.BASE_URL}data/pyq.json`)
       .then(res => res.json())
       .then(data => setPyqData(data))
       .catch(err => console.error('Failed to load pyq.json', err));

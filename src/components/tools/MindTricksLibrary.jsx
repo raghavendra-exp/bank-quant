@@ -17,7 +17,7 @@ export default function MindTricksLibrary() {
   const [flippedCardIdx, setFlippedCardIdx] = useState(null);
 
   useEffect(() => {
-    fetch('./data/tricks.json')
+    fetch(`${import.meta.env.BASE_URL}data/tricks.json`)
       .then(res => res.json())
       .then(data => setTricksData(data))
       .catch(err => console.error('Failed to load tricks.json', err));
