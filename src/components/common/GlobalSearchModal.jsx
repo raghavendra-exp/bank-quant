@@ -82,10 +82,34 @@ export default function GlobalSearchModal({ isOpen, onClose, onSelectTopic, onNa
             </span>
             <div className="grid grid-cols-3 gap-2">
               <button
-                onClick={() => { onNavigate('speedlab'); onClose(); }}
+                onClick={() => { onNavigate('charts'); onClose(); }}
                 className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
               >
                 <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                <span className="truncate">Charts 1-100</span>
+              </button>
+
+              <button
+                onClick={() => { onNavigate('vedic'); onClose(); }}
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <span className="truncate">Vedic Suite</span>
+              </button>
+
+              <button
+                onClick={() => { onNavigate('books'); onClose(); }}
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
+              >
+                <BookOpen className="w-3.5 h-3.5 text-purple-500 shrink-0" />
+                <span className="truncate">5 Books Guide</span>
+              </button>
+
+              <button
+                onClick={() => { onNavigate('speedlab'); onClose(); }}
+                className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
+              >
+                <Zap className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
                 <span className="truncate">Speed Lab</span>
               </button>
 
@@ -93,7 +117,7 @@ export default function GlobalSearchModal({ isOpen, onClose, onSelectTopic, onNa
                 onClick={() => { onNavigate('tricks'); onClose(); }}
                 className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
               >
-                <Sparkles className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                <Sparkles className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                 <span className="truncate">Mind Tricks</span>
               </button>
 
@@ -101,7 +125,7 @@ export default function GlobalSearchModal({ isOpen, onClose, onSelectTopic, onNa
                 onClick={() => { onNavigate('mock'); onClose(); }}
                 className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 text-left text-xs font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-1.5"
               >
-                <Trophy className="w-3.5 h-3.5 text-purple-500 shrink-0" />
+                <Trophy className="w-3.5 h-3.5 text-rose-500 shrink-0" />
                 <span className="truncate">Mock Simulator</span>
               </button>
             </div>

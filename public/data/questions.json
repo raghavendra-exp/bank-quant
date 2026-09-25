@@ -9,7 +9,13 @@
     "examTag": "SBI Clerk Prelims 2024",
     "question": "37.5% of 640 + 62.5% of 320 − 16.67% of 420 = ?",
     "questionHi": "640 का 37.5% + 320 का 62.5% − 420 का 16.67% = ?",
-    "options": ["370", "360", "380", "350", "390"],
+    "options": [
+      "370",
+      "360",
+      "380",
+      "350",
+      "390"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method (Decimal Long Multiplication)",
@@ -43,7 +49,13 @@
     "examTag": "IBPS RRB OA Prelims 2024",
     "question": "√1764 + √2401 − 18² + 15 × 24 = ?",
     "questionHi": "√1764 + √2401 − 18² + 15 × 24 = ?",
-    "options": ["127", "137", "117", "147", "107"],
+    "options": [
+      "127",
+      "137",
+      "117",
+      "147",
+      "107"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method",
@@ -77,7 +89,13 @@
     "examTag": "SBI Clerk Prelims 2023",
     "question": "49.89% of 799.91 + 33.31% of 899.85 − 14.28% of 559.98 ≈ ?",
     "questionHi": "799.91 का 49.89% + 899.85 का 33.31% − 559.98 का 14.28% ≈ ?",
-    "options": ["620", "650", "590", "680", "560"],
+    "options": [
+      "620",
+      "650",
+      "590",
+      "680",
+      "560"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method",
@@ -112,7 +130,13 @@
     "examTag": "IBPS Clerk Prelims 2024",
     "question": "I. x² − 17x + 72 = 0\nII. y² − 19y + 90 = 0",
     "questionHi": "I. x² − 17x + 72 = 0\nII. y² − 19y + 90 = 0",
-    "options": ["x > y", "x < y", "x ≥ y", "x ≤ y", "x = y or relationship cannot be established"],
+    "options": [
+      "x > y",
+      "x < y",
+      "x ≥ y",
+      "x ≤ y",
+      "x = y or relationship cannot be established"
+    ],
     "answerIndex": 3,
     "standardMethod": {
       "title": "Standard Method (Factoring & 4-Way Comparison)",
@@ -145,7 +169,13 @@
     "examTag": "SBI Clerk Prelims 2024",
     "question": "I. x² + 13x − 68 = 0\nII. y² − 7y − 60 = 0",
     "questionHi": "I. x² + 13x − 68 = 0\nII. y² − 7y − 60 = 0",
-    "options": ["x > y", "x < y", "x ≥ y", "x ≤ y", "x = y or relationship cannot be established (CND)"],
+    "options": [
+      "x > y",
+      "x < y",
+      "x ≥ y",
+      "x ≤ y",
+      "x = y or relationship cannot be established (CND)"
+    ],
     "answerIndex": 4,
     "standardMethod": {
       "title": "Standard Method",
@@ -178,7 +208,13 @@
     "examTag": "IBPS RRB OA Prelims 2024",
     "question": "14, 15, 23, 50, 114, ?",
     "questionHi": "14, 15, 23, 50, 114, ?",
-    "options": ["239", "240", "225", "245", "230"],
+    "options": [
+      "239",
+      "240",
+      "225",
+      "245",
+      "230"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method",
@@ -211,7 +247,13 @@
     "examTag": "SBI Clerk Prelims 2023",
     "question": "A shopkeeper marks an article 40% above its cost price and allows a discount of 20% on the marked price. If he earns a profit of ₹180, find the cost price of the article.",
     "questionHi": "एक दुकानदार एक वस्तु का मूल्य उसके क्रय मूल्य से 40% अधिक अंकित करता है और अंकित मूल्य पर 20% की छूट देता है। यदि वह ₹180 का लाभ कमाता है, तो वस्तु का क्रय मूल्य ज्ञात कीजिए।",
-    "options": ["₹1,500", "₹1,200", "₹1,800", "₹1,600", "₹2,000"],
+    "options": [
+      "₹1,500",
+      "₹1,200",
+      "₹1,800",
+      "₹1,600",
+      "₹2,000"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method (Assume 100)",
@@ -246,7 +288,13 @@
     "examTag": "IBPS Clerk Prelims 2024",
     "question": "The difference between simple interest and compound interest compounded annually on a certain sum of money for 2 years at 15% per annum is ₹270. Find the sum.",
     "questionHi": "किसी धनराशि पर 15% वार्षिक दर से 2 वर्ष के लिए साधारण ब्याज और वार्षिक चक्रवृद्धि ब्याज के बीच का अंतर ₹270 है। वह धनराशि ज्ञात कीजिए।",
-    "options": ["₹12,000", "₹10,000", "₹15,000", "₹14,000", "₹16,000"],
+    "options": [
+      "₹12,000",
+      "₹10,000",
+      "₹15,000",
+      "₹14,000",
+      "₹16,000"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method",
@@ -279,7 +327,13 @@
     "examTag": "SBI Clerk Prelims 2024",
     "question": "A alone can complete a piece of work in 24 days, and B alone can complete the same work in 36 days. They work together for 6 days, and then A leaves. In how many days will B finish the remaining work?",
     "questionHi": "A अकेले किसी काम को 24 दिनों में पूरा कर सकता है और B अकेले उसी काम को 36 दिनों में पूरा कर सकता है। वे 6 दिनों तक एक साथ काम करते हैं, और फिर A काम छोड़ देता है। B शेष काम को कितने दिनों में पूरा करेगा?",
-    "options": ["21 days", "18 days", "24 days", "20 days", "15 days"],
+    "options": [
+      "21 days",
+      "18 days",
+      "24 days",
+      "20 days",
+      "15 days"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method (Fraction of Work)",
@@ -314,7 +368,13 @@
     "examTag": "IBPS RRB OA Prelims 2023",
     "question": "In what ratio must a grocer mix two varieties of pulses costing ₹45 per kg and ₹70 per kg respectively, so as to get a mixture worth ₹55 per kg?",
     "questionHi": "एक पंसारी को ₹45 प्रति किग्रा और ₹70 प्रति किग्रा वाली दो किस्मों की दालों को किस अनुपात में मिलाना चाहिए, ताकि ₹55 प्रति किग्रा मूल्य का मिश्रण प्राप्त हो सके?",
-    "options": ["3 : 2", "2 : 3", "4 : 3", "5 : 4", "1 : 2"],
+    "options": [
+      "3 : 2",
+      "2 : 3",
+      "4 : 3",
+      "5 : 4",
+      "1 : 2"
+    ],
     "answerIndex": 0,
     "standardMethod": {
       "title": "Standard Method (Algebraic)",
@@ -336,6 +396,490 @@
       ],
       "timeTaken": "5 seconds",
       "proTip": "Draw the cross in your head. 70-55=15 on the left, 55-45=10 on the right. 15:10 reduces to 3:2."
+    }
+  },
+  {
+    "id": "q-tyra-ci-001",
+    "topic": "compound-interest",
+    "topicName": "Compound Interest",
+    "subtopic": "CI-SI Difference Formula",
+    "difficulty": "MEDIUM",
+    "targetTime": 25,
+    "examTag": "SBI PO Prelims 2023",
+    "question": "The difference between compound interest and simple interest on a certain sum of money for 2 years at 12% per annum is ₹144. Find the principal sum.",
+    "questionHi": "किसी धनराशि पर 12% वार्षिक दर से 2 वर्ष के लिए चक्रवृद्धि ब्याज और साधारण ब्याज का अंतर ₹144 है। मूलधन ज्ञात कीजिए।",
+    "options": [
+      "₹10,000",
+      "₹12,000",
+      "₹8,000",
+      "₹15,000",
+      "₹9,500"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Textbook CI Formula)",
+      "steps": [
+        "SI for 2 years = (P × 12 × 2) / 100 = 0.24P",
+        "CI for 2 years = P(1 + 12/100)² − P = P(1.12)² − P = 1.2544P − P = 0.2544P",
+        "Difference = 0.2544P − 0.24P = 0.0144P",
+        "0.0144P = 144 ⇒ P = 144 / 0.0144 = ₹10,000"
+      ],
+      "timeTaken": "55 seconds"
+    },
+    "topperMethod": {
+      "title": "M. Tyra's Quicker Formula",
+      "steps": [
+        "Direct Formula: Diff = P × (R / 100)²",
+        "144 = P × (12 / 100)² = P × (144 / 10,000)",
+        "144 cancels out with 144 on both sides!",
+        "P = ₹10,000 in one visual glance!"
+      ],
+      "timeTaken": "5 seconds",
+      "proTip": "M. Tyra Rule: For 2-year CI-SI difference, P = Diff × (100 / R)². When Diff = R², P is always 10,000!"
+    }
+  },
+  {
+    "id": "q-tyra-train-002",
+    "topic": "speed-time-and-distance",
+    "topicName": "Speed, Time & Distance",
+    "subtopic": "Relative Speed Train Crossing",
+    "difficulty": "EASY",
+    "targetTime": 20,
+    "examTag": "IBPS Clerk Prelims 2024",
+    "question": "Two trains of length 140 m and 160 m are running in opposite directions on parallel tracks at speeds of 42 km/h and 30 km/h respectively. In what time will they cross each other completely?",
+    "questionHi": "140 मीटर और 160 मीटर लंबाई वाली दो रेलगाड़ियाँ समानांतर पटरियों पर विपरीत दिशाओं में क्रमशः 42 किमी/घंटा और 30 किमी/घंटा की गति से चल रही हैं। वे एक दूसरे को कितने समय में पार करेंगी?",
+    "options": [
+      "15 seconds",
+      "12 seconds",
+      "18 seconds",
+      "20 seconds",
+      "14 seconds"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Step-by-Step Conversion)",
+      "steps": [
+        "Convert speeds separately: S1 = 42 × 5/18 = 35/3 m/s; S2 = 30 × 5/18 = 25/3 m/s",
+        "Relative Speed = 35/3 + 25/3 = 60/3 = 20 m/s",
+        "Total Distance = 140 + 160 = 300 m",
+        "Time = Distance / Relative Speed = 300 / 20 = 15 seconds"
+      ],
+      "timeTaken": "40 seconds"
+    },
+    "topperMethod": {
+      "title": "M. Tyra's Single-Line Crossing Formula",
+      "steps": [
+        "Relative Speed in km/h = 42 + 30 = 72 km/h",
+        "Instant km/h to m/s: 72 is (18 × 4) → 4 × 5 = 20 m/s!",
+        "Total Length = 140 + 160 = 300 m",
+        "Time = 300 / 20 = 15 seconds mentally!"
+      ],
+      "timeTaken": "6 seconds",
+      "proTip": "Remember the 18:5 benchmark table. 18 km/h = 5 m/s, 36 = 10 m/s, 54 = 15 m/s, 72 = 20 m/s, 90 = 25 m/s."
+    }
+  },
+  {
+    "id": "q-tyra-allig-003",
+    "topic": "mixture-and-alligation",
+    "topicName": "Mixture & Alligation",
+    "subtopic": "Profit & Loss Alligation",
+    "difficulty": "MEDIUM",
+    "targetTime": 25,
+    "examTag": "SBI Clerk Prelims 2023",
+    "question": "A trader has 50 kg of rice. He sells a part of it at 14% profit and the rest at 6% loss, gaining 4% overall on the whole transaction. How much rice did he sell at 14% profit?",
+    "questionHi": "एक व्यापारी के पास 50 किग्रा चावल है। वह इसका एक हिस्सा 14% लाभ पर और शेष 6% हानि पर बेचता है, जिससे पूरे सौदे में उसे 4% का समग्र लाभ होता है। उसने 14% लाभ पर कितना चावल बेचा?",
+    "options": [
+      "25 kg",
+      "20 kg",
+      "30 kg",
+      "35 kg",
+      "15 kg"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Algebraic)",
+      "steps": [
+        "Let x kg be sold at 14% profit and (50 − x) kg at 6% loss.",
+        "Total CP = 50 × C",
+        "14x − 6(50 − x) = 4 × 50",
+        "14x − 300 + 6x = 200 ⇒ 20x = 500 ⇒ x = 25 kg"
+      ],
+      "timeTaken": "50 seconds"
+    },
+    "topperMethod": {
+      "title": "M. Tyra's Alligation Cross (Signed Values)",
+      "steps": [
+        "Profit part = +14%, Loss part = −6%, Mean = +4%",
+        "Cross Differences:",
+        "Left: 4 − (−6) = 10; Right: 14 − 4 = 10",
+        "Ratio = 10 : 10 = 1 : 1",
+        "Quantity at 14% profit = 50 × (1/2) = 25 kg in 4 seconds!"
+      ],
+      "timeTaken": "6 seconds",
+      "proTip": "Alligation handles losses seamlessly with negative signs: 4 - (-6) = 10. The 1:1 ratio splits 50 kg into 25 kg each."
+    }
+  },
+  {
+    "id": "q-verma-duplex-001",
+    "topic": "simplification",
+    "topicName": "Simplification",
+    "subtopic": "Duplex Squaring",
+    "difficulty": "EASY",
+    "targetTime": 15,
+    "examTag": "IBPS RRB OA 2024",
+    "question": "74² + 36² − 48² = ?",
+    "questionHi": "74² + 36² − 48² = ?",
+    "options": [
+      "4468",
+      "4458",
+      "4478",
+      "4488",
+      "4448"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Manual Multiplications)",
+      "steps": [
+        "74² = 5476",
+        "36² = 1296",
+        "48² = 2304",
+        "5476 + 1296 − 2304 = 6772 − 2304 = 4468"
+      ],
+      "timeTaken": "55 seconds"
+    },
+    "topperMethod": {
+      "title": "Rajesh Verma's Base & Duplex Squares",
+      "steps": [
+        "74 = 50 + 24 → 25 + 24 | 24² = 49 | 576 = 5476",
+        "36 = 50 − 14 → 25 − 14 | 14² = 11 | 196 = 1296",
+        "48 = 50 − 2 → 25 − 2 | 04 = 2304",
+        "Unit digits: 6 + 6 − 4 = 8 (eliminates non-8 options).",
+        "5476 + 1296 − 2304 = 4468!"
+      ],
+      "timeTaken": "12 seconds",
+      "proTip": "Base 50 mental rule computes 74², 36², and 48² without writing intermediate products on scratch paper."
+    }
+  },
+  {
+    "id": "q-verma-succ-002",
+    "topic": "percentage",
+    "topicName": "Percentage",
+    "subtopic": "Successive Percentage Change",
+    "difficulty": "EASY",
+    "targetTime": 20,
+    "examTag": "IBPS Clerk Prelims 2023",
+    "question": "The length of a rectangular plot is increased by 30% while its breadth is decreased by 20%. What is the net percentage change in the area of the plot?",
+    "questionHi": "एक आयताकार भूखंड की लंबाई में 30% की वृद्धि की जाती है जबकि इसकी चौड़ाई में 20% की कमी की जाती है। भूखंड के क्षेत्रफल में शुद्ध प्रतिशत परिवर्तन क्या है?",
+    "options": [
+      "4% increase",
+      "4% decrease",
+      "10% increase",
+      "6% increase",
+      "No change"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Assuming Initial Area = 100)",
+      "steps": [
+        "Let initial L = 10, B = 10 → Area = 100",
+        "New L = 10 × 1.3 = 13",
+        "New B = 10 × 0.8 = 8",
+        "New Area = 13 × 8 = 104",
+        "Net change = 104 − 100 = +4% (Increase)"
+      ],
+      "timeTaken": "30 seconds"
+    },
+    "topperMethod": {
+      "title": "Rajesh Verma's Fast Track Net Change Formula",
+      "steps": [
+        "Net% = A + B + (A × B) / 100",
+        "Here A = +30, B = −20",
+        "Net% = 30 − 20 − (30 × 20) / 100 = 10 − 6 = +4%",
+        "+4% means 4% Increase in 3 seconds!"
+      ],
+      "timeTaken": "4 seconds",
+      "proTip": "When signs are opposite (+A, -B), formula is directly (A - B) - (AB/100)."
+    }
+  },
+  {
+    "id": "q-aggarwal-cyclicity-001",
+    "topic": "number-system",
+    "topicName": "Number System",
+    "subtopic": "Unit Digit Cyclicity",
+    "difficulty": "MEDIUM",
+    "targetTime": 20,
+    "examTag": "SBI Clerk Prelims 2024",
+    "question": "What is the unit digit in the product: (2467)¹⁵³ × (341)⁷² ?",
+    "questionHi": "(2467)¹⁵³ × (341)⁷² के गुणनफल में इकाई का अंक क्या है?",
+    "options": [
+      "7",
+      "1",
+      "3",
+      "9",
+      "5"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method",
+      "steps": [
+        "Unit digit of 2467 is 7. Cyclicity of 7 is 4.",
+        "Divide power 153 by 4: 153 = 4 × 38 + 1 (Remainder = 1)",
+        "So unit digit of (2467)¹⁵³ is 7¹ = 7.",
+        "Unit digit of 341 is 1. Power of 1 always yields 1.",
+        "Product unit digit = 7 × 1 = 7."
+      ],
+      "timeTaken": "35 seconds"
+    },
+    "topperMethod": {
+      "title": "R.S. Aggarwal's Cyclicity Reflex",
+      "steps": [
+        "Last 2 digits of power 153: 53 mod 4 = 1 → 7¹ = 7.",
+        "1 to any power is always 1.",
+        "7 × 1 = 7 in 3 seconds!"
+      ],
+      "timeTaken": "5 seconds",
+      "proTip": "To find power mod 4, you only need to divide the LAST TWO DIGITS of the exponent (53 mod 4 = 1)."
+    }
+  },
+  {
+    "id": "q-aggarwal-identity-002",
+    "topic": "simplification",
+    "topicName": "Simplification",
+    "subtopic": "Algebraic Simplification Identity",
+    "difficulty": "MEDIUM",
+    "targetTime": 20,
+    "examTag": "IBPS PO Prelims 2023",
+    "question": "Evaluate: [ (0.87)³ + (0.13)³ ] / [ (0.87)² − 0.87 × 0.13 + (0.13)² ] = ?",
+    "questionHi": "मान ज्ञात कीजिए: [ (0.87)³ + (0.13)³ ] / [ (0.87)² − 0.87 × 0.13 + (0.13)² ] = ?",
+    "options": [
+      "1",
+      "0.74",
+      "1.13",
+      "0.87",
+      "0.5"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Decimal Expansion Trap)",
+      "steps": [
+        "0.87³ = 0.658503",
+        "0.13³ = 0.002197",
+        "Numerator = 0.6607",
+        "Denominator = 0.7569 − 0.1131 + 0.0169 = 0.6607",
+        "0.6607 / 0.6607 = 1"
+      ],
+      "timeTaken": "75 seconds"
+    },
+    "topperMethod": {
+      "title": "R.S. Aggarwal's Algebraic Identity Recognition",
+      "steps": [
+        "Notice algebraic form: (a³ + b³) / (a² − ab + b²)",
+        "Since a³ + b³ = (a + b)(a² − ab + b²), the expression simplifies to (a + b)!",
+        "Here a = 0.87, b = 0.13",
+        "a + b = 0.87 + 0.13 = 1.00 in 2 seconds!"
+      ],
+      "timeTaken": "3 seconds",
+      "proTip": "Bank exams constantly test (a³ + b³)/(a²-ab+b²) = a+b and (a³ - b³)/(a²+ab+b²) = a-b. Never calculate cubes!"
+    }
+  },
+  {
+    "id": "q-shukla-quad-001",
+    "topic": "quadratic-equations",
+    "topicName": "Quadratic Equations",
+    "subtopic": "Sign-Flip Negative Constant Rule",
+    "difficulty": "EASY",
+    "targetTime": 10,
+    "examTag": "SBI Clerk Prelims 2024",
+    "question": "In the following question, two equations are given. You have to solve both equations and give answer:\nI. x² + 7x − 60 = 0\nII. y² − 11y − 80 = 0",
+    "questionHi": "निम्नलिखित प्रश्न में दो समीकरण दिए गए हैं। आपको दोनों समीकरणों को हल करना है और उत्तर देना है:\nI. x² + 7x − 60 = 0\nII. y² − 11y − 80 = 0",
+    "options": [
+      "Relationship cannot be established (CND)",
+      "x > y",
+      "x < y",
+      "x ≥ y",
+      "x ≤ y"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Full Factorization)",
+      "steps": [
+        "Eq I: x² + 7x − 60 = 0 → (x + 12)(x − 5) = 0 → x = −12, +5",
+        "Eq II: y² − 11y − 80 = 0 → (y − 16)(y + 5) = 0 → y = +16, −5",
+        "Compare all 4 pairs: −12 < 16, −12 < −5, 5 < 16, but 5 > −5 (Opposite relation)",
+        "Hence, no relation can be established."
+      ],
+      "timeTaken": "45 seconds"
+    },
+    "topperMethod": {
+      "title": "Shantanu Shukla's 2-Second CND Sign Rule",
+      "steps": [
+        "Look directly at the constant terms of both equations: c1 = −60 and c2 = −80.",
+        "Golden Banking Rule: When both constant terms are negative, both equations produce one positive and one negative root.",
+        "One positive and one negative root in both equations ALWAYS overlap.",
+        "Select 'Relationship cannot be established' in 2 seconds flat!"
+      ],
+      "timeTaken": "2 seconds",
+      "proTip": "Whenever both equations end in - c = 0, do not pick up your pen! Mark CND instantly."
+    }
+  },
+  {
+    "id": "q-shukla-split-002",
+    "topic": "simplification",
+    "topicName": "Simplification",
+    "subtopic": "Percentage Split & Interchange",
+    "difficulty": "EASY",
+    "targetTime": 15,
+    "examTag": "IBPS RRB OA Prelims 2024",
+    "question": "84% of 250 + 47.5% of 640 = ?",
+    "questionHi": "250 का 84% + 640 का 47.5% = ?",
+    "options": [
+      "514",
+      "504",
+      "524",
+      "494",
+      "534"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Decimal Calculations)",
+      "steps": [
+        "0.84 × 250 = 210",
+        "0.475 × 640 = 304",
+        "210 + 304 = 514"
+      ],
+      "timeTaken": "40 seconds"
+    },
+    "topperMethod": {
+      "title": "Shantanu Shukla's Split & Interchange Hack",
+      "steps": [
+        "Part 1 (Interchange): 84% of 250 = 250% of 84 = (2.5 × 84) = 168 + 42 = 210.",
+        "Part 2 (Split): 47.5% of 640 = 50% of 640 (320) − 2.5% of 640 (16) = 304.",
+        "Mental Sum: 210 + 304 = 514 in 6 seconds!"
+      ],
+      "timeTaken": "7 seconds",
+      "proTip": "250% is 5/2, so 84 × 5/2 = 42 × 5 = 210. 2.5% is 1/40, so 640/40 = 16. Both parts solve in under 4 seconds."
+    }
+  },
+  {
+    "id": "q-sumit-ci-001",
+    "topic": "compound-interest",
+    "topicName": "Compound Interest",
+    "subtopic": "Ratio Method for CI",
+    "difficulty": "MEDIUM",
+    "targetTime": 25,
+    "examTag": "SBI PO Prelims 2023",
+    "question": "A sum of ₹16,200 is invested at compound interest at 16 2/3% per annum for 3 years, compounded annually. What is the total compound interest earned?",
+    "questionHi": "₹16,200 की धनराशि को 16 2/3% वार्षिक चक्रवृद्धि ब्याज की दर पर 3 वर्ष के लिए निवेश किया जाता है, जो वार्षिक रूप से संयोजित होता है। अर्जित कुल चक्रवृद्धि ब्याज कितना है?",
+    "options": [
+      "₹9,525",
+      "₹9,450",
+      "₹9,600",
+      "₹9,375",
+      "₹9,500"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Exponential Formula)",
+      "steps": [
+        "Rate = 16 2/3% = 50/3% = 1/6",
+        "Amount = 16200 × (1 + 1/6)³ = 16200 × (7/6)³ = 16200 × 343 / 216",
+        "16200 / 216 = 75",
+        "Amount = 75 × 343 = ₹25,725",
+        "CI = Amount − Principal = 25,725 − 16,200 = ₹9,525"
+      ],
+      "timeTaken": "60 seconds"
+    },
+    "topperMethod": {
+      "title": "Sumit Sir's Ratio Tree Method",
+      "steps": [
+        "Rate = 1/6. For 3 years, Principal : Amount = 6³ : 7³ = 216 : 343.",
+        "CI = 343 − 216 = 127 units.",
+        "Given Principal 216 units = ₹16,200 → 1 unit = 16200 / 216 = ₹75.",
+        "CI = 127 × 75 = 127 × (100 − 25) = 12,700 − 3,175 = ₹9,525 in 10s!"
+      ],
+      "timeTaken": "12 seconds",
+      "proTip": "The ratio 6³ : 7³ gives 127 units of CI directly. Multiplying 127 × 75 mentally as 12700 - 3175 eliminates long division."
+    }
+  },
+  {
+    "id": "q-sumit-profit-002",
+    "topic": "profit-and-loss",
+    "topicName": "Profit & Loss",
+    "subtopic": "Markup & Discount Multiplier Chain",
+    "difficulty": "MEDIUM",
+    "targetTime": 25,
+    "examTag": "IBPS PO Prelims 2024",
+    "question": "A shopkeeper marks his goods 40% above the cost price and allows a discount of 25% on the marked price. If he makes a profit of ₹240, find the cost price of the article.",
+    "questionHi": "एक दुकानदार अपनी वस्तुओं पर क्रय मूल्य से 40% अधिक मूल्य अंकित करता है और अंकित मूल्य पर 25% की छूट देता है। यदि वह ₹240 का लाभ कमाता है, तो वस्तु का क्रय मूल्य ज्ञात कीजिए।",
+    "options": [
+      "₹4,800",
+      "₹4,500",
+      "₹5,000",
+      "₹4,200",
+      "₹4,600"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Assuming CP = 100x)",
+      "steps": [
+        "Let CP = 100x",
+        "Marked Price (MP) = 140x",
+        "Selling Price (SP) = 140x − 25% of 140x = 140x − 35x = 105x",
+        "Profit = SP − CP = 105x − 100x = 5x",
+        "5x = 240 ⇒ x = 48 ⇒ CP = 100 × 48 = ₹4,800"
+      ],
+      "timeTaken": "45 seconds"
+    },
+    "topperMethod": {
+      "title": "Sumit Sir's Multiplier Chain Equation",
+      "steps": [
+        "SP multiplier = (1 + 0.40) × (1 − 0.25) = 1.40 × 0.75 = 1.05.",
+        "Net Profit = 1.05 − 1.00 = +5% = 1/20 of CP.",
+        "Profit = CP / 20 = ₹240.",
+        "CP = 240 × 20 = ₹4,800 in 5 seconds!"
+      ],
+      "timeTaken": "6 seconds",
+      "proTip": "1.4 × 3/4 = 4.2 / 4 = 1.05. Profit is 5%. If 5% is 240, 100% is 240 × 20 = 4,800."
+    }
+  },
+  {
+    "id": "q-sumit-replace-003",
+    "topic": "mixture-and-alligation",
+    "topicName": "Mixture & Alligation",
+    "subtopic": "Repeated Withdrawal Replacement Formula",
+    "difficulty": "HARD",
+    "targetTime": 30,
+    "examTag": "SBI PO Prelims 2023",
+    "question": "A container contains 80 litres of pure milk. 8 litres of milk is taken out and replaced with water. This process is repeated 2 more times (total 3 times). How much pure milk is left in the container?",
+    "questionHi": "एक बर्तन में 80 लीटर शुद्ध दूध है। इसमें से 8 लीटर दूध निकालकर उसके स्थान पर पानी मिला दिया जाता है। यह प्रक्रिया 2 बार और दोहराई जाती है (कुल 3 बार)। बर्तन में अब कितना शुद्ध दूध शेष है?",
+    "options": [
+      "58.32 litres",
+      "56.40 litres",
+      "60.25 litres",
+      "57.80 litres",
+      "59.12 litres"
+    ],
+    "answerIndex": 0,
+    "standardMethod": {
+      "title": "Standard Method (Step-by-Step Calculation)",
+      "steps": [
+        "Round 1: 8L removed → 72L milk, 8L water left.",
+        "Round 2: 8L mixture removed contains 8 × (72/80) = 7.2L milk. Milk left = 72 − 7.2 = 64.8L.",
+        "Round 3: 8L mixture removed contains 8 × (64.8/80) = 6.48L milk. Milk left = 64.8 − 6.48 = 58.32L."
+      ],
+      "timeTaken": "75 seconds"
+    },
+    "topperMethod": {
+      "title": "Sumit Sir's Power Ratio Replacement Formula",
+      "steps": [
+        "Replacement Fraction = 8 / 80 = 1/10.",
+        "Remaining Fraction after each cycle = 1 − 1/10 = 9/10.",
+        "After 3 cycles: Milk Left = 80 × (9/10)³ = 80 × (729 / 1000).",
+        "8 × 729 / 100 = 5832 / 100 = 58.32 litres!",
+        "Cube of 9 is 729; 8 × 729 = 5832 done in 8 seconds!"
+      ],
+      "timeTaken": "10 seconds",
+      "proTip": "Always use Formula: Q_final = Q_initial × (1 - y/x)ⁿ. Cubes of 9 (729) and 8 (512) are critical for 3-cycle replacements."
     }
   }
 ]

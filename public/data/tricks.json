@@ -18,9 +18,9 @@
       "id": "vedic-base-100",
       "name": "Base 100 / 1000 Multiplication (Nikhilam Navatashcaramam)",
       "hindiName": "निखिलं नवतश्चरमं दशतः (आधार विधि)",
-      "suitability": "Numbers close to 100 (e.g. 96 × 93 or 104 × 107)",
+      "suitability": "Numbers close to 100 or 1000 (e.g. 96 × 93 or 104 × 107)",
       "steps": [
-        "Step 1: Write deviations from 100: (e.g. 96 is -4, 93 is -7)",
+        "Step 1: Write deviations from 100/1000: (e.g. 96 is -4, 93 is -7)",
         "Step 2: Right side = Product of deviations: (-4) × (-7) = 28",
         "Step 3: Left side = Cross add either number with other's deviation: (96 - 7) = 89",
         "Step 4: Combine = 8928!"
@@ -32,7 +32,7 @@
     {
       "id": "vedic-square-ending-5",
       "name": "Squaring Numbers Ending in 5 (Ekadhikena Purvena)",
-      "hindiName": "एकाधिकेन पूर्वेण",
+      "hindiName": "एकाधिकेन पूर्वेण (इकाई अंक 5)",
       "suitability": "Any number ending in 5: 25, 35, 65, 85, 115...",
       "steps": [
         "Step 1: Last two digits are ALWAYS 25 (since 5² = 25)",
@@ -44,38 +44,67 @@
       "timeSaved": "10 seconds"
     },
     {
-      "id": "vedic-multiply-11",
-      "name": "Multiply Any Number by 11",
-      "hindiName": "11 से त्वरित गुणन",
-      "suitability": "Any multi-digit number × 11",
+      "id": "vedic-anurupyena",
+      "name": "Proportional Sub-Base Multiplication (Anurupyena)",
+      "hindiName": "आनुरूप्येण (उप-आधार विधि)",
+      "suitability": "Numbers near 50 (100/2), 200 (100×2), 250 (1000/4), 500 (1000/2)",
       "steps": [
-        "Write the first digit on the far left and the last digit on the far right",
-        "Add adjacent pairs of digits from right to left, carrying over 1 if sum ≥ 10"
+        "Step 1: Determine working base and its ratio to primary base 100 or 1000",
+        "Step 2: Calculate deviations and cross-add as in Nikhilam",
+        "Step 3: Multiply or divide cross-sum by the sub-base ratio before combining with deviation product"
       ],
-      "example": "354 × 11",
-      "walkthrough": "Units = 4. Middle 1 = 5 + 4 = 9. Middle 2 = 3 + 5 = 8. Leftmost = 3. Combine ⇒ 3894!",
-      "timeSaved": "12 seconds"
+      "example": "48 × 46 (Working Base = 50 = 100/2)",
+      "walkthrough": "Deviations from 50: -2 and -4. Cross-add: 48 - 4 = 44. Divide by 2: 44 / 2 = 22. Deviations product: (-2) × (-4) = 08. Answer = 2208!",
+      "timeSaved": "25 seconds"
     },
     {
-      "id": "vedic-multiply-25-125",
-      "name": "Multiplying & Dividing by 25 and 125",
-      "hindiName": "25 एवं 125 से गुणन व भाग",
-      "suitability": "Numbers × 25, × 125 or ÷ 25, ÷ 125",
+      "id": "vedic-vinculum",
+      "name": "Vinculum Method (Negative Digits / Bar Numbers)",
+      "hindiName": "विनकुलम (ऋणांक पद्धति)",
+      "suitability": "Numbers containing large digits (6, 7, 8, 9) to eliminate carries",
       "steps": [
-        "To multiply by 25: Divide by 4, then multiply by 100 (add 00)",
-        "To divide by 25: Multiply by 4, then divide by 100",
-        "To multiply by 125: Divide by 8, then multiply by 1000 (add 000)"
+        "Step 1: Convert digits > 5 into negative digits (10 - d with bar)",
+        "Step 2: Add 1 carry to the previous left digit",
+        "Step 3: Perform multiplication using only small tables (1 to 5) with zero carries"
       ],
-      "example": "648 × 25",
-      "walkthrough": "648 ÷ 4 = 162. Tack on two zeros ⇒ 16,200 instantly!",
-      "timeSaved": "15 seconds"
+      "example": "289 in Vinculum",
+      "walkthrough": "9 is 10-1 (1̄, carry 1). 8+1=9 → 1̄, carry 1. 2+1=3. 289 becomes 3 1̄ 1̄. Multiplying by 7: 3 1̄ 1̄ × 7 = 21 7̄ 7̄ = 2100 - 77 = 2023.",
+      "timeSaved": "30 seconds"
+    },
+    {
+      "id": "vedic-beejank",
+      "name": "Beejank / Digital Root 3-Second Option Eliminator",
+      "hindiName": "बीजांक (Digital Root / Casting Out 9s)",
+      "suitability": "Option elimination in Bank Prelims Simplification, Arithmetic & Multiplication",
+      "steps": [
+        "Step 1: Compute digit sum of each number in the equation, casting out 9s",
+        "Step 2: Apply the arithmetic operation (+, −, ×) on single-digit Beejanks",
+        "Step 3: Only the option with matching Beejank can be correct; eliminate others instantly"
+      ],
+      "example": "487 × 69 = ?",
+      "walkthrough": "Beejank of 487: 4+8+7 = 19 → 1+9 = 1. Beejank of 69: 6+9 = 15 → 6. Product Beejank: 1 × 6 = 6. Check options: only 33,603 has digit sum 6 (3+3+6+0+3 = 15 → 6)!",
+      "timeSaved": "35 seconds"
+    },
+    {
+      "id": "vedic-paravartya",
+      "name": "Transpose and Apply (Paravartya Yojayet)",
+      "hindiName": "परावर्त्य योजयेत् (त्वरित भाग विधि)",
+      "suitability": "Mental division when divisor is close to powers of 10 (89, 97, 103, 112)",
+      "steps": [
+        "Step 1: Find divisor deviation from base",
+        "Step 2: Transpose (invert) the sign of the deviation",
+        "Step 3: Perform synthetic mental addition with transposed digits to drop quotient and remainder"
+      ],
+      "example": "1234 ÷ 89",
+      "walkthrough": "Divisor 89 has deviation -11. Transpose: +11. Quotient = 13, Remainder = 77 in 5 seconds without scratch work!",
+      "timeSaved": "40 seconds"
     }
   ],
   "fractionPercentTable": [
     { "fraction": "1/1", "percent": "100%", "decimal": "1.000" },
     { "fraction": "1/2", "percent": "50%", "decimal": "0.500" },
-    { "fraction": "1/3", "percent": "33.33%", "decimal": "0.333" },
-    { "fraction": "2/3", "percent": "66.67%", "decimal": "0.667" },
+    { "fraction": "1/3", "percent": "33.33% (33 1/3%)", "decimal": "0.333" },
+    { "fraction": "2/3", "percent": "66.67% (66 2/3%)", "decimal": "0.667" },
     { "fraction": "1/4", "percent": "25%", "decimal": "0.250" },
     { "fraction": "3/4", "percent": "75%", "decimal": "0.750" },
     { "fraction": "1/5", "percent": "20%", "decimal": "0.200" },
@@ -97,43 +126,19 @@
     { "fraction": "1/11", "percent": "9.09% (9 1/11%)", "decimal": "0.091" },
     { "fraction": "1/12", "percent": "8.33% (8 1/3%)", "decimal": "0.083" },
     { "fraction": "1/13", "percent": "7.69%", "decimal": "0.077" },
-    { "fraction": "1/14", "percent": "7.14%", "decimal": "0.071" },
+    { "fraction": "1/14", "percent": "7.14% (7 1/7%)", "decimal": "0.071" },
     { "fraction": "1/15", "percent": "6.67% (6 2/3%)", "decimal": "0.067" },
     { "fraction": "1/16", "percent": "6.25% (6 1/4%)", "decimal": "0.0625" },
     { "fraction": "1/20", "percent": "5%", "decimal": "0.050" },
     { "fraction": "1/24", "percent": "4.17%", "decimal": "0.0417" },
-    { "fraction": "1/25", "percent": "4%", "decimal": "0.040" }
+    { "fraction": "1/25", "percent": "4%", "decimal": "0.040" },
+    { "fraction": "1/30", "percent": "3.33%", "decimal": "0.033" }
   ],
   "shortcuts": [
     {
-      "id": "sc-frac-percent",
-      "title": "Fraction ↔ Percentage Table Conversion",
-      "category": "Speed Math",
-      "normalMethod": "Multiply by x/100 and do long division with decimals.",
-      "topperMethod": "Substitute equivalent memorized fraction (e.g. 37.5% = 3/8) and cancel directly with the base number.",
-      "whyItWorks": "Fractions cancel into whole numbers instantly, avoiding multi-decimal floating point calculations.",
-      "example": "62.5% of 640 = ?",
-      "normalSteps": "0.625 × 640 = long multi-line calculation taking 35s.",
-      "topperSteps": "62.5% = 5/8. 640/8 = 80. 80 × 5 = 400 in 4s.",
-      "timeSaved": "25 seconds",
-      "commonMistake": "Confusing 1/9 (11.11%) with 1/11 (9.09%). Tip: Denominator 9 produces repeated 11s; denominator 11 produces repeated 09s!"
-    },
-    {
-      "id": "sc-quad-compare",
-      "title": "Quadratic Sign-Flip 5-Second Rule",
-      "category": "Algebra",
-      "normalMethod": "Factorize both equations into roots, solve both, and compare all 4 pairs.",
-      "topperMethod": "Inspect equation signs first: If signs are (-, +) roots are (+, +). If (+, +) roots are (-, -). If both constants are negative, choose CND immediately!",
-      "whyItWorks": "Roots of a quadratic with negative constant term have opposite signs (+ and -). Two equations each having one positive and one negative root overlap, making a strict inequality impossible.",
-      "example": "I. x² - 14x - 51 = 0  II. y² - 19y - 42 = 0",
-      "normalSteps": "Calculate roots for x (+17, -3) and roots for y (+21, -2), then cross-compare (17 vs 21, 17 vs -2, -3 vs 21, -3 vs -2). Takes 45s.",
-      "topperSteps": "Both c < 0 (constant terms -51 and -42 are negative). Mark 'CND / No relation' immediately in 3 seconds!",
-      "timeSaved": "40 seconds",
-      "commonMistake": "Forgetting that leading coefficients (a and d) must be divided out when roots are calculated."
-    },
-    {
       "id": "sc-alligation",
-      "title": "Alligation Cross Method for Weighted Mixtures",
+      "title": "M. Tyra's Universal Alligation Cross Method",
+      "book": "Magical Book on Quicker Maths - M. Tyra",
       "category": "Arithmetic",
       "normalMethod": "Set up algebraic equations with x and y: c₁x + c₂y = cₘ(x + y) and solve.",
       "topperMethod": "Place cheaper (C) and dearer (D) at top corners, mean (M) at center. Cross difference gives the exact ratio: (D - M) : (M - C).",
@@ -146,7 +151,8 @@
     },
     {
       "id": "sc-ci-diff",
-      "title": "2-Year and 3-Year CI-SI Difference Formula",
+      "title": "M. Tyra's 2-Year and 3-Year CI-SI Difference Formulas",
+      "book": "Magical Book on Quicker Maths - M. Tyra",
       "category": "Arithmetic",
       "normalMethod": "Calculate 2 years SI = 2PR/100, calculate 2 years CI = P(1+R/100)² - P, then subtract.",
       "topperMethod": "Use direct formula: Diff₂ = P × (R/100)² for 2 years. Diff₃ = P × (R/100)² × (3 + R/100) for 3 years.",
@@ -158,17 +164,116 @@
       "commonMistake": "Using this 2-year formula when compounding is half-yearly (which converts 2 years into 4 compounding cycles)."
     },
     {
-      "id": "sc-work-lcm",
-      "title": "LCM Work Efficiency Method",
+      "id": "sc-train-cross",
+      "title": "M. Tyra's Relative Speed Train Crossing Rule",
+      "book": "Magical Book on Quicker Maths - M. Tyra",
+      "category": "Time & Distance",
+      "normalMethod": "Set up distance equation with relative speeds, convert km/h to m/s separately.",
+      "topperMethod": "Time = (L₁ + L₂) / (S₁ ± S₂). If opposite direction, add speeds; if same direction, subtract speeds. Multiply km/h by 5/18 in one step.",
+      "whyItWorks": "Total length to cover is always the sum of both lengths regardless of direction.",
+      "example": "Trains 140m and 160m travel in opposite directions at 42 km/h and 30 km/h.",
+      "normalSteps": "Convert speeds: 42 × 5/18 = 11.67, 30 × 5/18 = 8.33. Add = 20 m/s. 300 / 20 = 15s.",
+      "topperSteps": "Relative Speed = 42 + 30 = 72 km/h = 20 m/s. Total Length = 300m. Time = 300 / 20 = 15s in 4 seconds!",
+      "timeSaved": "25 seconds",
+      "commonMistake": "Subtracting lengths when trains move in the same direction. Lengths ALWAYS add!"
+    },
+    {
+      "id": "sc-duplex-squaring",
+      "title": "Rajesh Verma's Duplex Method for Squaring",
+      "book": "Fast Track Objective Arithmetic - Rajesh Verma",
+      "category": "Speed Math",
+      "normalMethod": "Multiply number by itself using standard 2-line or 3-line multiplication.",
+      "topperMethod": "Compute Duplex terms: (ab)² = D(a) | D(ab) | D(b) = a² | 2ab | b² with column carry.",
+      "whyItWorks": "Direct algebraic expansion of (10a + b)² = 100a² + 20ab + b².",
+      "example": "64²",
+      "normalSteps": "64 × 64 = 256 + 3840 = 4096 (takes 25s).",
+      "topperSteps": "D(6)=36, D(6,4)=48, D(4)=16 → 36 | 48 | 16 → 4096 in 6 seconds!",
+      "timeSaved": "20 seconds",
+      "commonMistake": "Forgetting to double the product for 2-digit duplex (it is 2ab, not ab)."
+    },
+    {
+      "id": "sc-successive-change",
+      "title": "Rajesh Verma's Successive Percentage Formula",
+      "book": "Fast Track Objective Arithmetic - Rajesh Verma",
+      "category": "Percentage",
+      "normalMethod": "Assume 100, calculate first change, then apply second change on intermediate result.",
+      "topperMethod": "Net Change% = A + B + (A × B) / 100. (Use negative sign for decreases or discounts).",
+      "whyItWorks": "Compounding factor: (1 + A/100)(1 + B/100) = 1 + (A + B + AB/100)/100.",
+      "example": "Price increases by 25% then decreases by 20%.",
+      "normalSteps": "100 → 125 → 125 - 25 = 100 → 0% change.",
+      "topperSteps": "Net = 25 - 20 - (25 × 20)/100 = 5 - 5 = 0% in 2 seconds!",
+      "timeSaved": "15 seconds",
+      "commonMistake": "Ignoring the sign of B when it is a reduction or discount."
+    },
+    {
+      "id": "sc-unit-digit-cyclicity",
+      "title": "R.S. Aggarwal's Unit Digit Power Cyclicity Law",
+      "book": "Quantitative Aptitude - R.S. Aggarwal",
+      "category": "Number System",
+      "normalMethod": "Multiply powers manually or guess.",
+      "topperMethod": "Powers of 2, 3, 7, 8 have cyclicity 4. Divide power by 4. If remainder is r, unit digit is dʳ (if r=0, use d⁴). Powers of 4, 9 have cyclicity 2. Powers of 0, 1, 5, 6 never change!",
+      "whyItWorks": "Modular arithmetic modulo 10 guarantees periodic repetition in power unit digits.",
+      "example": "Unit digit of 3⁶⁷",
+      "normalSteps": "Computing 3⁶⁷ is impossible without calculator.",
+      "topperSteps": "67 mod 4 = 3. Unit digit of 3³ is 7! Solved in 2 seconds.",
+      "timeSaved": "30 seconds",
+      "commonMistake": "Taking remainder 0 as power 0 instead of power 4."
+    },
+    {
+      "id": "sc-quad-compare",
+      "title": "Shantanu Shukla's Quadratic Sign-Flip 5-Second Rule",
+      "book": "Daksh Quant Speed Math - Shantanu Shukla",
+      "category": "Algebra",
+      "normalMethod": "Factorize both equations into roots, solve both, and compare all 4 pairs.",
+      "topperMethod": "Inspect equation signs first: If signs are (-, +) roots are (+, +). If (+, +) roots are (-, -). If both constants are negative, choose CND immediately!",
+      "whyItWorks": "Roots of a quadratic with negative constant term have opposite signs (+ and -). Two equations each having one positive and one negative root overlap, making a strict inequality impossible.",
+      "example": "I. x² - 14x - 51 = 0  II. y² - 19y - 42 = 0",
+      "normalSteps": "Calculate roots for x (+17, -3) and roots for y (+21, -2), then cross-compare. Takes 45s.",
+      "topperSteps": "Both c < 0 (constant terms -51 and -42 are negative). Mark 'CND / No relation' immediately in 3 seconds!",
+      "timeSaved": "40 seconds",
+      "commonMistake": "Forgetting that leading coefficients (a and d) must be divided out when roots are calculated."
+    },
+    {
+      "id": "sc-percentage-split",
+      "title": "Shantanu Shukla's Percentage Split & Interchange Law",
+      "book": "Daksh Quant Speed Math - Shantanu Shukla",
+      "category": "Speed Math",
+      "normalMethod": "Multiply fraction by base and do floating point division.",
+      "topperMethod": "1) Use x% of y = y% of x. 2) Break awkward percentages into 50% ± 10% ± 1% ± 0.5%.",
+      "whyItWorks": "Multiplication is commutative: (x × y) / 100 = (y × x) / 100.",
+      "example": "84% of 250",
+      "normalSteps": "0.84 × 250 = 210 (takes 25s).",
+      "topperSteps": "84% of 250 = 250% of 84 = 2.5 × 84 = 168 + 42 = 210 in 3 seconds!",
+      "timeSaved": "20 seconds",
+      "commonMistake": "Struggling with the decimal when 250% is simply 2 + 1/2 of the number."
+    },
+    {
+      "id": "sc-ratio-ci",
+      "title": "Sumit Sir's Ratio Method for Compound Interest",
+      "book": "PW Banking Game Changer - Sumit Sir",
       "category": "Arithmetic",
-      "normalMethod": "Add fractions: 1/12 + 1/15 + 1/20, find common denominator, invert at the end.",
-      "topperMethod": "Set total work = LCM(12, 15, 20) = 60 units. Efficiency of A = 5 u/d, B = 4 u/d, C = 3 u/d. Total = 12 u/d. Days = 60 / 12 = 5 days.",
-      "whyItWorks": "Integer efficiency units avoid fractions entirely, eliminating fraction addition mistakes.",
-      "example": "A in 12 days, B in 18 days. Both together?",
-      "normalSteps": "1/12 + 1/18 = (3 + 2)/36 = 5/36. Total = 36/5 = 7.2 days.",
-      "topperSteps": "Work = 36 units. A = 3, B = 2. Combined = 5. Days = 36/5 = 7.2 days in 6s.",
-      "timeSaved": "18 seconds",
-      "commonMistake": "Forgetting to subtract negative efficiency of emptying pipes."
+      "normalMethod": "Use formula A = P(1 + R/100)ᵗ, expand polynomials and solve large decimals.",
+      "topperMethod": "Convert rate to fraction 1/x. Principal : Amount for t years = xᵗ : (x + 1)ᵗ. CI is the unit difference.",
+      "whyItWorks": "Compound interest is exponential scaling of the fractional growth factor.",
+      "example": "P = ₹8,000, R = 15% (3/20), Time = 2 years. Find CI.",
+      "normalSteps": "A = 8000(1.15)² = 8000 × 1.3225 = 10,580. CI = 2,580 (takes 60s).",
+      "topperSteps": "Rate = 3/20. P : A = 20² : 23² = 400 : 529. CI = 129 units. 400 units = ₹8,000 → 1 unit = ₹20. CI = 129 × 20 = ₹2,580 in 8 seconds!",
+      "timeSaved": "50 seconds",
+      "commonMistake": "Squaring the interest instead of the base ratio."
+    },
+    {
+      "id": "sc-mixture-replacement",
+      "title": "Sumit Sir's Mixture Replacement Formula",
+      "book": "PW Banking Game Changer - Sumit Sir",
+      "category": "Arithmetic",
+      "normalMethod": "Recalculate remaining volume and added water step-by-step for each replacement round.",
+      "topperMethod": "Remaining Pure Liquid = Initial Volume × [1 - (Replaced Volume / Total Capacity)]ⁿ.",
+      "whyItWorks": "Each replacement removes an identical fraction of the currently remaining pure liquid.",
+      "example": "A vessel has 60L pure milk. 12L is taken out and replaced with water. Repeated 2 times total.",
+      "normalSteps": "Round 1: 48L milk. Round 2: 12 × 48/60 = 9.6L milk removed, 48 - 9.6 = 38.4L milk left. Takes 40s.",
+      "topperSteps": "Milk left = 60 × (1 - 12/60)² = 60 × (4/5)² = 60 × 16/25 = 38.4L in 6 seconds!",
+      "timeSaved": "30 seconds",
+      "commonMistake": "Confusing remaining pure liquid with the amount of water in the final mixture."
     }
   ]
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { 
   Trophy, Zap, Target, BookOpen, Compass, Sparkles, 
-  ArrowRight, Activity, TrendingUp, CheckCircle2, Clock, AlertCircle 
+  ArrowRight, Activity, TrendingUp, CheckCircle2, Clock, AlertCircle, Table
 } from 'lucide-react';
 import { getQuantReadinessScore, getUserProgress } from '../../utils/dataManager';
 
@@ -220,6 +220,98 @@ export default function Dashboard({ onNavigate, topics = [] }) {
           <div className="mt-6 flex items-center text-xs font-semibold text-indigo-600 dark:text-indigo-400 gap-1">
             <span>Launch Mock Exam</span>
             <ArrowRight className="w-3.5 h-3.5" />
+          </div>
+        </div>
+      </div>
+
+      {/* Speed Calculation Arsenal & Canonical Books */}
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-amber-500" />
+            <h3 className="font-extrabold text-base text-slate-900 dark:text-white tracking-tight">
+              Speed Math Arsenal & Canonical Quant Books
+            </h3>
+          </div>
+          <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2.5 py-0.5 rounded-full">
+            SBI • IBPS • RRB Topper Suite
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Card 1: Master Reference Charts (1-100) */}
+          <div
+            onClick={() => onNavigate('charts')}
+            className="p-6 rounded-2xl border border-indigo-200 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/40 to-white dark:from-slate-900 dark:to-indigo-950/20 hover:border-indigo-500 shadow-sm cursor-pointer transition-all flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
+                <Table className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider block mb-1">
+                Tables • Squares • Cubes
+              </span>
+              <h3 className="font-black text-base text-slate-900 dark:text-white">
+                Master Speed Charts (1 to 100)
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Full 1–100 tables, Base 50/100 symmetry laws, 2-sec cube root extractor, and mental split-and-merge algorithms.
+              </p>
+            </div>
+            <div className="mt-6 flex items-center text-xs font-bold text-indigo-600 dark:text-indigo-400 gap-1">
+              <span>Open 1-100 Reference Charts</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 2: Vedic Maths Suite */}
+          <div
+            onClick={() => onNavigate('vedic')}
+            className="p-6 rounded-2xl border border-amber-200 dark:border-amber-900/60 bg-gradient-to-br from-amber-50/40 to-white dark:from-slate-900 dark:to-amber-950/20 hover:border-amber-500 shadow-sm cursor-pointer transition-all flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block mb-1">
+                7 Ancient Mathematical Sutras
+              </span>
+              <h3 className="font-black text-base text-slate-900 dark:text-white">
+                Vedic Maths Acceleration Suite
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Interactive visualizers for Urdhva Tiryagbhyam, Nikhilam base, Ekadhikena, Vinculum, and 3-second Beejank elimination.
+              </p>
+            </div>
+            <div className="mt-6 flex items-center text-xs font-bold text-amber-600 dark:text-amber-400 gap-1">
+              <span>Launch Vedic Suite</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </div>
+
+          {/* Card 3: 5 Quant Books Compendium */}
+          <div
+            onClick={() => onNavigate('books')}
+            className="p-6 rounded-2xl border border-purple-200 dark:border-purple-900/60 bg-gradient-to-br from-purple-50/40 to-white dark:from-slate-900 dark:to-purple-950/20 hover:border-purple-500 shadow-sm cursor-pointer transition-all flex flex-col justify-between group"
+          >
+            <div>
+              <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center mb-4 shadow-md group-hover:scale-110 transition-transform">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <span className="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-wider block mb-1">
+                Tyra • Verma • Aggarwal • Shukla • Sumit Sir
+              </span>
+              <h3 className="font-black text-base text-slate-900 dark:text-white">
+                5 Quant Books Compendium
+              </h3>
+              <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                Complete synthesis of direct shortcuts, alligation rules, duplex squaring, 20-min prelims blueprints, and ratio-based CI.
+              </p>
+            </div>
+            <div className="mt-6 flex items-center text-xs font-bold text-purple-600 dark:text-purple-400 gap-1">
+              <span>Explore 5 Books Compendium</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+            </div>
           </div>
         </div>
       </div>

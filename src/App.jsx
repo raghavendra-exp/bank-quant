@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { 
   Home, BookOpen, Zap, Compass, Trophy, TrendingUp, 
   ShieldCheck, Sparkles, AlertCircle, Bookmark, Calendar, 
-  Database, Moon, Sun, Search, Menu, X, ChevronRight, Activity 
+  Database, Moon, Sun, Search, Menu, X, ChevronRight, Activity,
+  Table, Layers
 } from 'lucide-react';
 
 import Dashboard from './components/dashboard/Dashboard';
@@ -12,6 +13,9 @@ import QuestionSelectionTrainer from './components/practice/QuestionSelectionTra
 import ExamSimulator from './components/mock/ExamSimulator';
 import ConceptLearner from './components/learn/ConceptLearner';
 import VisualizersHub from './components/visualizers/VisualizersHub';
+import SpeedReferenceCharts from './components/tools/SpeedReferenceCharts';
+import VedicMathSuite from './components/tools/VedicMathSuite';
+import FiveBooksCompendium from './components/tools/FiveBooksCompendium';
 import PyqAnalytics from './components/analytics/PyqAnalytics';
 import ExamPatternDashboard from './components/tools/ExamPatternDashboard';
 import MindTricksLibrary from './components/tools/MindTricksLibrary';
@@ -81,6 +85,9 @@ export default function App() {
       items: [
         { id: 'dashboard', label: 'Dashboard', icon: Home },
         { id: 'learn', label: '32 Topics Concept Hub', icon: BookOpen },
+        { id: 'charts', label: 'Master Charts (1-100)', icon: Table },
+        { id: 'vedic', label: 'Vedic Maths Suite', icon: Sparkles },
+        { id: 'books', label: '5 Quant Books Guide', icon: BookOpen },
         { id: 'visualizers', label: 'Interactive Visualizers', icon: Zap }
       ]
     },
@@ -296,6 +303,20 @@ export default function App() {
           {currentView === 'visualizers' && (
             <VisualizersHub 
               initialTab={activeVisualizerTab} 
+            />
+          )}
+
+          {currentView === 'charts' && (
+            <SpeedReferenceCharts />
+          )}
+
+          {currentView === 'vedic' && (
+            <VedicMathSuite />
+          )}
+
+          {currentView === 'books' && (
+            <FiveBooksCompendium 
+              onNavigate={handleNavigate} 
             />
           )}
 
